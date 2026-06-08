@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001)",
+      "Bash(curl -s http://localhost:3001)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(curl -s \"https://fonts.cdnfonts.com/css/uknumberplate\")",
+      "Bash(curl -s \"https://fonts.cdnfonts.com/css/gunplay\")",
+      "Bash(curl -s -o /Users/abdel/plaques-collection/public/fonts/UKNumberPlate.woff https://fonts.cdnfonts.com/s/24013/UKNumberPlate.woff)",
+      "Bash(curl -s -o /Users/abdel/plaques-collection/public/fonts/GunplayRg.woff https://fonts.cdnfonts.com/s/4253/gunplay.woff)",
+      "Bash(git init *)",
+      "Bash(git *)"
+    ]
+  }
+}

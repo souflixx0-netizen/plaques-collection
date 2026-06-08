@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Share+Tech+Mono&family=Orbitron:wght@700&display=swap');
+
+@font-face {
+  font-family: 'UKNumberPlate';
+  src: url('/fonts/UKNumberPlate.woff') format('woff');
+  font-weight: normal; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'GunplayRg';
+  src: url('/fonts/GunplayRg.woff') format('woff');
+  font-weight: normal; font-style: normal; font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+@layer base {
+  :root { color-scheme: dark; }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-forge-black text-forge-text;
+    font-family: Georgia, "Times New Roman", serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  ::selection {
+    background: rgba(200, 169, 110, 0.25);
+    color: #e8e4da;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #0a0908; }
+  ::-webkit-scrollbar-thumb { background: #1e1c14; border-radius: 2px; }
+}
+
+/* ── Components ───────────────────────────────────────────────────────────── */
+@layer components {
+
+  /* ── Plate frame — no decoration, just shadow ── */
+  .plate-frame {
+    display: block;
+    border-radius: 6px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 6px 32px rgba(0,0,0,0.85);
+  }
+
+  /* ── Gold divider ── */
+  .gold-line {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(200,169,110,0.15) 15%,
+      rgba(200,169,110,0.5)  40%,
+      rgba(200,169,110,0.6)  50%,
+      rgba(200,169,110,0.5)  60%,
+      rgba(200,169,110,0.15) 85%,
+      transparent 100%
+    );
+  }
+
+  /* ── Headings ── */
+  .heading-display {
+    font-family: "Playfair Display", Georgia, serif;
+    @apply text-forge-text;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+
+  /* ── Gold gradient text ── */
+  .text-gold {
+    background: linear-gradient(135deg, #c8a96e 0%, #dfc080 40%, #c8a96e 70%, #a88a50 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Cards ── */
+  .card {
+    @apply bg-forge-card border border-forge-border rounded-xl;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.03), 0 4px 24px rgba(0,0,0,0.4);
+  }
+
+  .card-hover {
+    @apply card transition-all duration-300 cursor-pointer;
+  }
+  .card-hover:hover {
+    @apply border-forge-gold/30;
+    transform: scale(1.015);
+    box-shadow: 0 0 0 1px rgba(200,169,110,0.2), 0 8px 32px rgba(0,0,0,0.5);
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2.5
+           border border-forge-gold text-forge-gold
+           font-mono text-xs tracking-widest-2 uppercase
+           px-8 py-4 rounded
+           transition-all duration-300;
+  }
+  .btn-primary:hover {
+    @apply bg-forge-gold text-forge-black;
+    box-shadow: 0 0 24px rgba(200,169,110,0.2);
+  }
+  .btn-primary:active { transform: scale(0.98); }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2
+           text-forge-secondary font-mono text-xs tracking-widest uppercase
+           transition-colors duration-200
+           hover:text-forge-text;
+  }
+
+  /* ── Terminal input ── */
+  .input-terminal {
+    @apply w-full bg-forge-black border border-forge-border rounded
+           px-4 py-3 font-mono text-forge-text placeholder-forge-dim
+           focus:outline-none focus:border-forge-gold
+           transition-colors duration-200;
+    caret-color: #c8a96e;
+    letter-spacing: 0.15em;
+  }
+  .input-terminal:focus {
+    box-shadow: 0 0 0 1px rgba(200,169,110,0.2);
+  }
+
+  /* ── Grain overlay ── */
+  .grain {
+    position: relative;
+    isolation: isolate;
+  }
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: inherit;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)' opacity='0.025'/%3E%3C/svg%3E");
+  }
+
+  /* ── Step dots ── */
+  .step-dot {
+    @apply w-9 h-9 rounded-full flex items-center justify-center
+           font-mono text-xs font-bold border-2 transition-all duration-300;
+  }
+  .step-active { @apply border-forge-gold bg-forge-gold text-forge-black shadow-gold; }
+  .step-done   { @apply border-forge-gold text-forge-gold bg-forge-card; }
+  .step-idle   { @apply border-forge-secondary/50 text-forge-secondary bg-forge-card; }
+
+  /* ── Reveal on scroll ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Keyframes ────────────────────────────────────────────────────────────── */
+@keyframes plateType {
+  0%   { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* ── Utilities ────────────────────────────────────────────────────────────── */
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .delay-100 { transition-delay: 100ms; }
+  .delay-200 { transition-delay: 200ms; }
+  .delay-300 { transition-delay: 300ms; }
+  .delay-400 { transition-delay: 400ms; }
+
+  /* Tilt 3D on hover */
+  .tilt-wrap { perspective: 1200px; }
+  .tilt-inner { transition: transform 0.4s ease; transform-style: preserve-3d; }
+  .tilt-wrap:hover .tilt-inner { transform: rotateX(2deg) rotateY(-5deg); }
+
+  .plate-type { animation: plateType 0.15s ease; }
+}

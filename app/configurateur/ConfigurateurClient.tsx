@@ -1,0 +1,150 @@
+"use client";
+
+import { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import { useConfigurator } from "@/hooks/useConfigurator";
+import StepOne from "@/components/configurateur/StepOne";
+import StepTwo from "@/components/configurateur/StepTwo";
+import StepThree from "@/components/configurateur/StepThree";
+import { getFormatById } from "@/lib/formats";
+import { cn } from "@/lib/utils";
+import { Check, ChevronLeft, ChevronRight } from "lucide-react";
+
+const STEPS = [
+  { n: 1, label: "Format" },
+  { n: 2, label: "Personnalisation" },
+  { n: 3, label: "Commande" },
+];
+
+export default function ConfigurateurClient() {
+  const searchParams = useSearchParams();
+  const {
+    state, selectFormat, setPlateText, setPlateMode, setFont,
+    setQuantity, nextStep, prevStep, reset,
+  } = useConfigurator();
+
+  const { step, selectedFormat, plateText, plateMode, quantity, selectedFontId } = state;
+
+  // Pre-select format from URL param (?format=auto-52x11)
+  useEffect(() => {
+    const formatId = searchParams.get("format");
+    if (!formatId) return;
+    const format = getFormatById(formatId);
+    if (format) selectFormat(format); // moves directly to step 2
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // run once on mount
+  const canNext =
+    (step === 1 && selectedFormat !== null) ||
+    (step === 2 && plateText.trim().length >= 2);
+
+  return (
+    <div className="min-h-screen pt-20 pb-24 px-4 md:px-8">
+      <div className="max-w-3xl mx-auto">
+
+        {/* Page header */}
+        <div className="text-center mb-12 pt-4">
+          <p className="font-mono text-[10px] text-forge-gold tracking-[0.5em] uppercase mb-4">
+            Configurateur
+          </p>
+          <h1 className="heading-display text-4xl md:text-5xl font-bold">
+            Créez votre plaque
+          </h1>
+        </div>
+
+        {/* ── Stepper ── */}
+        <div className="flex items-center justify-center gap-0 mb-12 select-none">
+          {STEPS.map((s, i) => (
+            <div key={s.n} className="flex items-center">
+              {/* Dot + label */}
+              <div className="flex flex-col items-center gap-2 px-2">
+                <div className={cn("step-dot", {
+                  "step-active": step === s.n,
+                  "step-done":   step > s.n,
+                  "step-idle":   step < s.n,
+                })}>
+                  {step > s.n
+                    ? <Check className="w-4 h-4" strokeWidth={2.5} />
+                    : <span>{s.n}</span>
+                  }
+                </div>
+                <span className={cn(
+                  "font-mono text-[9px] uppercase tracking-widest whitespace-nowrap",
+                  step === s.n  ? "text-forge-gold"
+                  : step > s.n  ? "text-forge-secondary"
+                  :               "text-forge-secondary/50"
+                )}>
+                  {s.label}
+                </span>
+              </div>
+
+              {/* Connector line */}
+              {i < STEPS.length - 1 && (
+                <div
+                  className={cn(
+                    "w-20 md:w-28 h-px -mt-5 transition-all duration-500",
+                    step > s.n ? "bg-forge-gold/50" : "bg-forge-secondary/20"
+                  )}
+                />
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Card */}
+        <div className="card p-6 md:p-8">
+          {step === 1 && (
+            <StepOne selected={selectedFormat} onSelect={selectFormat} fontId={selectedFontId} />
+          )}
+          {step === 2 && selectedFormat && (
+            <StepTwo
+              format={selectedFormat}
+              text={plateText}
+              fontId={selectedFontId}
+              plateMode={plateMode}
+              onTextChange={setPlateText}
+              onFontChange={setFont}
+              onModeChange={setPlateMode}
+            />
+          )}
+          {step === 3 && selectedFormat && (
+            <StepThree
+              format={selectedFormat}
+              text={plateText}
+              fontId={selectedFontId}
+              plateMode={plateMode}
+              quantity={quantity}
+              onQuantityChange={setQuantity}
+              onReset={reset}
+            />
+          )}
+
+          {/* Navigation */}
+          {step < 3 && (
+            <div className="flex justify-between items-center mt-8 pt-6 border-t border-forge-border">
+              <button
+                onClick={prevStep}
+                disabled={step === 1}
+                className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-forge-secondary hover:text-forge-text transition-colors disabled:opacity-25 disabled:cursor-not-allowed"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" strokeWidth={1.5} />
+                Retour
+              </button>
+              <button
+                onClick={nextStep}
+                disabled={!canNext}
+                className={cn(
+                  "btn-primary text-[11px] py-3",
+                  !canNext && "opacity-30 cursor-not-allowed pointer-events-none"
+                )}
+              >
+                {step === 2 ? "Récapitulatif" : "Suivant"}
+                <ChevronRight className="w-3.5 h-3.5" strokeWidth={1.5} />
+              </button>
+            </div>
+          )}
+        </div>
+
+      </div>
+    </div>
+  );
+}
