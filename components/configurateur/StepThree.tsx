@@ -46,7 +46,10 @@ export default function StepThree({
   function handleAddToCart() {
     addItem(format, text, quantity, fontId, plateMode);
     setAdded(true);
-    setTimeout(() => setAdded(false), 2500);
+    setTimeout(() => {
+      setAdded(false);
+      onReset();
+    }, 2500);
   }
 
   const total = format.price * quantity;

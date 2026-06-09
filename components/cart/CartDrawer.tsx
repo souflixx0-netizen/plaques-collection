@@ -4,6 +4,12 @@ import { useCartContext } from "./CartContext";
 import { X, Minus, Plus, ShoppingBag, ArrowRight } from "lucide-react";
 import { formatPrice } from "@/lib/formats";
 import { cn } from "@/lib/utils";
+import PlateCanvas from "@/components/configurateur/PlateCanvas";
+import type { PlateFormat } from "@/types";
+
+function cartItemScale(format: PlateFormat): number {
+  return Math.min(76 / (format.width * 28), 34 / (format.height * 28));
+}
 
 export default function CartDrawer() {
   const { items, total, count, isOpen, setIsOpen, removeItem, updateQuantity } = useCartContext();
@@ -58,10 +64,14 @@ export default function CartDrawer() {
               {items.map((item) => (
                 <li key={item.id} className="card p-4">
                   <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-14 h-7 bg-[#111] rounded flex items-center justify-center">
-                      <span className="font-mono text-[8px] font-bold text-forge-secondary tracking-widest">
-                        {item.text}
-                      </span>
+                    <div className="flex-shrink-0 flex items-center justify-center">
+                      <PlateCanvas
+                        format={item.format}
+                        text={item.text}
+                        fontId={item.fontId}
+                        plateMode={item.plateMode}
+                        scale={cartItemScale(item.format)}
+                      />
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-mono text-xs font-bold text-forge-text truncate tracking-widest">
