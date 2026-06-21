@@ -1,7 +1,7 @@
 "use client";
 
 import { useCartContext } from "./CartContext";
-import { X, Minus, Plus, ShoppingBag, ArrowRight } from "lucide-react";
+import { X, Minus, Plus, ShoppingBag, ArrowRight, Loader2 } from "lucide-react";
 import { formatPrice } from "@/lib/formats";
 import { cn } from "@/lib/utils";
 import PlateCanvas from "@/components/configurateur/PlateCanvas";
@@ -12,7 +12,10 @@ function cartItemScale(format: PlateFormat): number {
 }
 
 export default function CartDrawer() {
-  const { items, total, count, isOpen, setIsOpen, removeItem, updateQuantity } = useCartContext();
+  const {
+    items, total, count, isOpen, setIsOpen, removeItem, updateQuantity,
+    checkout, isCheckingOut, checkoutError,
+  } = useCartContext();
 
   return (
     <>
@@ -120,9 +123,25 @@ export default function CartDrawer() {
               <span className="heading-display text-2xl font-bold text-forge-gold">{formatPrice(total)}</span>
             </div>
             <p className="font-mono text-[9px] text-forge-dim">Livraison calculée à la commande</p>
-            <button className="btn-primary w-full justify-center">
-              Commander
-              <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
+            {checkoutError && (
+              <p className="font-mono text-[10px] text-red-400 leading-relaxed">{checkoutError}</p>
+            )}
+            <button
+              onClick={checkout}
+              disabled={isCheckingOut}
+              className="btn-primary w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {isCheckingOut ? (
+                <>
+                  Redirection…
+                  <Loader2 className="w-4 h-4 animate-spin" strokeWidth={1.5} />
+                </>
+              ) : (
+                <>
+                  Commander
+                  <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
+                </>
+              )}
             </button>
           </div>
         )}

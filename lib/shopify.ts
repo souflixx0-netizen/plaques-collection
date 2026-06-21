@@ -1,6 +1,14 @@
-const SHOPIFY_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN!;
+import type { ShopifyCart } from "@/types";
+
+const SHOPIFY_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN!;
 const SHOPIFY_TOKEN = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN!;
 const API_URL = `https://${SHOPIFY_DOMAIN}/api/2024-01/graphql.json`;
+
+/** True when the Shopify Storefront credentials are present (build-time inlined). */
+export const isShopifyConfigured = Boolean(
+  process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN &&
+  process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN
+);
 
 async function shopifyFetch<T>(query: string, variables?: Record<string, unknown>): Promise<T> {
   const res = await fetch(API_URL, {
@@ -52,6 +60,32 @@ export async function createCart() {
   `;
   const data = await shopifyFetch<{ cartCreate: { cart: unknown } }>(query);
   return (data as { cartCreate: { cart: unknown } }).cartCreate.cart;
+}
+
+export type CartLineInput = {
+  merchandiseId: string;
+  quantity: number;
+  attributes?: Array<{ key: string; value: string }>;
+};
+
+/** Create a cart pre-filled with lines and return it (incl. checkoutUrl). */
+export async function createCheckout(lines: CartLineInput[]): Promise<ShopifyCart> {
+  const query = `
+    ${CART_FRAGMENT}
+    mutation CartCreate($lines: [CartLineInput!]!) {
+      cartCreate(input: { lines: $lines }) {
+        cart { ...CartFields }
+        userErrors { field message }
+      }
+    }
+  `;
+  const data = await shopifyFetch<{
+    cartCreate: { cart: ShopifyCart | null; userErrors: Array<{ message: string }> };
+  }>(query, { lines });
+  const { cart, userErrors } = data.cartCreate;
+  if (userErrors?.length) throw new Error(userErrors[0].message);
+  if (!cart) throw new Error("Shopify n'a pas pu créer le panier.");
+  return cart;
 }
 
 export async function addToCart(

@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useCallback } from "react";
 import type { CartItem, PlateFormat } from "@/types";
+import { createCheckout, isShopifyConfigured, type CartLineInput } from "@/lib/shopify";
+import { getVariantId } from "@/lib/shopifyVariants";
 
 const CART_KEY = "pc_cart";
 
@@ -49,8 +51,58 @@ export function useCart() {
 
   const clearCart = useCallback(() => { setItems([]); localStorage.removeItem(CART_KEY); }, []);
 
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
+
+  /** Build a Shopify cart from the local items and redirect to its checkout. */
+  const checkout = useCallback(async () => {
+    setCheckoutError(null);
+
+    if (items.length === 0) return;
+    if (!isShopifyConfigured) {
+      setCheckoutError("Le paiement en ligne n'est pas encore activé. Contactez-nous pour finaliser votre commande.");
+      return;
+    }
+
+    // Map each cart item to a Shopify variant + carry the personalisation as attributes.
+    const lines: CartLineInput[] = [];
+    const unmapped: string[] = [];
+    for (const i of items) {
+      const merchandiseId = getVariantId(i.format.id);
+      if (!merchandiseId) { unmapped.push(i.format.label); continue; }
+      lines.push({
+        merchandiseId,
+        quantity: i.quantity,
+        attributes: [
+          { key: "Texte",  value: i.text },
+          { key: "Police", value: i.fontId },
+          { key: "Format", value: i.format.label },
+          { key: "Type",   value: i.plateMode === "siv" ? "SIV (AB-123-CD)" : "FNI (ancien)" },
+        ],
+      });
+    }
+
+    if (unmapped.length > 0) {
+      setCheckoutError(`Format(s) pas encore disponible(s) à la commande en ligne : ${unmapped.join(", ")}.`);
+      return;
+    }
+
+    setIsCheckingOut(true);
+    try {
+      const cart = await createCheckout(lines);
+      window.location.href = cart.checkoutUrl;
+    } catch (e) {
+      setCheckoutError(e instanceof Error ? e.message : "Le checkout a échoué. Réessayez.");
+      setIsCheckingOut(false);
+    }
+  }, [items]);
+
   const total = items.reduce((a, i) => a + i.price * i.quantity, 0);
   const count = items.reduce((a, i) => a + i.quantity, 0);
 
-  return { items, total, count, isOpen, setIsOpen, addItem, removeItem, updateQuantity, clearCart };
+  return {
+    items, total, count, isOpen, setIsOpen,
+    addItem, removeItem, updateQuantity, clearCart,
+    checkout, isCheckingOut, checkoutError,
+  };
 }
