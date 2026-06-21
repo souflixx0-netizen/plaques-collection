@@ -10,6 +10,7 @@ import {
   formatPrice,
 } from "@/lib/formats";
 import type { PlateFormat } from "@/types";
+import { usePrice } from "@/components/PriceContext";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 
@@ -130,21 +131,27 @@ function FormatGrid({ formats }: { formats: PlateFormat[] }) {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
       {formats.map((f) => (
-        <Link
-          key={f.id}
-          href={`/configurateur?format=${f.id}`}
-          className="card-forge grain p-4 rounded-lg hover:border-forge-gold/50 hover:shadow-gold transition-all duration-200 group flex flex-col items-center text-center gap-3"
-        >
-          <PlatePreview format={f} />
-          <div>
-            <p className="font-mono text-sm font-bold text-forge-text">{f.label}</p>
-            <p className="font-mono text-xs text-forge-gold mt-0.5">{formatPrice(f.price)}</p>
-          </div>
-          <span className="inline-flex items-center gap-1 font-mono text-[10px] text-forge-dim group-hover:text-forge-gold uppercase tracking-widest transition-colors">
-            Configurer <ArrowRight className="w-3 h-3" />
-          </span>
-        </Link>
+        <CatalogueCard key={f.id} format={f} />
       ))}
     </div>
+  );
+}
+
+function CatalogueCard({ format }: { format: PlateFormat }) {
+  const price = usePrice(format.id, format.price);
+  return (
+    <Link
+      href={`/configurateur?format=${format.id}`}
+      className="card-forge grain p-4 rounded-lg hover:border-forge-gold/50 hover:shadow-gold transition-all duration-200 group flex flex-col items-center text-center gap-3"
+    >
+      <PlatePreview format={format} />
+      <div>
+        <p className="font-mono text-sm font-bold text-forge-text">{format.label}</p>
+        <p className="font-mono text-xs text-forge-gold mt-0.5">{formatPrice(price)}</p>
+      </div>
+      <span className="inline-flex items-center gap-1 font-mono text-[10px] text-forge-dim group-hover:text-forge-gold uppercase tracking-widest transition-colors">
+        Configurer <ArrowRight className="w-3 h-3" />
+      </span>
+    </Link>
   );
 }

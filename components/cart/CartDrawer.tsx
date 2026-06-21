@@ -3,6 +3,7 @@
 import { useCartContext } from "./CartContext";
 import { X, Minus, Plus, ShoppingBag, ArrowRight, Loader2 } from "lucide-react";
 import { formatPrice } from "@/lib/formats";
+import { usePrices } from "@/components/PriceContext";
 import { cn } from "@/lib/utils";
 import PlateCanvas from "@/components/configurateur/PlateCanvas";
 import type { PlateFormat } from "@/types";
@@ -13,9 +14,14 @@ function cartItemScale(format: PlateFormat): number {
 
 export default function CartDrawer() {
   const {
-    items, total, count, isOpen, setIsOpen, removeItem, updateQuantity,
+    items, count, isOpen, setIsOpen, removeItem, updateQuantity,
     checkout, isCheckingOut, checkoutError,
   } = useCartContext();
+
+  // Prix live (Shopify) ; on retombe sur le prix capturé à l'ajout si pas encore chargé.
+  const prices = usePrices();
+  const priceOf = (item: (typeof items)[number]) => prices[item.format.id] ?? item.price;
+  const total = items.reduce((a, i) => a + priceOf(i) * i.quantity, 0);
 
   return (
     <>
@@ -81,7 +87,7 @@ export default function CartDrawer() {
                         {item.text}
                       </p>
                       <p className="font-mono text-[9px] text-forge-dim mt-0.5">{item.format.label}</p>
-                      <p className="font-mono text-[10px] text-forge-gold mt-1">{formatPrice(item.price)}</p>
+                      <p className="font-mono text-[10px] text-forge-gold mt-1">{formatPrice(priceOf(item))}</p>
                     </div>
                     <button
                       onClick={() => removeItem(item.id)}
@@ -106,7 +112,7 @@ export default function CartDrawer() {
                       <Plus className="w-2.5 h-2.5" strokeWidth={1.5} />
                     </button>
                     <span className="ml-auto font-mono text-xs font-bold text-forge-text">
-                      {formatPrice(item.price * item.quantity)}
+                      {formatPrice(priceOf(item) * item.quantity)}
                     </span>
                   </div>
                 </li>

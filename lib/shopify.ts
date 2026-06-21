@@ -128,6 +128,28 @@ export async function removeFromCart(cartId: string, lineIds: string[]) {
   return (data as { cartLinesRemove: { cart: unknown } }).cartLinesRemove.cart;
 }
 
+// ── Prix des variantes (synchro dynamique) ─────────────────────────────────────
+
+/** Renvoie un map { variantGID: prix } pour les variantes demandées. */
+export async function getVariantPrices(ids: string[]): Promise<Record<string, number>> {
+  if (ids.length === 0) return {};
+  const query = `
+    query Prices($ids: [ID!]!) {
+      nodes(ids: $ids) {
+        ... on ProductVariant { id price { amount } }
+      }
+    }
+  `;
+  const data = await shopifyFetch<{
+    nodes: Array<{ id: string; price: { amount: string } } | null>;
+  }>(query, { ids });
+  const map: Record<string, number> = {};
+  for (const n of data.nodes) {
+    if (n?.id) map[n.id] = parseFloat(n.price.amount);
+  }
+  return map;
+}
+
 // ── Products ──────────────────────────────────────────────────────────────────
 
 export async function getProducts(first = 24) {

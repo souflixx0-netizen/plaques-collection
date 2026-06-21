@@ -6,6 +6,7 @@ import type { PlateFormat } from "@/types";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 import PlateCanvas from "./PlateCanvas";
+import { usePrice } from "@/components/PriceContext";
 
 interface StepOneProps {
   selected: PlateFormat | null;
@@ -96,6 +97,7 @@ export default function StepOne({ selected, onSelect, fontId }: StepOneProps) {
 function FormatCard({ format, selected, onSelect, fontId }: {
   format: PlateFormat; selected: boolean; onSelect: (f: PlateFormat) => void; fontId: string;
 }) {
+  const price = usePrice(format.id, format.price);
   return (
     <button
       onClick={() => onSelect(format)}
@@ -114,7 +116,7 @@ function FormatCard({ format, selected, onSelect, fontId }: {
       </div>
       <div>
         <p className="font-mono text-xs font-bold text-forge-text">{format.label}</p>
-        <p className="font-mono text-[10px] text-forge-gold mt-0.5">{formatPrice(format.price)}</p>
+        <p className="font-mono text-[10px] text-forge-gold mt-0.5">{formatPrice(price)}</p>
       </div>
     </button>
   );

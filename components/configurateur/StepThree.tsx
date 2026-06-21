@@ -5,6 +5,7 @@ import PlateCanvas from "./PlateCanvas";
 import { formatPrice } from "@/lib/formats";
 import { getFontById } from "@/lib/fonts";
 import { useCartContext } from "@/components/cart/CartContext";
+import { usePrice } from "@/components/PriceContext";
 import { Minus, Plus, ShoppingBag, RotateCcw, Check } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
@@ -22,6 +23,7 @@ export default function StepThree({
   format, text, fontId, plateMode, quantity, onQuantityChange, onReset,
 }: StepThreeProps) {
   const { addItem } = useCartContext();
+  const price = usePrice(format.id, format.price);
   const [added, setAdded] = useState(false);
   const [recapW, setRecapW] = useState(360);
   const recapRef = useRef<HTMLDivElement>(null);
@@ -44,7 +46,7 @@ export default function StepThree({
   const font = getFontById(fontId);
 
   function handleAddToCart() {
-    addItem(format, text, quantity, fontId, plateMode);
+    addItem(format, text, quantity, fontId, plateMode, price);
     setAdded(true);
     setTimeout(() => {
       setAdded(false);
@@ -52,7 +54,7 @@ export default function StepThree({
     }, 2500);
   }
 
-  const total = format.price * quantity;
+  const total = price * quantity;
 
   return (
     <div className="space-y-8">
@@ -93,7 +95,7 @@ export default function StepThree({
           ["Texte",    text],
           ["Mode",     plateMode === "siv" ? "SIV — AB-123-CD" : "FNI — Ancien numéro"],
           ["Matière",  "Aluminium anodisé · Pochoir"],
-          ["P. unit.", formatPrice(format.price)],
+          ["P. unit.", formatPrice(price)],
         ].map(([label, value]) => (
           <div key={label} className="flex justify-between items-center px-5 py-3">
             <span className="font-mono text-[10px] text-forge-dim uppercase tracking-widest">{label}</span>

@@ -25,13 +25,13 @@ export function useCart() {
 
   useEffect(() => { setItems(loadCart()); }, []);
 
-  const addItem = useCallback((format: PlateFormat, text: string, quantity = 1, fontId = "stencil", plateMode: import("@/types").PlateMode = "siv") => {
+  const addItem = useCallback((format: PlateFormat, text: string, quantity = 1, fontId = "stencil", plateMode: import("@/types").PlateMode = "siv", price = format.price) => {
     setItems((prev) => {
       const key      = `${format.id}__${text}__${fontId}__${plateMode}`;
       const existing = prev.find((i) => i.id === key);
       const next     = existing
         ? prev.map((i) => i.id === key ? { ...i, quantity: i.quantity + quantity } : i)
-        : [...prev, { id: key, format, text, fontId, plateMode, quantity, price: format.price }];
+        : [...prev, { id: key, format, text, fontId, plateMode, quantity, price }];
       saveCart(next);
       return next;
     });

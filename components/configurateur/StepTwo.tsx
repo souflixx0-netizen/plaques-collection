@@ -6,6 +6,7 @@ import PlateCanvas from "./PlateCanvas";
 import FontSelector from "./FontSelector";
 import { formatPrice } from "@/lib/formats";
 import { usePlateInput } from "@/hooks/usePlateInput";
+import { usePrice } from "@/components/PriceContext";
 import { cn } from "@/lib/utils";
 
 interface StepTwoProps {
@@ -52,6 +53,7 @@ export default function StepTwo({
     return () => ro.disconnect();
   }, []);
 
+  const price       = usePrice(format.id, format.price);
   const scale       = calcScale(format, colW);
   const canContinue = formatted.trim().length >= 2;
   const placeholder = mode === "siv" ? "AB-123-CD" : "1234 AB 75";
@@ -62,7 +64,7 @@ export default function StepTwo({
       <div>
         <h2 className="heading-display text-2xl font-bold">Personnalisez</h2>
         <p className="text-forge-secondary font-mono text-xs mt-1">
-          {format.label} · <span className="text-forge-gold">{formatPrice(format.price)}</span>
+          {format.label} · <span className="text-forge-gold">{formatPrice(price)}</span>
         </p>
       </div>
 
