@@ -1,5 +1,7 @@
 import type { ShopifyCart } from "@/types";
 
+// Variables d'env requises (Vercel + .env.local) :
+//   NEXT_PUBLIC_SHOPIFY_DOMAIN, NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN
 const SHOPIFY_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN!;
 const SHOPIFY_TOKEN = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN!;
 const API_URL = `https://${SHOPIFY_DOMAIN}/api/2024-01/graphql.json`;
