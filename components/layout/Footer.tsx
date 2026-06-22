@@ -14,12 +14,13 @@ export default function Footer() {
                 Plaques Collection
               </p>
               <p className="font-mono text-[9px] text-forge-gold tracking-[0.35em] uppercase mt-1">
-                Aluminium pochoir · Lyon, France
+                Atelier familial · Fabriqué en Alsace
               </p>
             </div>
             <p className="text-forge-secondary font-body text-sm leading-relaxed max-w-xs">
-              Chaque plaque est fabriquée à la main dans notre atelier lyonnais,
-              en aluminium anodisé avec la technique du pochoir artisanal.
+              Atelier familial depuis 2005. Chaque plaque de collection est
+              fabriquée à la main, en Alsace, pour les passionnés de véhicules
+              d&apos;époque.
             </p>
             <div className="flex gap-3">
               <a
@@ -82,7 +83,7 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-forge-dim font-mono text-[10px]">
           <p>&copy; {new Date().getFullYear()} Plaques Collection</p>
-          <p className="tracking-wide">Aluminium anodisé · Pochoir artisanal · Fabriqué à Lyon</p>
+          <p className="tracking-wide">Atelier familial · Fabriqué à la main en Alsace · Depuis 2005</p>
         </div>
       </div>
     </footer>

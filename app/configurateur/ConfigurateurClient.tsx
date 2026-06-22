@@ -49,6 +49,10 @@ export default function ConfigurateurClient() {
           <h1 className="heading-display text-4xl md:text-5xl font-bold">
             Créez votre plaque
           </h1>
+          <p className="font-mono text-[10px] text-forge-dim mt-4 max-w-md mx-auto leading-relaxed">
+            Plaques de collection. La pose sur la voie publique est réservée aux
+            véhicules immatriculés en collection ; sinon, usage décoratif et exposition.
+          </p>
         </div>
 
         {/* ── Stepper ── */}

@@ -8,19 +8,19 @@ import { PriceProvider } from "@/components/PriceContext";
 
 export const metadata: Metadata = {
   title: {
-    default: "Plaques Collection — Plaques d'immatriculation aluminium pochoir",
+    default: "Plaques Collection — Plaques d'immatriculation collection en aluminium",
     template: "%s | Plaques Collection",
   },
   description:
-    "Plaques d'immatriculation collection en aluminium pochoir, fabriquées en France. Auto, moto, US — tous formats sur mesure.",
-  keywords: ["plaque immatriculation", "collection", "aluminium", "pochoir", "France", "moto", "custom"],
+    "Plaques d'immatriculation de collection en aluminium, fabriquées à la main en Alsace depuis 2005. Auto, moto, US — tous formats, personnalisables.",
+  keywords: ["plaque immatriculation", "collection", "aluminium", "Alsace", "France", "moto", "voiture ancienne", "véhicule d'époque"],
   openGraph: {
     type: "website",
     locale: "fr_FR",
     url: "https://plaques-collection.fr",
     siteName: "Plaques Collection",
-    title: "Plaques Collection — L'atelier métallurgique français",
-    description: "Plaques d'immatriculation collection en aluminium pochoir artisanal.",
+    title: "Plaques Collection — Atelier familial alsacien depuis 2005",
+    description: "Plaques d'immatriculation de collection fabriquées à la main en Alsace, pour les passionnés de véhicules d'époque.",
   },
 };
 

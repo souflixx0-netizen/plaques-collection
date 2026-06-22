@@ -5,18 +5,18 @@ import { useInView } from "@/hooks/useInView";
 const PILLARS = [
   {
     n: "01",
-    title: "Aluminium anodisé",
-    desc: "1,5 mm d'épaisseur, qualité aéronautique. L'anodisation protège sans altérer le métal — ni peinture, ni vernis de surface.",
+    title: "Atelier familial",
+    desc: "Depuis 2005, de père en fils. Chaque plaque est fabriquée à la main dans notre atelier, en Alsace. Aucune sous-traitance, aucun intermédiaire.",
   },
   {
     n: "02",
-    title: "Fabrication française",
-    desc: "Notre atelier est à Lyon. Chaque plaque est taillée, brossée et finie sur place. Aucune sous-traitance, aucun intermédiaire.",
+    title: "Fabriqué en France",
+    desc: "Une plaque pensée et finie sur place, en Alsace. Le soin d'un atelier, pas la cadence d'une usine.",
   },
   {
     n: "03",
-    title: "Technique du pochoir",
-    desc: "Pas d'impression laser ni UV. Le pochoir crée un léger relief caractéristique — ce que vous touchez, vous ne le trouvez nulle part ailleurs.",
+    title: "Pour les passionnés",
+    desc: "Voitures anciennes, youngtimers, motos : nos plaques sont faites par des passionnés, pour des passionnés de belles mécaniques.",
   },
 ];
 

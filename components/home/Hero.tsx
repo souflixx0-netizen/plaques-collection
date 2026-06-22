@@ -129,7 +129,7 @@ export default function Hero() {
             transition: "all 0.7s ease 0.35s",
           }}
         >
-          Plaques de collection artisanales &middot; Aluminium pochoir &middot; Fabrication française
+          Plaques de collection fabriquées à la main en Alsace &middot; Atelier familial depuis 2005
         </p>
 
         {/* Plate — hero centerpiece */}

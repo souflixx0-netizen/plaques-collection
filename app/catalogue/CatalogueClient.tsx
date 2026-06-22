@@ -69,7 +69,11 @@ export default function CatalogueClient() {
             Tous les formats
           </h1>
           <p className="text-forge-muted font-mono text-sm">
-            {PLATE_FORMATS.length} formats disponibles · Aluminium anodisé · Pochoir artisanal
+            {PLATE_FORMATS.length} formats disponibles · Fabriqué à la main en Alsace
+          </p>
+          <p className="font-mono text-[10px] text-forge-dim mt-2 max-w-xl">
+            Plaques de collection : pose sur la voie publique réservée aux véhicules
+            immatriculés en collection, sinon usage décoratif.
           </p>
         </div>
 

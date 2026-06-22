@@ -3,34 +3,24 @@ import { Wrench, Award, MapPin, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "L'Atelier",
-  description: "L'histoire de Plaques Collection, atelier métallurgique français fondé à Lyon.",
+  description: "Plaques Collection, atelier familial alsacien depuis 2005. Plaques de collection fabriquées à la main en Alsace pour les passionnés de véhicules d'époque.",
 };
 
 const TIMELINE = [
   {
-    year: "1952",
-    title: "L'origine du savoir-faire",
-    desc: "Les plaques d'immatriculation françaises sont alors en aluminium embossé, fabriquées dans de petits ateliers régionaux. C'est dans cet univers que naît notre tradition du pochoir.",
-  },
-  {
-    year: "1987",
-    title: "L'atelier prend forme",
-    desc: "Notre fondateur, passionné d'automobiles anciennes, commence à fabriquer des répliques de plaques d'époque pour les collectionneurs. La demande explose.",
-  },
-  {
     year: "2005",
-    title: "Le tournant artisanal",
-    desc: "Refus catégorique de l'impression numérique. Nous investissons dans des pochoirs aluminium de précision et affinons notre technique de brossage manuel.",
+    title: "Tout commence avec mon père",
+    desc: "Passionné de belles mécaniques, mon père lance l'atelier en Alsace et se met à fabriquer des plaques de collection pour les amateurs de voitures anciennes de la région. Le bouche-à-oreille fait le reste.",
   },
   {
-    year: "2019",
-    title: "L'atelier en ligne",
-    desc: "Plaques Collection ouvre sa boutique en ligne, permettant à chacun de commander une plaque personnalisée directement depuis chez soi.",
+    year: "Au fil des ans",
+    title: "Un savoir-faire qui s'affine",
+    desc: "Collectionneurs, motards, propriétaires de véhicules d'époque : la clientèle grandit. L'atelier se concentre sur une chose, la faire à la main et bien la faire.",
   },
   {
     year: "Aujourd'hui",
-    title: "24 formats, 1 atelier",
-    desc: "Toujours à Lyon, toujours à la main. Chaque plaque quitte l'atelier avec l'empreinte de son fabricant.",
+    title: "L'atelier en ligne",
+    desc: "Je poursuis ce que mon père a construit. La fabrication reste en Alsace, à la main, et le configurateur permet désormais à chacun de commander sa plaque partout en France.",
   },
 ];
 
@@ -44,8 +34,8 @@ export default function AProposPage() {
             L&apos;Atelier
           </p>
           <h1 className="heading-display text-4xl md:text-6xl font-bold mb-6 text-balance">
-            Soixante-dix ans de{" "}
-            <span className="italic">métal et de pochoir</span>
+            Une affaire de famille,{" "}
+            <span className="italic">depuis 2005</span>
           </h1>
           <div className="gold-line" />
         </div>
@@ -54,24 +44,25 @@ export default function AProposPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
           <div className="space-y-5">
             <p className="text-forge-text text-lg leading-relaxed">
-              Plaques Collection, c&apos;est l&apos;histoire d&apos;une obsession pour le métal travaillé à la main,
-              dans la tradition des ateliers lyonnais du milieu du XX<sup>e</sup> siècle.
+              Plaques Collection, c&apos;est une histoire de famille, née en Alsace
+              en 2005. Mon père, passionné de véhicules d&apos;époque, a commencé
+              par fabriquer des plaques de collection pour les amateurs de la région.
             </p>
             <p className="text-forge-muted leading-relaxed">
-              À une époque où tout se fabrique à la machine et s&apos;imprime au laser, nous avons
-              choisi l&apos;inverse : garder la chaleur du geste, l&apos;irrégularité du pochoir,
-              l&apos;authenticité du métal brossé.
+              Aujourd&apos;hui, je poursuis son travail avec la même exigence :
+              chaque plaque est fabriquée à la main, dans notre atelier, en Alsace.
             </p>
           </div>
           <div className="space-y-5">
             <p className="text-forge-muted leading-relaxed">
-              Nos plaques ne ressemblent à aucune autre parce qu&apos;elles ne sont fabriquées
-              comme aucune autre. Chaque pièce est unique — le grain du métal, la légère
-              variation du pochoir, les micro-traces de brossage.
+              Nos clients sont des passionnés, comme nous : collectionneurs de
+              voitures anciennes, propriétaires de youngtimers, motards. Des gens
+              pour qui une belle mécanique mérite une belle plaque.
             </p>
             <p className="text-forge-muted leading-relaxed">
-              C&apos;est ça, la collection : posséder un objet qui a été fait par quelqu&apos;un,
-              pas par quelque chose.
+              Vingt ans plus tard, l&apos;esprit n&apos;a pas changé : du soin, de
+              l&apos;exigence, et une plaque dont on est fier sur son véhicule comme
+              dans son garage.
             </p>
           </div>
         </div>
@@ -81,8 +72,8 @@ export default function AProposPage() {
           {[
             { icon: Wrench, num: "24", label: "Formats disponibles" },
             { icon: Award, num: "100%", label: "Fabriqué en France" },
-            { icon: MapPin, num: "Lyon", label: "Atelier unique" },
-            { icon: Clock, num: "3–5j", label: "Délai de fabrication" },
+            { icon: MapPin, num: "Alsace", label: "Notre atelier" },
+            { icon: Clock, num: "Depuis 2005", label: "Savoir-faire familial" },
           ].map(({ icon: Icon, num, label }) => (
             <div key={label} className="card-forge p-5 text-center rounded-xl">
               <Icon className="w-5 h-5 text-forge-gold mx-auto mb-3" />
