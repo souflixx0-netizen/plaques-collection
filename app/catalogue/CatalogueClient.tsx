@@ -48,16 +48,16 @@ export default function CatalogueClient() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-12">
-          <p className="font-mono text-xs text-forge-gold tracking-[0.4em] uppercase mb-3">
+          <p className="font-sans text-xs text-forge-gold tracking-[0.17em] uppercase mb-3">
             Catalogue
           </p>
           <h1 className="heading-display text-4xl md:text-5xl font-bold mb-3">
             Tous les formats
           </h1>
-          <p className="text-forge-muted font-mono text-sm">
+          <p className="text-forge-muted font-sans text-sm">
             {PLATE_FORMATS.length} formats · Aluminium brossé · Écriture en pochoir · Fabriqué en Alsace
           </p>
-          <p className="font-mono text-[10px] text-forge-dim mt-2 max-w-xl">
+          <p className="font-sans text-[10px] text-forge-dim mt-2 max-w-xl">
             Plaques de collection : pose sur la voie publique réservée aux véhicules
             immatriculés en collection, sinon usage décoratif.
           </p>
@@ -70,7 +70,7 @@ export default function CatalogueClient() {
               key={cat}
               onClick={() => changeCategory(cat)}
               className={cn(
-                "px-5 py-3 font-mono text-xs tracking-widest uppercase transition-all duration-200 border-b-2 -mb-px",
+                "px-5 py-3 font-sans text-xs tracking-widest uppercase transition-all duration-200 border-b-2 -mb-px",
                 activeCategory === cat
                   ? "border-forge-gold text-forge-gold"
                   : "border-transparent text-forge-dim hover:text-forge-muted"
@@ -93,11 +93,11 @@ export default function CatalogueClient() {
                 return (
                   <div key={sub}>
                     <div className="flex items-center gap-4 mb-5">
-                      <h2 className="font-mono text-xs text-forge-gold uppercase tracking-widest">
+                      <h2 className="font-sans text-xs text-forge-gold uppercase tracking-widest">
                         {subLabel}
                       </h2>
                       {sub === "homologué" && (
-                        <span className="px-2 py-0.5 bg-forge-gold/10 border border-forge-gold/30 rounded text-[10px] font-mono text-forge-gold">
+                        <span className="px-2 py-0.5 bg-forge-gold/10 border border-forge-gold/30 rounded text-[10px] font-sans text-forge-gold">
                           Homologué route
                         </span>
                       )}
@@ -138,10 +138,10 @@ function CatalogueCard({ format }: { format: PlateFormat }) {
         <PlateCanvas format={format} text="AB-123-CD" scale={previewScale(format)} />
       </div>
       <div>
-        <p className="font-mono text-sm font-bold text-forge-text">{format.label}</p>
-        <p className="font-mono text-xs text-forge-gold mt-0.5">{formatPrice(price)}</p>
+        <p className="font-sans text-sm font-bold text-forge-text">{format.label}</p>
+        <p className="font-sans text-xs text-forge-gold mt-0.5">{formatPrice(price)}</p>
       </div>
-      <span className="inline-flex items-center gap-1 font-mono text-[10px] text-forge-dim group-hover:text-forge-gold uppercase tracking-widest transition-colors">
+      <span className="inline-flex items-center gap-1 font-sans text-[10px] text-forge-dim group-hover:text-forge-gold uppercase tracking-widest transition-colors">
         Configurer <ArrowRight className="w-3 h-3" />
       </span>
     </Link>

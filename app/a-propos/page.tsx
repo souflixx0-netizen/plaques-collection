@@ -31,7 +31,7 @@ export default function AProposPage() {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-16">
-          <p className="font-mono text-xs text-forge-gold tracking-[0.4em] uppercase mb-3">
+          <p className="font-sans text-xs text-forge-gold tracking-[0.17em] uppercase mb-3">
             L&apos;Atelier
           </p>
           <h1 className="heading-display text-4xl md:text-6xl font-bold mb-6 text-balance">
@@ -79,7 +79,7 @@ export default function AProposPage() {
             <div key={label} className="card-forge p-5 text-center rounded-xl">
               <Icon className="w-5 h-5 text-forge-gold mx-auto mb-3" />
               <p className="font-display text-2xl font-bold text-forge-gold">{num}</p>
-              <p className="font-mono text-[10px] text-forge-dim uppercase tracking-widest mt-1">
+              <p className="font-sans text-[10px] text-forge-dim uppercase tracking-widest mt-1">
                 {label}
               </p>
             </div>
@@ -98,7 +98,7 @@ export default function AProposPage() {
                 <div key={i} className="relative">
                   {/* Year badge */}
                   <div className="absolute -left-6 md:-left-36 flex items-start">
-                    <span className="font-mono text-xs font-bold text-forge-gold bg-forge-dark border border-forge-gold/30 px-2 py-1 rounded whitespace-nowrap">
+                    <span className="font-sans text-xs font-bold text-forge-gold bg-forge-dark border border-forge-gold/30 px-2 py-1 rounded whitespace-nowrap">
                       {item.year}
                     </span>
                   </div>

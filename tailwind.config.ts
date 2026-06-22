@@ -26,11 +26,11 @@ const config: Config = {
         display: ["Playfair Display", "Georgia", "serif"],
         body:    ["Georgia", "Times New Roman", "serif"],
         mono:    ["Courier New", "Courier", "monospace"],
-        sans:    ["system-ui", "sans-serif"],
+        sans:    ["Inter", "system-ui", "-apple-system", "Segoe UI", "sans-serif"],
       },
       letterSpacing: {
-        "widest-2": "0.3em",
-        "widest-3": "0.45em",
+        "widest-2": "0.16em",
+        "widest-3": "0.22em",
       },
       boxShadow: {
         gold:   "0 0 0 1px rgba(200,169,110,0.25)",

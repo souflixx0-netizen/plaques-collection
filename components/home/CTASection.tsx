@@ -17,7 +17,7 @@ export default function CTASection() {
         >
           <div className="gold-line mb-16" />
 
-          <p className="font-mono text-[10px] text-forge-gold tracking-[0.5em] uppercase mb-5">
+          <p className="font-sans text-[10px] text-forge-gold tracking-[0.2em] uppercase mb-5">
             Commencez maintenant
           </p>
 
@@ -35,7 +35,7 @@ export default function CTASection() {
             <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
           </Link>
 
-          <p className="font-mono text-[10px] text-forge-gold tracking-widest uppercase mt-6 flex items-center justify-center gap-1.5">
+          <p className="font-sans text-[10px] text-forge-gold tracking-widest uppercase mt-6 flex items-center justify-center gap-1.5">
             <BadgeCheck className="w-3.5 h-3.5" strokeWidth={1.5} />
             Satisfait ou remboursé
           </p>

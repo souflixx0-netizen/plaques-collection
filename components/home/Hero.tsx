@@ -99,7 +99,7 @@ export default function Hero() {
           }}
         >
           <div className="w-8 h-px bg-forge-gold/50" />
-          <span className="font-mono text-[10px] text-forge-secondary tracking-[0.5em] uppercase">
+          <span className="font-sans text-[10px] text-forge-secondary tracking-[0.2em] uppercase">
             Artisanat français
           </span>
           <div className="w-8 h-px bg-forge-gold/50" />
@@ -191,7 +191,7 @@ export default function Hero() {
           ].map(([n, l]) => (
             <div key={l} className="text-center">
               <p className="font-display text-xl font-bold text-forge-gold">{n}</p>
-              <p className="font-mono text-[9px] text-forge-dim uppercase tracking-widest mt-0.5">{l}</p>
+              <p className="font-sans text-[9px] text-forge-dim uppercase tracking-widest mt-0.5">{l}</p>
             </div>
           ))}
         </div>

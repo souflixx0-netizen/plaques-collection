@@ -51,7 +51,7 @@ function CategoryCard({
         <div className="space-y-2 mb-5">
           <div className="flex items-baseline justify-between">
             <h3 className="heading-display text-xl font-bold">{meta.label}</h3>
-            <span className="font-mono text-[10px] text-forge-dim uppercase tracking-widest">
+            <span className="font-sans text-[10px] text-forge-dim uppercase tracking-widest">
               {count} formats
             </span>
           </div>
@@ -60,7 +60,7 @@ function CategoryCard({
           </p>
         </div>
 
-        <span className="inline-flex items-center gap-1.5 font-mono text-[10px] text-forge-secondary uppercase tracking-widest group-hover:text-forge-gold transition-colors duration-200">
+        <span className="inline-flex items-center gap-1.5 font-sans text-[10px] text-forge-secondary uppercase tracking-widest group-hover:text-forge-gold transition-colors duration-200">
           Voir les formats
           <ArrowRight className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5" strokeWidth={1.5} />
         </span>
@@ -82,7 +82,7 @@ export default function FormatsSection() {
           className="reveal mb-16"
           style={headIn ? { opacity: 1, transform: "none" } : {}}
         >
-          <p className="font-mono text-[10px] text-forge-gold tracking-[0.5em] uppercase mb-4">
+          <p className="font-sans text-[10px] text-forge-gold tracking-[0.2em] uppercase mb-4">
             Catalogue
           </p>
           <h2 className="heading-display text-4xl md:text-5xl font-bold mb-4 text-balance">

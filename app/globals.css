@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Carlito:wght@400;700&family=Orbitron:wght@700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Share+Tech+Mono&family=Special+Elite&family=Stardos+Stencil:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Carlito:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Share+Tech+Mono&family=Special+Elite&family=Stardos+Stencil:wght@400;700&display=swap');
 
 @font-face {
   font-family: 'UKNumberPlate';
@@ -100,7 +100,7 @@
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2.5
            border border-forge-gold text-forge-gold
-           font-mono text-xs tracking-widest-2 uppercase
+           font-sans text-xs tracking-widest-2 uppercase
            px-8 py-4 rounded
            transition-all duration-300;
   }
@@ -112,7 +112,7 @@
 
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-2
-           text-forge-secondary font-mono text-xs tracking-widest uppercase
+           text-forge-secondary font-sans text-xs tracking-widest uppercase
            transition-colors duration-200
            hover:text-forge-text;
   }
@@ -120,7 +120,7 @@
   /* ── Terminal input ── */
   .input-terminal {
     @apply w-full bg-forge-black border border-forge-border rounded
-           px-4 py-3 font-mono text-forge-text placeholder-forge-dim
+           px-4 py-3 font-sans text-forge-text placeholder-forge-dim
            focus:outline-none focus:border-forge-gold
            transition-colors duration-200;
     caret-color: #c8a96e;
@@ -148,7 +148,7 @@
   /* ── Step dots ── */
   .step-dot {
     @apply w-9 h-9 rounded-full flex items-center justify-center
-           font-mono text-xs font-bold border-2 transition-all duration-300;
+           font-sans text-xs font-bold border-2 transition-all duration-300;
   }
   .step-active { @apply border-forge-gold bg-forge-gold text-forge-black shadow-gold; }
   .step-done   { @apply border-forge-gold text-forge-gold bg-forge-card; }

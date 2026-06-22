@@ -34,7 +34,7 @@ export default function StepOne({ selected, onSelect, fontId }: StepOneProps) {
     <div className="space-y-7">
       <div>
         <h2 className="heading-display text-2xl font-bold">Choisissez votre format</h2>
-        <p className="text-forge-secondary font-mono text-xs mt-1 tracking-wide">
+        <p className="text-forge-secondary font-sans text-xs mt-1 tracking-wide">
           {PLATE_FORMATS.length} formats disponibles
         </p>
       </div>
@@ -46,7 +46,7 @@ export default function StepOne({ selected, onSelect, fontId }: StepOneProps) {
             key={c}
             onClick={() => setCat(c)}
             className={cn(
-              "px-4 py-3 font-mono text-[10px] uppercase tracking-widest transition-all duration-200 border-b-2 -mb-px",
+              "px-4 py-3 font-sans text-[10px] uppercase tracking-widest transition-all duration-200 border-b-2 -mb-px",
               cat === c
                 ? "border-forge-gold text-forge-gold"
                 : "border-transparent text-forge-dim hover:text-forge-secondary"
@@ -65,11 +65,11 @@ export default function StepOne({ selected, onSelect, fontId }: StepOneProps) {
             return (
               <div key={sub}>
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="font-mono text-[10px] text-forge-gold uppercase tracking-widest">
+                  <span className="font-sans text-[10px] text-forge-gold uppercase tracking-widest">
                     {MOTO_SUBCATEGORIES[sub]}
                   </span>
                   {sub === "homologué" && (
-                    <span className="font-mono text-[9px] border border-forge-gold/30 text-forge-gold px-2 py-0.5 rounded">
+                    <span className="font-sans text-[9px] border border-forge-gold/30 text-forge-gold px-2 py-0.5 rounded">
                       Homologué
                     </span>
                   )}
@@ -115,8 +115,8 @@ function FormatCard({ format, selected, onSelect, fontId }: {
         <PlateCanvas format={format} text="AB-123-CD" fontId={fontId} scale={miniScale(format)} />
       </div>
       <div>
-        <p className="font-mono text-xs font-bold text-forge-text">{format.label}</p>
-        <p className="font-mono text-[10px] text-forge-gold mt-0.5">{formatPrice(price)}</p>
+        <p className="font-sans text-xs font-bold text-forge-text">{format.label}</p>
+        <p className="font-sans text-[10px] text-forge-gold mt-0.5">{formatPrice(price)}</p>
       </div>
     </button>
   );

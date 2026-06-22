@@ -60,7 +60,7 @@ export default function StepThree({
     <div className="space-y-8">
       <div>
         <h2 className="heading-display text-2xl font-bold">Récapitulatif</h2>
-        <p className="text-forge-secondary font-mono text-xs mt-1">
+        <p className="text-forge-secondary font-sans text-xs mt-1">
           Vérifiez votre commande avant d&apos;ajouter au panier
         </p>
       </div>
@@ -83,7 +83,7 @@ export default function StepThree({
             animate
           />
         </div>
-        <p className="font-mono text-[9px] text-forge-dim uppercase tracking-widest mt-1">
+        <p className="font-sans text-[9px] text-forge-dim uppercase tracking-widest mt-1">
           Police : {font.label} · {format.lines === 1 ? "1 ligne" : "2 lignes"}
         </p>
       </div>
@@ -98,8 +98,8 @@ export default function StepThree({
           ["P. unit.", formatPrice(price)],
         ].map(([label, value]) => (
           <div key={label} className="flex justify-between items-center px-5 py-3">
-            <span className="font-mono text-[10px] text-forge-dim uppercase tracking-widest">{label}</span>
-            <span className={`font-mono text-sm text-forge-text ${label === "Texte" ? "tracking-widest font-bold text-base" : ""} ${label === "P. unit." ? "text-forge-gold" : ""}`}>
+            <span className="font-sans text-[10px] text-forge-dim uppercase tracking-widest">{label}</span>
+            <span className={`font-sans text-sm text-forge-text ${label === "Texte" ? "tracking-widest font-bold text-base" : ""} ${label === "P. unit." ? "text-forge-gold" : ""}`}>
               {value}
             </span>
           </div>
@@ -107,7 +107,7 @@ export default function StepThree({
 
         {/* Quantity */}
         <div className="flex justify-between items-center px-5 py-4">
-          <span className="font-mono text-[10px] text-forge-dim uppercase tracking-widest">Quantité</span>
+          <span className="font-sans text-[10px] text-forge-dim uppercase tracking-widest">Quantité</span>
           <div className="flex items-center gap-3">
             <button
               onClick={() => onQuantityChange(quantity - 1)}
@@ -116,7 +116,7 @@ export default function StepThree({
             >
               <Minus className="w-3 h-3" strokeWidth={1.5} />
             </button>
-            <span className="font-mono text-sm font-bold text-forge-text w-5 text-center">{quantity}</span>
+            <span className="font-sans text-sm font-bold text-forge-text w-5 text-center">{quantity}</span>
             <button
               onClick={() => onQuantityChange(quantity + 1)}
               className="w-7 h-7 rounded border border-forge-border flex items-center justify-center text-forge-secondary hover:border-forge-gold hover:text-forge-gold transition-colors"
@@ -128,7 +128,7 @@ export default function StepThree({
 
         {/* Total */}
         <div className="flex justify-between items-center px-5 py-5">
-          <span className="font-mono text-[10px] text-forge-dim uppercase tracking-widest">Total</span>
+          <span className="font-sans text-[10px] text-forge-dim uppercase tracking-widest">Total</span>
           <span className="heading-display text-2xl font-bold text-forge-gold">{formatPrice(total)}</span>
         </div>
       </div>
@@ -151,10 +151,10 @@ export default function StepThree({
         </button>
       </div>
 
-      <p className="text-forge-dim font-mono text-[10px] text-center tracking-wide">
+      <p className="text-forge-dim font-sans text-[10px] text-center tracking-wide">
         Fabrication artisanale · Expédition 3–5 jours · France & Europe
       </p>
-      <p className="text-forge-gold/90 font-mono text-[10px] text-center tracking-widest uppercase flex items-center justify-center gap-1.5">
+      <p className="text-forge-gold/90 font-sans text-[10px] text-center tracking-widest uppercase flex items-center justify-center gap-1.5">
         <BadgeCheck className="w-3.5 h-3.5" strokeWidth={1.5} />
         Satisfait ou remboursé
       </p>

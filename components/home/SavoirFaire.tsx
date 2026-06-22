@@ -29,7 +29,7 @@ function Pillar({ n, title, desc, delay }: { n: string; title: string; desc: str
       style={{ transitionDelay: `${delay}ms`, ...(inView ? { opacity: 1, transform: "none" } : {}) }}
     >
       <div className="border-t border-forge-border pt-7 space-y-3">
-        <span className="font-mono text-[10px] text-forge-dim tracking-widest">{n}</span>
+        <span className="font-sans text-[10px] text-forge-dim tracking-widest">{n}</span>
         <h3 className="heading-display text-lg font-bold">{title}</h3>
         <p className="text-forge-secondary font-body text-sm leading-relaxed">{desc}</p>
       </div>
@@ -51,7 +51,7 @@ export default function SavoirFaire() {
             className="reveal"
             style={headIn ? { opacity: 1, transform: "none" } : {}}
           >
-            <p className="font-mono text-[10px] text-forge-gold tracking-[0.5em] uppercase mb-4">
+            <p className="font-sans text-[10px] text-forge-gold tracking-[0.2em] uppercase mb-4">
               Savoir-faire
             </p>
             <h2 className="heading-display text-4xl md:text-5xl font-bold text-balance">

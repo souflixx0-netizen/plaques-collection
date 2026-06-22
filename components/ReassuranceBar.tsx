@@ -28,7 +28,7 @@ export default function ReassuranceBar({ className = "" }: { className?: string 
           >
             <Icon className="w-5 h-5 text-forge-gold shrink-0" strokeWidth={1.5} />
             <span
-              className={`font-mono text-[11px] md:text-xs uppercase tracking-widest ${
+              className={`font-sans text-[11px] md:text-xs uppercase tracking-widest ${
                 highlight ? "text-forge-gold font-bold" : "text-forge-text"
               }`}
             >

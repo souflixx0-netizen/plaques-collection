@@ -84,11 +84,11 @@ export default function FAQClient() {
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="mb-14">
-          <p className="font-mono text-xs text-forge-gold tracking-[0.4em] uppercase mb-3">
+          <p className="font-sans text-xs text-forge-gold tracking-[0.17em] uppercase mb-3">
             Questions fréquentes
           </p>
           <h1 className="heading-display text-4xl md:text-5xl font-bold mb-3">FAQ</h1>
-          <p className="text-forge-muted font-mono text-sm">
+          <p className="text-forge-muted font-sans text-sm">
             Tout ce que vous voulez savoir sur nos plaques et notre atelier.
           </p>
         </div>
@@ -97,7 +97,7 @@ export default function FAQClient() {
         <div className="space-y-12">
           {FAQ.map((section) => (
             <div key={section.category}>
-              <h2 className="font-mono text-xs text-forge-gold uppercase tracking-widest mb-4">
+              <h2 className="font-sans text-xs text-forge-gold uppercase tracking-widest mb-4">
                 {section.category}
               </h2>
               <div className="space-y-2">

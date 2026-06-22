@@ -87,7 +87,7 @@ function FontPreview({ font, active }: { font: PlateFont; active: boolean }) {
 export default function FontSelector({ selectedId, onChange }: FontSelectorProps) {
   return (
     <div className="space-y-1.5">
-      <p className="font-mono text-[10px] text-forge-dim uppercase tracking-widest">Police</p>
+      <p className="font-sans text-[10px] text-forge-dim uppercase tracking-widest">Police</p>
       <div className="flex flex-col gap-1.5">
         {PLATE_FONTS.map((font) => {
           const active = selectedId === font.id;
@@ -104,7 +104,7 @@ export default function FontSelector({ selectedId, onChange }: FontSelectorProps
             >
               <FontPreview font={font} active={active} />
               <span className={cn(
-                "font-mono text-[10px] uppercase tracking-widest",
+                "font-sans text-[10px] uppercase tracking-widest",
                 active ? "text-forge-gold" : "text-forge-dim"
               )}>
                 {font.label}

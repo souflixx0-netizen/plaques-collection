@@ -11,7 +11,7 @@ export default function ContactPage() {
     <div className="min-h-screen pt-24 pb-24 px-4 md:px-8">
       <div className="max-w-3xl mx-auto">
         <div className="mb-12 text-center">
-          <p className="font-mono text-xs text-forge-gold tracking-[0.4em] uppercase mb-3">
+          <p className="font-sans text-xs text-forge-gold tracking-[0.17em] uppercase mb-3">
             Contact
           </p>
           <h1 className="heading-display text-4xl md:text-5xl font-bold mb-4 text-balance">
@@ -30,8 +30,8 @@ export default function ContactPage() {
           >
             <Mail className="w-5 h-5 text-forge-gold" strokeWidth={1.5} />
             <div>
-              <p className="font-mono text-[10px] text-forge-dim uppercase tracking-widest mb-1">E-mail</p>
-              <p className="font-mono text-sm text-forge-text">contact@plaques-collection.fr</p>
+              <p className="font-sans text-[10px] text-forge-dim uppercase tracking-widest mb-1">E-mail</p>
+              <p className="font-sans text-sm text-forge-text">contact@plaques-collection.fr</p>
             </div>
           </a>
 
@@ -41,24 +41,24 @@ export default function ContactPage() {
           >
             <Phone className="w-5 h-5 text-forge-gold" strokeWidth={1.5} />
             <div>
-              <p className="font-mono text-[10px] text-forge-dim uppercase tracking-widest mb-1">Téléphone</p>
-              <p className="font-mono text-sm text-forge-text">06 61 19 19 16</p>
+              <p className="font-sans text-[10px] text-forge-dim uppercase tracking-widest mb-1">Téléphone</p>
+              <p className="font-sans text-sm text-forge-text">06 61 19 19 16</p>
             </div>
           </a>
 
           <div className="card p-6 flex flex-col items-center text-center gap-3">
             <MapPin className="w-5 h-5 text-forge-gold" strokeWidth={1.5} />
             <div>
-              <p className="font-mono text-[10px] text-forge-dim uppercase tracking-widest mb-1">Atelier</p>
-              <p className="font-mono text-sm text-forge-text">Alsace, France</p>
+              <p className="font-sans text-[10px] text-forge-dim uppercase tracking-widest mb-1">Atelier</p>
+              <p className="font-sans text-sm text-forge-text">Alsace, France</p>
             </div>
           </div>
 
           <div className="card p-6 flex flex-col items-center text-center gap-3">
             <Clock className="w-5 h-5 text-forge-gold" strokeWidth={1.5} />
             <div>
-              <p className="font-mono text-[10px] text-forge-dim uppercase tracking-widest mb-1">Délai de réponse</p>
-              <p className="font-mono text-sm text-forge-text">Sous 24 h</p>
+              <p className="font-sans text-[10px] text-forge-dim uppercase tracking-widest mb-1">Délai de réponse</p>
+              <p className="font-sans text-sm text-forge-text">Sous 24 h</p>
             </div>
           </div>
         </div>

@@ -41,10 +41,10 @@ export default function Header() {
 
         {/* Logo */}
         <Link href="/" className="flex flex-col leading-none gap-px">
-          <span className="font-mono text-[11px] font-bold text-forge-text tracking-[0.45em] uppercase">
+          <span className="font-sans text-[11px] font-bold text-forge-text tracking-[0.45em] uppercase">
             Plaques Collection
           </span>
-          <span className="font-mono text-[8px] text-forge-gold tracking-[0.3em] uppercase">
+          <span className="font-sans text-[8px] text-forge-gold tracking-[0.14em] uppercase">
             Aluminium pochoir · France
           </span>
         </Link>
@@ -56,7 +56,7 @@ export default function Header() {
               key={href}
               href={href}
               className={cn(
-                "relative font-mono text-[11px] tracking-widest uppercase transition-colors duration-200 py-1",
+                "relative font-sans text-[11px] tracking-widest uppercase transition-colors duration-200 py-1",
                 "after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left",
                 "after:scale-x-0 after:bg-forge-gold after:transition-transform after:duration-300",
                 "hover:text-forge-text hover:after:scale-x-100",
@@ -79,7 +79,7 @@ export default function Header() {
           >
             <ShoppingBag className="w-[18px] h-[18px]" strokeWidth={1.5} />
             {count > 0 && (
-              <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-forge-gold text-forge-black text-[8px] font-bold font-mono rounded-full flex items-center justify-center">
+              <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-forge-gold text-forge-black text-[8px] font-bold font-sans rounded-full flex items-center justify-center">
                 {count > 9 ? "9" : count}
               </span>
             )}
@@ -114,7 +114,7 @@ export default function Header() {
               key={href}
               href={href}
               className={cn(
-                "block py-2.5 font-mono text-xs tracking-widest uppercase transition-colors",
+                "block py-2.5 font-sans text-xs tracking-widest uppercase transition-colors",
                 pathname === href ? "text-forge-gold" : "text-forge-secondary hover:text-forge-text"
               )}
             >

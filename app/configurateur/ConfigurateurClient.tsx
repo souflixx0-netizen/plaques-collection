@@ -44,13 +44,13 @@ export default function ConfigurateurClient() {
 
         {/* Page header */}
         <div className="text-center mb-12 pt-4">
-          <p className="font-mono text-[10px] text-forge-gold tracking-[0.5em] uppercase mb-4">
+          <p className="font-sans text-[10px] text-forge-gold tracking-[0.2em] uppercase mb-4">
             Configurateur
           </p>
           <h1 className="heading-display text-4xl md:text-5xl font-bold">
             Créez votre plaque
           </h1>
-          <p className="font-mono text-[10px] text-forge-dim mt-4 max-w-md mx-auto leading-relaxed">
+          <p className="font-sans text-[10px] text-forge-dim mt-4 max-w-md mx-auto leading-relaxed">
             Plaques de collection. La pose sur la voie publique est réservée aux
             véhicules immatriculés en collection ; sinon, usage décoratif et exposition.
           </p>
@@ -73,7 +73,7 @@ export default function ConfigurateurClient() {
                   }
                 </div>
                 <span className={cn(
-                  "font-mono text-[9px] uppercase tracking-widest whitespace-nowrap",
+                  "font-sans text-[9px] uppercase tracking-widest whitespace-nowrap",
                   step === s.n  ? "text-forge-gold"
                   : step > s.n  ? "text-forge-secondary"
                   :               "text-forge-secondary/50"
@@ -129,7 +129,7 @@ export default function ConfigurateurClient() {
               <button
                 onClick={prevStep}
                 disabled={step === 1}
-                className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-forge-secondary hover:text-forge-text transition-colors disabled:opacity-25 disabled:cursor-not-allowed"
+                className="flex items-center gap-2 font-sans text-[10px] uppercase tracking-widest text-forge-secondary hover:text-forge-text transition-colors disabled:opacity-25 disabled:cursor-not-allowed"
               >
                 <ChevronLeft className="w-3.5 h-3.5" strokeWidth={1.5} />
                 Retour

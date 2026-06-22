@@ -10,10 +10,10 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2 space-y-5">
             <div>
-              <p className="font-mono text-[11px] font-bold text-forge-text tracking-[0.4em] uppercase">
+              <p className="font-sans text-[11px] font-bold text-forge-text tracking-[0.17em] uppercase">
                 Plaques Collection
               </p>
-              <p className="font-mono text-[9px] text-forge-gold tracking-[0.35em] uppercase mt-1">
+              <p className="font-sans text-[9px] text-forge-gold tracking-[0.35em] uppercase mt-1">
                 Atelier familial · Fabriqué en Alsace
               </p>
             </div>
@@ -42,7 +42,7 @@ export default function Footer() {
 
           {/* Nav */}
           <div>
-            <p className="font-mono text-[9px] text-forge-gold uppercase tracking-[0.4em] mb-5">Boutique</p>
+            <p className="font-sans text-[9px] text-forge-gold uppercase tracking-[0.17em] mb-5">Boutique</p>
             <ul className="space-y-3">
               {[
                 ["Catalogue",     "/catalogue"],
@@ -51,7 +51,7 @@ export default function Footer() {
                 ["FAQ",           "/faq"],
               ].map(([label, href]) => (
                 <li key={href}>
-                  <Link href={href} className="font-mono text-xs text-forge-secondary hover:text-forge-text transition-colors tracking-wide">
+                  <Link href={href} className="font-sans text-xs text-forge-secondary hover:text-forge-text transition-colors tracking-wide">
                     {label}
                   </Link>
                 </li>
@@ -61,7 +61,7 @@ export default function Footer() {
 
           {/* Legal */}
           <div>
-            <p className="font-mono text-[9px] text-forge-gold uppercase tracking-[0.4em] mb-5">Légal</p>
+            <p className="font-sans text-[9px] text-forge-gold uppercase tracking-[0.17em] mb-5">Légal</p>
             <ul className="space-y-3">
               {[
                 ["Mentions légales", "/mentions-legales"],
@@ -70,7 +70,7 @@ export default function Footer() {
                 ["Livraison",        "/livraison"],
               ].map(([label, href]) => (
                 <li key={href}>
-                  <Link href={href} className="font-mono text-xs text-forge-secondary hover:text-forge-text transition-colors tracking-wide">
+                  <Link href={href} className="font-sans text-xs text-forge-secondary hover:text-forge-text transition-colors tracking-wide">
                     {label}
                   </Link>
                 </li>
@@ -81,7 +81,7 @@ export default function Footer() {
 
         <div className="gold-line mt-12 mb-8" />
 
-        <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-forge-dim font-mono text-[10px]">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-forge-dim font-sans text-[10px]">
           <p>&copy; {new Date().getFullYear()} Plaques Collection</p>
           <p className="tracking-wide">Atelier familial · Fabriqué à la main en Alsace · Satisfait ou remboursé · Depuis 2005</p>
         </div>
