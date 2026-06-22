@@ -44,7 +44,7 @@ export default function CatalogueClient() {
   const isMoto = activeCategory === "moto";
 
   return (
-    <div className="min-h-screen pt-24 pb-16 px-4 md:px-8">
+    <div className="pt-24 pb-16 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-12">
@@ -112,6 +112,20 @@ export default function CatalogueClient() {
         ) : (
           <FormatGrid formats={formats} />
         )}
+
+        {/* Closing CTA */}
+        <div className="mt-24 rounded-2xl border border-forge-border bg-forge-card/60 px-8 py-12 text-center">
+          <h2 className="heading-display text-2xl md:text-3xl font-bold mb-3 text-balance">
+            Chaque plaque est personnalisable
+          </h2>
+          <p className="text-forge-secondary font-body mb-7 max-w-md mx-auto leading-relaxed">
+            Choisissez votre format, votre texte et visualisez le rendu en temps réel.
+          </p>
+          <Link href="/configurateur" className="btn-cta">
+            Configurer ma plaque
+            <ArrowRight className="w-4 h-4" strokeWidth={2} />
+          </Link>
+        </div>
       </div>
     </div>
   );

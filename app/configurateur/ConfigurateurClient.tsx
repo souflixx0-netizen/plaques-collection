@@ -39,7 +39,7 @@ export default function ConfigurateurClient() {
     (step === 2 && plateText.trim().length >= 2);
 
   return (
-    <div className="min-h-screen pt-20 pb-24 px-4 md:px-8">
+    <div className="pt-20 pb-24 px-4 md:px-8">
       <div className="max-w-3xl mx-auto">
 
         {/* Page header */}
