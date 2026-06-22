@@ -6,19 +6,16 @@ import { useEffect, useRef, useState } from "react";
 import PlateCanvas from "@/components/configurateur/PlateCanvas";
 import { PLATE_FORMATS } from "@/lib/formats";
 
-const HERO_FORMAT   = PLATE_FORMATS.find((f) => f.id === "auto-52x11")!;
-const FULL_TEXT     = "AB-123-CD";
-const CHAR_DELAY_MS = 110;
-const START_DELAY   = 900;
+const HERO_FORMAT = PLATE_FORMATS.find((f) => f.id === "auto-52x11")!;
+const PLATE_TEXT  = "AB-123-CD";
 
 // Resting 3D angle — gives the plate a "product shot" depth
 const BASE_TILT = { x: 7, y: -17 };
 
 export default function Hero() {
-  const [mounted,   setMounted]   = useState(false);
-  const [plateText, setPlateText] = useState("");
-  const [tilt,      setTilt]      = useState(BASE_TILT);
-  const [stageW,    setStageW]    = useState(520);
+  const [mounted, setMounted] = useState(false);
+  const [tilt,    setTilt]    = useState(BASE_TILT);
+  const [stageW,  setStageW]  = useState(520);
   const stageRef = useRef<HTMLDivElement>(null);
 
   // Mount + measure plate stage
@@ -30,21 +27,6 @@ export default function Hero() {
     if (stageRef.current) ro.observe(stageRef.current);
     return () => ro.disconnect();
   }, []);
-
-  // Letter-by-letter animation
-  useEffect(() => {
-    if (!mounted) return;
-    const t0 = setTimeout(() => {
-      let i = 0;
-      const tick = setInterval(() => {
-        i++;
-        setPlateText(FULL_TEXT.slice(0, i));
-        if (i >= FULL_TEXT.length) clearInterval(tick);
-      }, CHAR_DELAY_MS);
-      return () => clearInterval(tick);
-    }, START_DELAY);
-    return () => clearTimeout(t0);
-  }, [mounted]);
 
   // 3D tilt on hover, layered on top of the resting angle
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
@@ -182,7 +164,7 @@ export default function Hero() {
               }}
             >
               {mounted && (
-                <PlateCanvas format={HERO_FORMAT} text={plateText} fontId="stencil" scale={scale} />
+                <PlateCanvas format={HERO_FORMAT} text={PLATE_TEXT} fontId="stencil" scale={scale} />
               )}
 
               {/* Reflection */}
@@ -198,7 +180,7 @@ export default function Hero() {
                     marginTop: "6px",
                   }}
                 >
-                  <PlateCanvas format={HERO_FORMAT} text={plateText} fontId="stencil" scale={scale} />
+                  <PlateCanvas format={HERO_FORMAT} text={PLATE_TEXT} fontId="stencil" scale={scale} />
                 </div>
               )}
             </div>
