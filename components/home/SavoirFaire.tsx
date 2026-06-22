@@ -10,8 +10,8 @@ const PILLARS = [
   },
   {
     n: "02",
-    title: "Fabriqué en France",
-    desc: "Une plaque pensée et finie sur place, en Alsace. Le soin d'un atelier, pas la cadence d'une usine.",
+    title: "Aluminium brossé, écriture pochoir",
+    desc: "Une matière noble et une finition soignée, qui ne s'altèrent pas : votre plaque est faite pour durer toute une vie, dehors comme dedans.",
   },
   {
     n: "03",

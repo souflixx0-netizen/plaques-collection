@@ -26,20 +26,16 @@ const FAQ = [
     category: "Matériaux & fabrication",
     items: [
       {
-        q: "Quel aluminium utilisez-vous ?",
-        a: "De l'aluminium anodisé 1,5 mm d'épaisseur, qualité aéronautique. L'anodisation protège la surface contre l'oxydation et donne cette teinte sombre légèrement irisée caractéristique.",
+        q: "En quoi sont faites vos plaques ?",
+        a: "En aluminium brossé haute qualité, avec une écriture en pochoir. Une matière élégante et robuste, qui ne rouille pas et garde son aspect dans le temps.",
       },
       {
-        q: "C'est quoi exactement le 'pochoir artisanal' ?",
-        a: "Contrairement à l'impression numérique (laser, UV), le pochoir consiste à appliquer une pâte aluminium à travers un masque découpé pour chaque caractère. Le résultat est tridimensionnel, légèrement en relief, avec cette texture métallique unique qu'aucune impression ne peut reproduire.",
-      },
-      {
-        q: "Les plaques résistent-elles à l'extérieur ?",
-        a: "Oui. L'aluminium anodisé est naturellement résistant à la corrosion. Le vernissage final de protection assure une tenue longue durée, même en exposition extérieure.",
+        q: "Est-ce que ça dure dans le temps ?",
+        a: "Oui. L'aluminium brossé et l'écriture en pochoir ne s'altèrent pas : votre plaque est faite pour durer toute une vie, aussi bien en intérieur qu'en extérieur.",
       },
       {
         q: "Y a-t-il des trous de fixation ?",
-        a: "Oui, chaque plaque est percée avec des trous de fixation standard. Des vis inox de qualité peuvent être ajoutées à la commande en option.",
+        a: "Non, nos plaques sont livrées sans perçage, pour préserver leur finition. Des rivets de fixation sont disponibles en option (1,50 € la paire).",
       },
     ],
   },

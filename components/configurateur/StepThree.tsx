@@ -94,7 +94,7 @@ export default function StepThree({
           ["Format",   format.label],
           ["Texte",    text],
           ["Mode",     plateMode === "siv" ? "SIV — AB-123-CD" : "FNI — Ancien numéro"],
-          ["Matière",  "Aluminium"],
+          ["Matière",  "Aluminium brossé · pochoir"],
           ["P. unit.", formatPrice(price)],
         ].map(([label, value]) => (
           <div key={label} className="flex justify-between items-center px-5 py-3">
