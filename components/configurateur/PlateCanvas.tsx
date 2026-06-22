@@ -21,7 +21,7 @@ const PX_PER_CM = 28;
 // Original artwork: 19.84 × 13.59, corner radius 2.31  →  ratios below.
 const DASH_W_RATIO = 19.84 / 13.59; // width  relative to dash height (≈ 1.46)
 const DASH_R_RATIO = 2.31  / 13.59; // radius relative to dash height (≈ 0.17)
-const DASH_H_RATIO = 0.42;          // dash height relative to font size
+const DASH_H_RATIO = 0.22;          // dash height relative to font size
 const DASH_GAP_RATIO = 0.12;        // space on each side of the dash, relative to font size
 
 // ── Aluminium gradient (shared by text & dash for a consistent material) ───────
