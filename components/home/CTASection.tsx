@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, BadgeCheck } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
 
 export default function CTASection() {
@@ -34,6 +34,11 @@ export default function CTASection() {
             Configurer ma plaque
             <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
           </Link>
+
+          <p className="font-mono text-[10px] text-forge-gold tracking-widest uppercase mt-6 flex items-center justify-center gap-1.5">
+            <BadgeCheck className="w-3.5 h-3.5" strokeWidth={1.5} />
+            Satisfait ou remboursé
+          </p>
 
           <div className="gold-line mt-16" />
         </div>

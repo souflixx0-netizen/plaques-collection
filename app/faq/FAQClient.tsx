@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { PLATE_FORMATS } from "@/lib/formats";
 
 const FAQ = [
   {
@@ -18,7 +19,7 @@ const FAQ = [
       },
       {
         q: "Comment se passe le configurateur ?",
-        a: "En 3 étapes : (1) choisissez votre format parmi les 24 disponibles, (2) saisissez votre texte et prévisualisez le rendu en temps réel, (3) ajustez la quantité et ajoutez au panier. Simple.",
+        a: `En 3 étapes : (1) choisissez votre format parmi les ${PLATE_FORMATS.length} disponibles, (2) saisissez votre texte et prévisualisez le rendu en temps réel, (3) ajustez la quantité et ajoutez au panier. Simple.`,
       },
     ],
   },
@@ -52,7 +53,7 @@ const FAQ = [
       },
       {
         q: "Puis-je retourner ma commande ?",
-        a: "Les plaques personnalisées (avec texte spécifique) ne sont pas éligibles au droit de rétractation standard car ce sont des produits fabriqués sur mesure. En cas de défaut de fabrication, nous remplaçons ou remboursons sans condition.",
+        a: "Oui, votre satisfaction est garantie. Même si les plaques personnalisées ne relèvent pas du droit de rétractation légal (ce sont des produits fabriqués sur mesure), nous appliquons depuis toujours une garantie « satisfait ou remboursé » : si votre plaque ne vous convient pas, ou présente le moindre défaut, contactez-nous et nous la refaisons ou vous remboursons. C'est notre engagement depuis 2005.",
       },
     ],
   },

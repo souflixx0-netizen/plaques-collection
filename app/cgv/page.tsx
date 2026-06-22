@@ -59,8 +59,10 @@ export default function CGVPage() {
         Conformément à l&apos;<strong>article L221-28 3° du Code de la consommation</strong>,
         le droit de rétractation ne peut être exercé pour les biens confectionnés
         selon les spécifications du consommateur ou nettement personnalisés. Nos
-        plaques étant personnalisées, <strong>elles ne sont ni reprises ni échangées</strong>,
-        sauf défaut de fabrication ou erreur de notre part.
+        plaques étant personnalisées, <strong>elles ne sont ni reprises ni échangées</strong>
+        au titre du droit de rétractation légal, sauf défaut de fabrication ou erreur de
+        notre part. Cette exclusion légale est toutefois assortie de la garantie commerciale
+        « satisfait ou remboursé » décrite à l&apos;article 7.
       </p>
 
       <h2>7. Garanties</h2>
@@ -69,6 +71,16 @@ export default function CGVPage() {
         suivants du Code de la consommation) et des vices cachés (art. 1641 du Code
         civil). En cas de produit défectueux ou non conforme à la commande, le
         Vendeur procède au remplacement ou au remboursement.
+      </p>
+      <p>
+        <strong>Garantie commerciale « satisfait ou remboursé ».</strong> Indépendamment
+        des garanties légales ci-dessus et bien que les produits soient personnalisés, le
+        Vendeur s&apos;engage, à titre commercial et volontaire, à reprendre toute plaque
+        qui ne donnerait pas satisfaction au client. Pour en bénéficier, le client contacte
+        le Vendeur à info@easymark68.com dans un délai de <strong>14 jours</strong> suivant
+        la réception ; après retour de la plaque en bon état, le Vendeur procède, au choix
+        du client, à une nouvelle fabrication ou au remboursement du produit. Cette garantie
+        commerciale ne restreint ni ne remplace les garanties légales dont bénéficie le client.
       </p>
 
       <h2>8. Réclamations et médiation</h2>

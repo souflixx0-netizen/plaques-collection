@@ -6,7 +6,7 @@ import { formatPrice } from "@/lib/formats";
 import { getFontById } from "@/lib/fonts";
 import { useCartContext } from "@/components/cart/CartContext";
 import { usePrice } from "@/components/PriceContext";
-import { Minus, Plus, ShoppingBag, RotateCcw, Check } from "lucide-react";
+import { Minus, Plus, ShoppingBag, RotateCcw, Check, BadgeCheck } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
 interface StepThreeProps {
@@ -153,6 +153,10 @@ export default function StepThree({
 
       <p className="text-forge-dim font-mono text-[10px] text-center tracking-wide">
         Fabrication artisanale · Expédition 3–5 jours · France & Europe
+      </p>
+      <p className="text-forge-gold/90 font-mono text-[10px] text-center tracking-widest uppercase flex items-center justify-center gap-1.5">
+        <BadgeCheck className="w-3.5 h-3.5" strokeWidth={1.5} />
+        Satisfait ou remboursé
       </p>
     </div>
   );

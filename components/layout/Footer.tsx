@@ -83,7 +83,7 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-forge-dim font-mono text-[10px]">
           <p>&copy; {new Date().getFullYear()} Plaques Collection</p>
-          <p className="tracking-wide">Atelier familial · Fabriqué à la main en Alsace · Depuis 2005</p>
+          <p className="tracking-wide">Atelier familial · Fabriqué à la main en Alsace · Satisfait ou remboursé · Depuis 2005</p>
         </div>
       </div>
     </footer>
