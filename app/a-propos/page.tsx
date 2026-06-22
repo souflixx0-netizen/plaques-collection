@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Wrench, Award, MapPin, Clock } from "lucide-react";
+import Link from "next/link";
+import { Wrench, Award, MapPin, Clock, ArrowRight } from "lucide-react";
 import { PLATE_FORMATS } from "@/lib/formats";
 
 export const metadata: Metadata = {
@@ -27,19 +28,33 @@ const TIMELINE = [
 
 export default function AProposPage() {
   return (
-    <div className="min-h-screen pt-24 pb-16 px-4 md:px-8">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="mb-16">
+    <div className="min-h-screen pb-16">
+      {/* Cinematic header banner (placeholder — classic car) */}
+      <div className="relative h-[58vh] min-h-[420px] flex items-end overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/hero-car.jpg')" }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(10,9,8,0.7) 0%, rgba(10,9,8,0.25) 35%, rgba(10,9,8,0.85) 100%)",
+          }}
+        />
+        <div className="relative z-10 w-full max-w-4xl mx-auto px-4 md:px-8 pb-12">
           <p className="font-sans text-xs text-forge-gold tracking-[0.17em] uppercase mb-3">
             L&apos;Atelier
           </p>
-          <h1 className="heading-display text-4xl md:text-6xl font-bold mb-6 text-balance">
+          <h1 className="heading-display text-4xl md:text-6xl font-bold mb-4 text-balance">
             Une affaire de famille,{" "}
             <span className="italic">depuis 2005</span>
           </h1>
-          <div className="gold-line" />
+          <div className="gold-line max-w-xs" />
         </div>
+      </div>
+
+      <div className="max-w-4xl mx-auto px-4 md:px-8 pt-16">
 
         {/* Intro */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
@@ -116,6 +131,20 @@ export default function AProposPage() {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Closing CTA */}
+        <div className="mt-24 text-center border-t border-forge-border pt-16">
+          <h2 className="heading-display text-3xl md:text-4xl font-bold mb-4 text-balance">
+            Offrez à votre véhicule la plaque qu&apos;il mérite
+          </h2>
+          <p className="text-forge-secondary font-body mb-8 max-w-md mx-auto leading-relaxed">
+            Conçue par des passionnés, fabriquée à la main en Alsace.
+          </p>
+          <Link href="/configurateur" className="btn-cta">
+            Configurer ma plaque
+            <ArrowRight className="w-4 h-4" strokeWidth={2} />
+          </Link>
         </div>
       </div>
     </div>

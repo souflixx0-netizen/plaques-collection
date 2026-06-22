@@ -8,3 +8,5 @@ NOTE JURIDIQUE : ces images sont des placeholders pour projection/maquette.
 Avant mise en production réelle, les remplacer par tes propres photos, ou
 respecter l'attribution CC BY-SA requise. Ne pas laisser ces images en prod
 sans crédit.
+
+cta-car.jpg     : Porsche 911 Carrera RS (1972-73) — Wikimedia Commons (CC BY-SA).
