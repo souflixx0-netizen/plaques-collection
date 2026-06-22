@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Wrench, Award, MapPin, Clock } from "lucide-react";
+import { PLATE_FORMATS } from "@/lib/formats";
 
 export const metadata: Metadata = {
   title: "L'Atelier",
@@ -70,7 +71,7 @@ export default function AProposPage() {
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
           {[
-            { icon: Wrench, num: "24", label: "Formats disponibles" },
+            { icon: Wrench, num: String(PLATE_FORMATS.length), label: "Formats disponibles" },
             { icon: Award, num: "100%", label: "Fabriqué en France" },
             { icon: MapPin, num: "Alsace", label: "Notre atelier" },
             { icon: Clock, num: "Depuis 2005", label: "Savoir-faire familial" },

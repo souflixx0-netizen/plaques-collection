@@ -89,7 +89,7 @@ export default function FormatsSection() {
             Votre format, votre histoire
           </h2>
           <p className="text-forge-secondary font-body text-base max-w-lg leading-relaxed">
-            24 formats en aluminium anodisé, du standard homologué au format custom.
+            {PLATE_FORMATS.length} formats en aluminium brossé, du standard homologué au format custom.
             Chaque dimension façonnée à la main dans notre atelier.
           </p>
         </div>

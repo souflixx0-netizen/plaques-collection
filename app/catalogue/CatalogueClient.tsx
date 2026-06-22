@@ -11,30 +11,16 @@ import {
 } from "@/lib/formats";
 import type { PlateFormat } from "@/types";
 import { usePrice } from "@/components/PriceContext";
+import PlateCanvas from "@/components/configurateur/PlateCanvas";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
-
-const SCALE = 5; // px per cm for catalogue preview
 
 type Category = PlateFormat["category"];
 const CATS: Category[] = ["auto", "moto", "us"];
 
-function PlatePreview({ format }: { format: PlateFormat }) {
-  const w = format.width * SCALE;
-  const h = format.height * SCALE;
-  const maxDim = 160;
-  const ratio = Math.min(1, maxDim / Math.max(w, h));
-
-  return (
-    <div
-      className="bg-[#0e0e0e] border border-forge-gold/20 rounded-sm flex items-center justify-center"
-      style={{ width: `${w * ratio}px`, height: `${h * ratio}px` }}
-    >
-      <span className="font-mono text-[8px] text-forge-dim leading-none text-center px-1">
-        {format.label}
-      </span>
-    </div>
-  );
+// Constrain both width and height so text is never clipped
+function previewScale(format: PlateFormat): number {
+  return Math.min(180 / (format.width * 28), 70 / (format.height * 28), 1);
 }
 
 export default function CatalogueClient() {
@@ -148,7 +134,9 @@ function CatalogueCard({ format }: { format: PlateFormat }) {
       href={`/configurateur?format=${format.id}`}
       className="card-forge grain p-4 rounded-lg hover:border-forge-gold/50 hover:shadow-gold transition-all duration-200 group flex flex-col items-center text-center gap-3"
     >
-      <PlatePreview format={format} />
+      <div className="flex items-center justify-center h-20">
+        <PlateCanvas format={format} text="AB-123-CD" scale={previewScale(format)} />
+      </div>
       <div>
         <p className="font-mono text-sm font-bold text-forge-text">{format.label}</p>
         <p className="font-mono text-xs text-forge-gold mt-0.5">{formatPrice(price)}</p>

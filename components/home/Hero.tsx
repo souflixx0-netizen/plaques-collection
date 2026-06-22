@@ -185,7 +185,7 @@ export default function Hero() {
           style={{ opacity: mounted ? 1 : 0, transition: "opacity 0.6s ease 1s" }}
         >
           {[
-            ["24", "Formats"],
+            [String(PLATE_FORMATS.length), "Formats"],
             ["100%", "Fabriqué en France"],
             ["3–5j", "Livraison"],
           ].map(([n, l]) => (

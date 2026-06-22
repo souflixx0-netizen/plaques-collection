@@ -9,6 +9,7 @@ import StepThree from "@/components/configurateur/StepThree";
 import { getFormatById } from "@/lib/formats";
 import { cn } from "@/lib/utils";
 import { Check, ChevronLeft, ChevronRight } from "lucide-react";
+import ReassuranceBar from "@/components/ReassuranceBar";
 
 const STEPS = [
   { n: 1, label: "Format" },
@@ -147,6 +148,8 @@ export default function ConfigurateurClient() {
             </div>
           )}
         </div>
+
+        <ReassuranceBar className="mt-16 rounded-lg" />
 
       </div>
     </div>
