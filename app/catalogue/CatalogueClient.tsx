@@ -11,16 +11,18 @@ import {
 } from "@/lib/formats";
 import type { PlateFormat } from "@/types";
 import { usePrice } from "@/components/PriceContext";
-import PlateCanvas from "@/components/configurateur/PlateCanvas";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 
 type Category = PlateFormat["category"];
 const CATS: Category[] = ["auto", "moto", "us"];
 
-// Constrain both width and height so text is never clipped
-function previewScale(format: PlateFormat): number {
-  return Math.min(180 / (format.width * 28), 70 / (format.height * 28), 1);
+// Realistic Blender renders, by plate shape (1 line = long, 2 lines = square)
+function plateImg(format: PlateFormat): string {
+  return format.lines === 1
+    ? "/images/plates/long-34.png"
+    : "/images/plates/square-34.png";
 }
 
 export default function CatalogueClient() {
@@ -133,7 +135,7 @@ export default function CatalogueClient() {
 
 function FormatGrid({ formats }: { formats: PlateFormat[] }) {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {formats.map((f) => (
         <CatalogueCard key={f.id} format={f} />
       ))}
@@ -146,17 +148,34 @@ function CatalogueCard({ format }: { format: PlateFormat }) {
   return (
     <Link
       href={`/configurateur?format=${format.id}`}
-      className="card-forge grain p-4 rounded-lg hover:border-forge-gold/50 hover:shadow-gold transition-all duration-200 group flex flex-col items-center text-center gap-3"
+      className="card-hover group p-6 md:p-7 flex flex-col"
     >
-      <div className="flex items-center justify-center h-20">
-        <PlateCanvas format={format} text="AB-123-CD" scale={previewScale(format)} />
+      {/* Realistic plate render */}
+      <div className="flex items-center justify-center h-36 mb-6">
+        <Image
+          src={plateImg(format)}
+          alt={`Plaque de collection ${format.label}`}
+          width={520}
+          height={360}
+          className="w-auto h-full max-w-full object-contain"
+          style={{ filter: "drop-shadow(0 14px 22px rgba(0,0,0,0.6))" }}
+        />
       </div>
-      <div>
-        <p className="font-sans text-sm font-bold text-forge-text">{format.label}</p>
-        <p className="font-sans text-xs text-forge-gold mt-0.5">{formatPrice(price)}</p>
+
+      <div className="flex items-baseline justify-between gap-3 mb-1">
+        <h3 className="heading-display text-xl font-bold">{format.label}</h3>
+        <span className="font-sans text-sm font-semibold text-forge-gold whitespace-nowrap">
+          {formatPrice(price)}
+        </span>
       </div>
-      <span className="inline-flex items-center gap-1 font-sans text-[10px] text-forge-dim group-hover:text-forge-gold uppercase tracking-widest transition-colors">
-        Configurer <ArrowRight className="w-3 h-3" />
+
+      <p className="font-sans text-[11px] text-forge-dim uppercase tracking-wide mb-6">
+        {format.homologated ? "Homologué route" : "Plaque de collection"}
+      </p>
+
+      <span className="mt-auto inline-flex items-center gap-1.5 font-sans text-[10px] text-forge-secondary group-hover:text-forge-gold uppercase tracking-widest transition-colors">
+        Configurer
+        <ArrowRight className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5" />
       </span>
     </Link>
   );
