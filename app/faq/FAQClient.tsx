@@ -14,7 +14,7 @@ const FAQ = [
       },
       {
         q: "Les plaques sont-elles homologuées pour circuler ?",
-        a: "Nos plaques sont des objets de collection. Les formats marqués 'Homologué' respectent les dimensions officielles françaises, mais la nature artisanale du pochoir les destine avant tout à la décoration et la collection. Pour une utilisation sur la voie publique, vérifiez la réglementation en vigueur.",
+        a: "Ce sont des plaques de collection. Sur la voie publique, le fond noir est réservé aux véhicules immatriculés en collection (carte grise collection) ; pour tout autre véhicule, nos plaques sont destinées à un usage décoratif ou d'exposition. Les formats marqués 'Homologué' reprennent les dimensions officielles, mais il vous appartient de vérifier votre situation au regard de la réglementation en vigueur.",
       },
       {
         q: "Comment se passe le configurateur ?",
@@ -48,7 +48,7 @@ const FAQ = [
     items: [
       {
         q: "Quel est le délai de livraison ?",
-        a: "Fabrication : 2–3 jours ouvrés. Expédition en France : 1–2 jours via Colissimo. Délai total habituel : 3–5 jours ouvrés après commande.",
+        a: "Fabrication à la demande en 24 à 48 h, puis expédition selon le transporteur choisi (Colissimo, Chronopost ou Mondial Relay). Le délai et le tarif de livraison s'affichent au moment du paiement.",
       },
       {
         q: "Livrez-vous à l'international ?",

@@ -164,6 +164,14 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* ── Legal / content pages ── */
+  .legal-prose h2 { @apply heading-display text-xl font-bold text-forge-text mt-10 mb-3; }
+  .legal-prose h3 { @apply font-display text-base font-bold text-forge-text mt-6 mb-2; }
+  .legal-prose p  { @apply mb-3; }
+  .legal-prose ul { @apply list-disc pl-5 space-y-1.5 mb-3; }
+  .legal-prose strong { @apply text-forge-text; }
+  .legal-prose a { @apply text-forge-gold hover:underline; }
 }
 
 /* ── Keyframes ────────────────────────────────────────────────────────────── */
