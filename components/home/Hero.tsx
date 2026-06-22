@@ -1,44 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ShieldCheck, MapPin, BadgeCheck } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import PlateCanvas from "@/components/configurateur/PlateCanvas";
-import { PLATE_FORMATS } from "@/lib/formats";
-
-const HERO_FORMAT = PLATE_FORMATS.find((f) => f.id === "auto-52x11")!;
-const PLATE_TEXT  = "AB-123-CD";
-
-// Resting 3D angle — gives the plate a "product shot" depth
-const BASE_TILT = { x: 7, y: -17 };
+import { useEffect, useState } from "react";
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
-  const [tilt,    setTilt]    = useState(BASE_TILT);
-  const [stageW,  setStageW]  = useState(520);
-  const stageRef = useRef<HTMLDivElement>(null);
-
-  // Mount + measure plate stage
-  useEffect(() => {
-    setMounted(true);
-    const measure = () => { if (stageRef.current) setStageW(stageRef.current.offsetWidth); };
-    measure();
-    const ro = new ResizeObserver(measure);
-    if (stageRef.current) ro.observe(stageRef.current);
-    return () => ro.disconnect();
-  }, []);
-
-  // 3D tilt on hover, layered on top of the resting angle
-  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-    const r  = e.currentTarget.getBoundingClientRect();
-    const dx = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
-    const dy = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
-    setTilt({ x: BASE_TILT.x - dy * 5, y: BASE_TILT.y + dx * 7 });
-  }
-  function handleMouseLeave() { setTilt(BASE_TILT); }
-
-  const plateW = Math.min(stageW - 24, 560);
-  const scale  = Math.max(0.2, plateW / (HERO_FORMAT.width * 28));
+  useEffect(() => { setMounted(true); }, []);
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden py-28 lg:py-0">
@@ -52,7 +21,7 @@ export default function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(90deg, rgba(10,9,8,0.97) 0%, rgba(10,9,8,0.92) 32%, rgba(10,9,8,0.62) 66%, rgba(10,9,8,0.72) 100%)",
+            "linear-gradient(90deg, rgba(10,9,8,0.97) 0%, rgba(10,9,8,0.92) 32%, rgba(10,9,8,0.6) 66%, rgba(10,9,8,0.7) 100%)",
         }}
       />
       {/* Vertical fade for depth + smooth transition into the next section */}
@@ -68,7 +37,7 @@ export default function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 45% 55% at 74% 42%, rgba(200,169,110,0.12) 0%, transparent 60%)",
+            "radial-gradient(ellipse 48% 55% at 74% 46%, rgba(200,169,110,0.14) 0%, transparent 62%)",
         }}
       />
 
@@ -137,61 +106,24 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ── Right : plate in perspective with reflection ── */}
+        {/* ── Right : realistic plate render ── */}
         <div
-          ref={stageRef}
           className="relative flex justify-center lg:justify-end"
-          style={{ perspective: "1400px" }}
+          style={{
+            opacity:    mounted ? 1 : 0,
+            transform:  mounted ? "none" : "translateY(28px) scale(0.97)",
+            transition: "opacity 0.9s ease 0.5s, transform 1s cubic-bezier(0.16,1,0.3,1) 0.5s",
+          }}
         >
-          <div
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            className="relative cursor-default"
-            style={{
-              opacity:    mounted ? 1 : 0,
-              transform:  mounted ? "none" : "translateY(28px) scale(0.97)",
-              transition: "opacity 0.9s ease 0.5s, transform 1s cubic-bezier(0.16,1,0.3,1) 0.5s",
-            }}
-          >
-            <div
-              style={{
-                transformStyle: "preserve-3d",
-                transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-                transition: tilt.x === BASE_TILT.x && tilt.y === BASE_TILT.y
-                  ? "transform 0.6s ease"
-                  : "transform 0.12s ease",
-                filter: "drop-shadow(0 30px 45px rgba(0,0,0,0.7))",
-              }}
-            >
-              {mounted && (
-                <PlateCanvas format={HERO_FORMAT} text={PLATE_TEXT} fontId="stencil" scale={scale} />
-              )}
-
-              {/* Reflection */}
-              {mounted && (
-                <div
-                  aria-hidden
-                  className="absolute left-0 right-0 top-full flex justify-center"
-                  style={{
-                    transform: "scaleY(-1)",
-                    opacity: 0.16,
-                    WebkitMaskImage: "linear-gradient(to bottom, black 0%, transparent 55%)",
-                    maskImage: "linear-gradient(to bottom, black 0%, transparent 55%)",
-                    marginTop: "6px",
-                  }}
-                >
-                  <PlateCanvas format={HERO_FORMAT} text={PLATE_TEXT} fontId="stencil" scale={scale} />
-                </div>
-              )}
-            </div>
-
-            {/* Ground shadow */}
-            <div
-              aria-hidden
-              className="absolute left-1/2 -translate-x-1/2 -bottom-8 w-3/4 h-8 rounded-[50%] pointer-events-none"
-              style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 70%)", filter: "blur(6px)" }}
-            />
-          </div>
+          <Image
+            src="/images/plates/long-34.png"
+            alt="Plaque de collection en aluminium brossé, écriture pochoir — AB-123-CD"
+            width={1000}
+            height={500}
+            priority
+            className="w-full max-w-[560px] h-auto plate-float"
+            style={{ filter: "drop-shadow(0 28px 40px rgba(0,0,0,0.55))" }}
+          />
         </div>
       </div>
     </section>

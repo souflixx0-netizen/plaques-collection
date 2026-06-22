@@ -1,37 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import { PLATE_FORMATS, FORMAT_CATEGORIES, formatPrice } from "@/lib/formats";
+import Image from "next/image";
+import { PLATE_FORMATS, FORMAT_CATEGORIES } from "@/lib/formats";
 import type { PlateFormat } from "@/types";
-import PlateCanvas from "@/components/configurateur/PlateCanvas";
 import { useInView } from "@/hooks/useInView";
 import { ArrowRight } from "lucide-react";
 
-const SHOWCASE: Array<{ cat: PlateFormat["category"]; pick: string }> = [
-  { cat: "auto", pick: "auto-52x11"  },
-  { cat: "moto", pick: "moto-21x13"  },
-  { cat: "us",   pick: "us-30x15"    },
-];
+// Realistic plate renders per category (Blender)
+const CAT_IMG: Record<PlateFormat["category"], string> = {
+  auto: "/images/plates/long-34.png",
+  moto: "/images/plates/square-34.png",
+  us:   "/images/plates/long-14.png",
+};
 
-// Constrain both width and height so text is never clipped
-function getScale(format: PlateFormat, maxW: number, maxH = 72): number {
-  return Math.min(maxW / (format.width * 28), maxH / (format.height * 28), 1.2);
-}
+const SHOWCASE: Array<PlateFormat["category"]> = ["auto", "moto", "us"];
 
-function CategoryCard({
-  cat,
-  pickId,
-  delay,
-}: {
-  cat: PlateFormat["category"];
-  pickId: string;
-  delay: number;
-}) {
+function CategoryCard({ cat, delay }: { cat: PlateFormat["category"]; delay: number }) {
   const { ref, inView } = useInView();
-  const meta    = FORMAT_CATEGORIES[cat];
-  const format  = PLATE_FORMATS.find((f) => f.id === pickId)!;
-  const count   = PLATE_FORMATS.filter((f) => f.category === cat).length;
-  const scale   = getScale(format, 220, 80);
+  const meta  = FORMAT_CATEGORIES[cat];
+  const count = PLATE_FORMATS.filter((f) => f.category === cat).length;
 
   return (
     <div
@@ -43,9 +31,16 @@ function CategoryCard({
         href={`/catalogue?cat=${cat}`}
         className="card-hover group block p-6 md:p-8"
       >
-        {/* Mini canvas — full demo text */}
-        <div className="flex justify-center items-center h-24 mb-6">
-          <PlateCanvas format={format} text="AB-123-CD" scale={scale} />
+        {/* Realistic plate render */}
+        <div className="flex justify-center items-center h-28 mb-6">
+          <Image
+            src={CAT_IMG[cat]}
+            alt={`Plaque ${meta.label} en aluminium`}
+            width={400}
+            height={240}
+            className="w-auto h-full object-contain transition-transform duration-300 group-hover:scale-[1.04]"
+            style={{ filter: "drop-shadow(0 10px 16px rgba(0,0,0,0.5))" }}
+          />
         </div>
 
         <div className="space-y-2 mb-5">
@@ -96,8 +91,8 @@ export default function FormatsSection() {
 
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {SHOWCASE.map(({ cat, pick }, i) => (
-            <CategoryCard key={cat} cat={cat} pickId={pick} delay={i * 80} />
+          {SHOWCASE.map((cat, i) => (
+            <CategoryCard key={cat} cat={cat} delay={i * 80} />
           ))}
         </div>
       </div>

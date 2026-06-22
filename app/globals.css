@@ -210,4 +210,12 @@
   .tilt-wrap:hover .tilt-inner { transform: rotateX(2deg) rotateY(-5deg); }
 
   .plate-type { animation: plateType 0.15s ease; }
+
+  /* Subtle floating for the hero plate render */
+  .plate-float { animation: plateFloat 6s ease-in-out infinite; will-change: transform; }
+}
+
+@keyframes plateFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
 }
