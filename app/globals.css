@@ -110,6 +110,22 @@
   }
   .btn-primary:active { transform: scale(0.98); }
 
+  /* Filled, high-contrast primary CTA */
+  .btn-cta {
+    @apply inline-flex items-center justify-center gap-2.5
+           bg-forge-gold text-forge-black
+           font-sans text-xs font-semibold tracking-widest-2 uppercase
+           px-8 py-4 rounded
+           transition-all duration-300;
+    box-shadow: 0 8px 30px rgba(200,169,110,0.18);
+  }
+  .btn-cta:hover {
+    @apply bg-forge-gold-light;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(200,169,110,0.34);
+  }
+  .btn-cta:active { transform: translateY(0) scale(0.99); }
+
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-2
            text-forge-secondary font-sans text-xs tracking-widest uppercase
