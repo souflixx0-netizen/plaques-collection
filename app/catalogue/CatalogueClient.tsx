@@ -65,25 +65,28 @@ export default function CatalogueClient() {
           </p>
         </div>
 
-        {/* Category tabs */}
-        <div className="flex gap-1 border-b border-forge-border mb-10">
-          {CATS.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => changeCategory(cat)}
-              className={cn(
-                "px-5 py-3 font-sans text-xs tracking-widest uppercase transition-all duration-200 border-b-2 -mb-px",
-                activeCategory === cat
-                  ? "border-forge-gold text-forge-gold"
-                  : "border-transparent text-forge-dim hover:text-forge-muted"
-              )}
-            >
-              {FORMAT_CATEGORIES[cat].label}
-              <span className="ml-2 text-forge-dim">
-                ({PLATE_FORMATS.filter((f) => f.category === cat).length})
-              </span>
-            </button>
-          ))}
+        {/* Category tabs — pills */}
+        <div className="flex flex-wrap gap-3 mb-12">
+          {CATS.map((cat) => {
+            const active = activeCategory === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => changeCategory(cat)}
+                className={cn(
+                  "px-6 py-3 rounded-full font-sans text-xs tracking-widest uppercase border transition-all duration-200",
+                  active
+                    ? "bg-forge-gold text-forge-black border-forge-gold shadow-gold-glow"
+                    : "bg-forge-card/60 text-forge-secondary border-forge-border hover:border-forge-gold/50 hover:text-forge-text"
+                )}
+              >
+                {FORMAT_CATEGORIES[cat].label}
+                <span className={cn("ml-2", active ? "text-forge-black/60" : "text-forge-dim")}>
+                  {PLATE_FORMATS.filter((f) => f.category === cat).length}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         {/* Grid */}
@@ -135,7 +138,7 @@ export default function CatalogueClient() {
 
 function FormatGrid({ formats }: { formats: PlateFormat[] }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
       {formats.map((f) => (
         <CatalogueCard key={f.id} format={f} />
       ))}
@@ -148,35 +151,48 @@ function CatalogueCard({ format }: { format: PlateFormat }) {
   return (
     <Link
       href={`/configurateur?format=${format.id}`}
-      className="card-hover group p-6 md:p-7 flex flex-col"
+      className="card-hover group p-5 flex flex-col text-center"
     >
       {/* Realistic plate render */}
-      <div className="flex items-center justify-center h-36 mb-6">
+      <div className="flex items-center justify-center h-28 mb-5">
         <Image
           src={plateImg(format)}
           alt={`Plaque de collection ${format.label}`}
           width={520}
           height={360}
-          className="w-auto h-full max-w-full object-contain"
-          style={{ filter: "drop-shadow(0 14px 22px rgba(0,0,0,0.6))" }}
+          className="w-auto h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-[1.05]"
+          style={{ filter: "drop-shadow(0 12px 20px rgba(0,0,0,0.6))" }}
         />
       </div>
 
-      <div className="flex items-baseline justify-between gap-3 mb-1">
-        <h3 className="heading-display text-xl font-bold">{format.label}</h3>
-        <span className="font-sans text-sm font-semibold text-forge-gold whitespace-nowrap">
-          {formatPrice(price)}
+      <h3 className="heading-display text-xl font-bold mb-2">{format.label}</h3>
+
+      {/* Badge */}
+      <span
+        className={cn(
+          "self-center inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-sans uppercase tracking-wide mb-4 border",
+          format.homologated
+            ? "border-forge-gold/40 bg-forge-gold/10 text-forge-gold"
+            : "border-forge-border bg-forge-card text-forge-secondary"
+        )}
+      >
+        {format.homologated ? "Homologué route" : "Collection"}
+      </span>
+
+      <div className="border-t border-forge-border pt-4 mt-auto">
+        <p className="font-sans text-[10px] text-forge-dim uppercase tracking-widest mb-1">
+          À partir de
+        </p>
+        <p className="mb-4">
+          <span className="font-display text-2xl font-bold text-forge-text">{formatPrice(price)}</span>
+          <span className="font-sans text-[11px] text-forge-dim"> / plaque</span>
+        </p>
+
+        {/* Insistent CTA */}
+        <span className="block w-full bg-forge-gold text-forge-black font-sans text-[11px] font-semibold tracking-widest-2 uppercase py-3 rounded transition-all duration-200 group-hover:bg-forge-gold-light group-hover:shadow-gold-glow">
+          Configurer
         </span>
       </div>
-
-      <p className="font-sans text-[11px] text-forge-dim uppercase tracking-wide mb-6">
-        {format.homologated ? "Homologué route" : "Plaque de collection"}
-      </p>
-
-      <span className="mt-auto inline-flex items-center gap-1.5 font-sans text-[10px] text-forge-secondary group-hover:text-forge-gold uppercase tracking-widest transition-colors">
-        Configurer
-        <ArrowRight className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5" />
-      </span>
     </Link>
   );
 }
