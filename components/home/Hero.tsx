@@ -60,23 +60,33 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden py-28 lg:py-0">
-      {/* Background */}
-      <div className="absolute inset-0 bg-forge-black" />
-
-      {/* Warm spotlight behind the plate (right side on desktop) */}
+      {/* Background photo (placeholder — vintage car) */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/hero-car.jpg')" }}
+      />
+      {/* Horizontal dark gradient — keeps copy readable on the left */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 50% 60% at 72% 45%, rgba(200,169,110,0.10) 0%, transparent 60%)",
+            "linear-gradient(90deg, rgba(10,9,8,0.97) 0%, rgba(10,9,8,0.92) 32%, rgba(10,9,8,0.62) 66%, rgba(10,9,8,0.72) 100%)",
         }}
       />
-      {/* Soft top-down vignette for depth */}
+      {/* Vertical fade for depth + smooth transition into the next section */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(180deg, rgba(0,0,0,0.35) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.45) 100%)",
+            "linear-gradient(180deg, rgba(10,9,8,0.55) 0%, transparent 22%, transparent 55%, rgba(10,9,8,0.95) 100%)",
+        }}
+      />
+      {/* Warm spotlight behind the plate */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 45% 55% at 74% 42%, rgba(200,169,110,0.12) 0%, transparent 60%)",
         }}
       />
 

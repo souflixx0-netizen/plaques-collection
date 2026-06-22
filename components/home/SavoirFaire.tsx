@@ -72,6 +72,29 @@ export default function SavoirFaire() {
           </div>
         </div>
 
+        {/* Cinematic image band (placeholder — classic car) */}
+        <div
+          className="reveal relative h-[260px] md:h-[440px] rounded-2xl overflow-hidden mb-20 border border-forge-border"
+          style={headIn ? { opacity: 1, transform: "none" } : {}}
+        >
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('/images/atelier-car.jpg')" }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(180deg, rgba(10,9,8,0.15) 0%, rgba(10,9,8,0.15) 55%, rgba(10,9,8,0.92) 100%)" }}
+          />
+          <div className="absolute bottom-0 left-0 p-8 md:p-12">
+            <p className="font-sans text-[10px] text-forge-gold tracking-[0.2em] uppercase mb-2">
+              Fait pour durer
+            </p>
+            <p className="heading-display text-2xl md:text-3xl font-bold max-w-md">
+              Une plaque à la hauteur de votre véhicule
+            </p>
+          </div>
+        </div>
+
         {/* Pillars */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
           {PILLARS.map((p, i) => (

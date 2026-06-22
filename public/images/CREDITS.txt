@@ -1,0 +1,10 @@
+IMAGES D'ILLUSTRATION TEMPORAIRES — À REMPLACER PAR LES PHOTOS DE PLAQUES COLLECTION
+
+hero-car.jpg    : Citroën DS 21 — Wikimedia Commons (CC BY-SA). Auteur : voir page Commons
+                  "Citroën DS 21, 27 Quai Anatole France".
+atelier-car.jpg : Jaguar E-Type Roadster 4.2 (1970) — Wikimedia Commons (CC BY-SA).
+
+NOTE JURIDIQUE : ces images sont des placeholders pour projection/maquette.
+Avant mise en production réelle, les remplacer par tes propres photos, ou
+respecter l'attribution CC BY-SA requise. Ne pas laisser ces images en prod
+sans crédit.
