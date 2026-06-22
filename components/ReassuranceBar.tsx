@@ -1,12 +1,15 @@
 import { MapPin, Infinity as InfinityIcon, ShieldCheck, Truck, BadgeCheck } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const ITEMS = [
+type Item = { icon: LucideIcon; label: string; highlight?: boolean };
+
+const ITEMS: Item[] = [
   { icon: MapPin,       label: "Fabriqué en Alsace" },
   { icon: InfinityIcon, label: "Tient à vie" },
   { icon: BadgeCheck,   label: "Satisfait ou remboursé", highlight: true },
   { icon: ShieldCheck,  label: "Paiement sécurisé" },
   { icon: Truck,        label: "Expédition 24-48h" },
-] as const;
+];
 
 export default function ReassuranceBar({ className = "" }: { className?: string }) {
   return (
