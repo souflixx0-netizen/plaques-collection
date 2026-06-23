@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useConfigurator } from "@/hooks/useConfigurator";
 import StepTwo from "@/components/configurateur/StepTwo";
 import StepThree from "@/components/configurateur/StepThree";
+import PlatePreview from "@/components/configurateur/PlatePreview";
 import { getFormatById } from "@/lib/formats";
 import { cn } from "@/lib/utils";
 import { Check, ChevronLeft, ChevronRight } from "lucide-react";
@@ -42,10 +43,10 @@ export default function ConfigurateurClient() {
 
   return (
     <div className="pt-20 pb-24 px-4 md:px-8">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-5xl mx-auto">
 
         {/* Page header */}
-        <div className="text-center mb-12 pt-4">
+        <div className="text-center mb-10 pt-4">
           <p className="font-sans text-[10px] text-forge-gold tracking-[0.2em] uppercase mb-4">
             Configurateur
           </p>
@@ -97,55 +98,69 @@ export default function ConfigurateurClient() {
           ))}
         </div>
 
-        {/* Card */}
-        <div className="card p-6 md:p-8">
-          {step === 1 && (
-            <StepTwo
-              format={selectedFormat}
-              text={plateText}
-              fontId={selectedFontId}
-              plateMode={plateMode}
-              onTextChange={setPlateText}
-              onFontChange={setFont}
-              onModeChange={setPlateMode}
-            />
-          )}
-          {step === 2 && (
-            <StepThree
-              format={selectedFormat}
-              text={plateText}
-              fontId={selectedFontId}
-              plateMode={plateMode}
-              quantity={quantity}
-              onQuantityChange={setQuantity}
-              onReset={reset}
-              onBack={prevStep}
-            />
-          )}
+        {/* Two columns — sticky plate preview + scrollable controls */}
+        <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-start">
 
-          {/* Navigation */}
-          {step < 2 && (
-            <div className="mt-8 pt-6 border-t border-forge-border space-y-3">
-              <button
-                onClick={nextStep}
-                disabled={!canNext}
-                className={cn(
-                  "btn-cta w-full text-xs py-4",
-                  !canNext && "opacity-40 cursor-not-allowed pointer-events-none"
-                )}
-              >
-                Voir le récapitulatif
-                <ChevronRight className="w-4 h-4" strokeWidth={2} />
-              </button>
-              <button
-                onClick={() => router.push("/catalogue")}
-                className="flex items-center justify-center gap-2 w-full font-sans text-[10px] uppercase tracking-widest text-forge-secondary hover:text-forge-text transition-colors"
-              >
-                <ChevronLeft className="w-3.5 h-3.5" strokeWidth={1.5} />
-                Changer de format
-              </button>
-            </div>
-          )}
+          {/* LEFT — live plate, follows the scroll */}
+          <div className="sticky top-16 lg:top-24 z-10 mb-8 lg:mb-0">
+            <PlatePreview
+              format={selectedFormat}
+              text={plateText}
+              fontId={selectedFontId}
+              plateMode={plateMode}
+            />
+          </div>
+
+          {/* RIGHT — controls */}
+          <div className="card p-6 md:p-8">
+            {step === 1 && (
+              <StepTwo
+                format={selectedFormat}
+                text={plateText}
+                fontId={selectedFontId}
+                plateMode={plateMode}
+                onTextChange={setPlateText}
+                onFontChange={setFont}
+                onModeChange={setPlateMode}
+              />
+            )}
+            {step === 2 && (
+              <StepThree
+                format={selectedFormat}
+                text={plateText}
+                fontId={selectedFontId}
+                plateMode={plateMode}
+                quantity={quantity}
+                onQuantityChange={setQuantity}
+                onReset={reset}
+                onBack={prevStep}
+              />
+            )}
+
+            {/* Navigation */}
+            {step < 2 && (
+              <div className="mt-8 pt-6 border-t border-forge-border space-y-3">
+                <button
+                  onClick={nextStep}
+                  disabled={!canNext}
+                  className={cn(
+                    "btn-cta w-full text-xs py-4",
+                    !canNext && "opacity-40 cursor-not-allowed pointer-events-none"
+                  )}
+                >
+                  Voir le récapitulatif
+                  <ChevronRight className="w-4 h-4" strokeWidth={2} />
+                </button>
+                <button
+                  onClick={() => router.push("/catalogue")}
+                  className="flex items-center justify-center gap-2 w-full font-sans text-[10px] uppercase tracking-widest text-forge-secondary hover:text-forge-text transition-colors"
+                >
+                  <ChevronLeft className="w-3.5 h-3.5" strokeWidth={1.5} />
+                  Changer de format
+                </button>
+              </div>
+            )}
+          </div>
         </div>
 
         <ReassuranceBar className="mt-16 rounded-lg" />

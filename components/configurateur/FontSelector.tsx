@@ -86,10 +86,8 @@ function FontPreview({ font, active }: { font: PlateFont; active: boolean }) {
 
 export default function FontSelector({ selectedId, onChange }: FontSelectorProps) {
   return (
-    <div className="space-y-3">
-      <p className="font-sans text-[11px] text-forge-secondary uppercase tracking-widest">Police</p>
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-        {PLATE_FONTS.map((font) => {
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+      {PLATE_FONTS.map((font) => {
           const active = selectedId === font.id;
           return (
             <button
@@ -112,7 +110,6 @@ export default function FontSelector({ selectedId, onChange }: FontSelectorProps
             </button>
           );
         })}
-      </div>
     </div>
   );
 }

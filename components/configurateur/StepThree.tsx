@@ -1,13 +1,12 @@
 "use client";
 
 import type { PlateFormat, PlateMode } from "@/types";
-import PlateCanvas from "./PlateCanvas";
 import { formatPrice } from "@/lib/formats";
 import { getFontById } from "@/lib/fonts";
 import { useCartContext } from "@/components/cart/CartContext";
 import { usePrice } from "@/components/PriceContext";
 import { Minus, Plus, ShoppingBag, RotateCcw, Check, BadgeCheck, ChevronLeft } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 
 interface StepThreeProps {
   format: PlateFormat;
@@ -26,24 +25,6 @@ export default function StepThree({
   const { addItem } = useCartContext();
   const price = usePrice(format.id, format.price);
   const [added, setAdded] = useState(false);
-  const [recapW, setRecapW] = useState(360);
-  const recapRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!recapRef.current) return;
-    const ro = new ResizeObserver(() => {
-      if (recapRef.current) setRecapW(recapRef.current.offsetWidth);
-    });
-    ro.observe(recapRef.current);
-    return () => ro.disconnect();
-  }, []);
-
-  // max 400px wide, max 280px tall
-  const recapScale = Math.min(
-    Math.min(recapW, 400) / (format.width  * 28),
-    280                   / (format.height * 28),
-    1.5
-  );
   const font = getFontById(fontId);
 
   function handleAddToCart() {
@@ -75,35 +56,13 @@ export default function StepThree({
         </button>
       </div>
 
-      {/* Plate — max 400px wide, centred */}
-      <div
-        ref={recapRef}
-        className="flex flex-col items-center gap-3 py-10 px-4 bg-forge-black rounded-xl border border-forge-border"
-      >
-        <div
-          className="flex items-center justify-center"
-          style={{ filter: "drop-shadow(0 8px 32px rgba(0,0,0,0.8))" }}
-        >
-          <PlateCanvas
-            format={format}
-            text={text}
-            fontId={fontId}
-            plateMode={plateMode}
-            scale={recapScale}
-            animate
-          />
-        </div>
-        <p className="font-sans text-[9px] text-forge-dim uppercase tracking-widest mt-1">
-          Police : {font.label} · {format.lines === 1 ? "1 ligne" : "2 lignes"}
-        </p>
-      </div>
-
       {/* Summary */}
       <div className="card divide-y divide-forge-border overflow-hidden">
         {[
           ["Format",   format.label],
           ["Texte",    text],
           ["Mode",     plateMode === "siv" ? "SIV — AB-123-CD" : "FNI — Ancien numéro"],
+          ["Police",   font.label],
           ["Matière",  "Aluminium brossé · pochoir"],
           ["P. unit.", formatPrice(price)],
         ].map(([label, value]) => (
