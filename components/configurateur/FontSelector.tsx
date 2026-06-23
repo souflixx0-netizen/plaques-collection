@@ -86,9 +86,9 @@ function FontPreview({ font, active }: { font: PlateFont; active: boolean }) {
 
 export default function FontSelector({ selectedId, onChange }: FontSelectorProps) {
   return (
-    <div className="space-y-1.5">
-      <p className="font-sans text-[10px] text-forge-dim uppercase tracking-widest">Police</p>
-      <div className="flex flex-col gap-1.5">
+    <div className="space-y-3">
+      <p className="font-sans text-[11px] text-forge-secondary uppercase tracking-widest">Police</p>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
         {PLATE_FONTS.map((font) => {
           const active = selectedId === font.id;
           return (
@@ -96,22 +96,19 @@ export default function FontSelector({ selectedId, onChange }: FontSelectorProps
               key={font.id}
               onClick={() => onChange(font.id)}
               className={cn(
-                "flex items-center gap-3 px-3 py-2 rounded border transition-all duration-200 text-left",
+                "flex flex-col items-center justify-center gap-2.5 px-3 py-3.5 rounded-xl border transition-all duration-200",
                 active
-                  ? "border-forge-gold/60 bg-forge-gold/5"
-                  : "border-forge-border bg-forge-dark hover:border-forge-gold/25 hover:bg-forge-card"
+                  ? "border-forge-gold bg-forge-gold/[0.07]"
+                  : "border-forge-border bg-forge-dark hover:border-forge-gold/30"
               )}
             >
               <FontPreview font={font} active={active} />
               <span className={cn(
-                "font-sans text-[10px] uppercase tracking-widest",
+                "font-sans text-[10px] uppercase tracking-widest text-center leading-tight",
                 active ? "text-forge-gold" : "text-forge-dim"
               )}>
                 {font.label}
               </span>
-              {active && (
-                <span className="ml-auto w-1.5 h-1.5 rounded-full bg-forge-gold flex-shrink-0" />
-              )}
             </button>
           );
         })}

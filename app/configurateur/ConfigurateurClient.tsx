@@ -125,24 +125,24 @@ export default function ConfigurateurClient() {
 
           {/* Navigation */}
           {step < 2 && (
-            <div className="flex justify-between items-center mt-8 pt-6 border-t border-forge-border">
-              <button
-                onClick={() => router.push("/catalogue")}
-                className="flex items-center gap-2 font-sans text-[10px] uppercase tracking-widest text-forge-secondary hover:text-forge-text transition-colors"
-              >
-                <ChevronLeft className="w-3.5 h-3.5" strokeWidth={1.5} />
-                Changer de format
-              </button>
+            <div className="mt-8 pt-6 border-t border-forge-border space-y-3">
               <button
                 onClick={nextStep}
                 disabled={!canNext}
                 className={cn(
-                  "btn-primary text-[11px] py-3",
-                  !canNext && "opacity-30 cursor-not-allowed pointer-events-none"
+                  "btn-cta w-full text-xs py-4",
+                  !canNext && "opacity-40 cursor-not-allowed pointer-events-none"
                 )}
               >
-                Récapitulatif
-                <ChevronRight className="w-3.5 h-3.5" strokeWidth={1.5} />
+                Voir le récapitulatif
+                <ChevronRight className="w-4 h-4" strokeWidth={2} />
+              </button>
+              <button
+                onClick={() => router.push("/catalogue")}
+                className="flex items-center justify-center gap-2 w-full font-sans text-[10px] uppercase tracking-widest text-forge-secondary hover:text-forge-text transition-colors"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" strokeWidth={1.5} />
+                Changer de format
               </button>
             </div>
           )}
