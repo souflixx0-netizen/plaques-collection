@@ -8,10 +8,9 @@ import { useCartContext } from "@/components/cart/CartContext";
 import { cn } from "@/lib/utils";
 
 const NAV = [
-  { href: "/catalogue",     label: "Catalogue" },
-  { href: "/configurateur", label: "Configurateur" },
-  { href: "/a-propos",      label: "L'Atelier" },
-  { href: "/faq",           label: "FAQ" },
+  { href: "/catalogue", label: "Catalogue" },
+  { href: "/a-propos",  label: "L'Atelier" },
+  { href: "/faq",       label: "FAQ" },
 ];
 
 export default function Header() {
@@ -86,7 +85,7 @@ export default function Header() {
           </button>
 
           <Link
-            href="/configurateur"
+            href="/catalogue"
             className="hidden md:inline-flex btn-primary py-2 px-5 text-[11px]"
           >
             Configurer
@@ -122,7 +121,7 @@ export default function Header() {
             </Link>
           ))}
           <div className="pt-3">
-            <Link href="/configurateur" className="btn-primary w-full justify-center">
+            <Link href="/catalogue" className="btn-primary w-full justify-center">
               Configurer ma plaque
             </Link>
           </div>
