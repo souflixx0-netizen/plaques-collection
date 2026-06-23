@@ -161,7 +161,7 @@ function CatalogueCard({ format }: { format: PlateFormat }) {
       )}
 
       {/* Realistic plate render */}
-      <div className="flex items-center justify-center h-28 mb-5">
+      <div className="flex items-center justify-center h-[132px] mb-4">
         <Image
           src={plateImg(format)}
           alt={`Plaque de collection ${format.label}`}
