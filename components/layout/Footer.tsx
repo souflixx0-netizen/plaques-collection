@@ -13,7 +13,7 @@ export default function Footer() {
               <p className="font-sans text-[11px] font-bold text-forge-text tracking-[0.17em] uppercase">
                 Plaques Collection
               </p>
-              <p className="font-sans text-[9px] text-forge-gold tracking-[0.35em] uppercase mt-1">
+              <p className="font-sans text-[9px] text-forge-secondary tracking-[0.35em] uppercase mt-1">
                 Atelier familial · Fabriqué en Alsace
               </p>
             </div>
@@ -42,11 +42,10 @@ export default function Footer() {
 
           {/* Nav */}
           <div>
-            <p className="font-sans text-[9px] text-forge-gold uppercase tracking-[0.17em] mb-5">Boutique</p>
+            <p className="font-sans text-[9px] text-forge-secondary uppercase tracking-[0.17em] mb-5">Boutique</p>
             <ul className="space-y-3">
               {[
                 ["Catalogue",     "/catalogue"],
-                ["Configurateur", "/configurateur"],
                 ["L'Atelier",     "/a-propos"],
                 ["FAQ",           "/faq"],
               ].map(([label, href]) => (
@@ -61,7 +60,7 @@ export default function Footer() {
 
           {/* Legal */}
           <div>
-            <p className="font-sans text-[9px] text-forge-gold uppercase tracking-[0.17em] mb-5">Légal</p>
+            <p className="font-sans text-[9px] text-forge-secondary uppercase tracking-[0.17em] mb-5">Légal</p>
             <ul className="space-y-3">
               {[
                 ["Mentions légales", "/mentions-legales"],

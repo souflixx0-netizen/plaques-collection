@@ -77,7 +77,7 @@ export default function FormatsSection() {
           className="reveal mb-16"
           style={headIn ? { opacity: 1, transform: "none" } : {}}
         >
-          <p className="font-sans text-[10px] text-forge-gold tracking-[0.2em] uppercase mb-4">
+          <p className="font-sans text-[10px] text-forge-secondary tracking-[0.2em] uppercase mb-4">
             Catalogue
           </p>
           <h2 className="heading-display text-4xl md:text-5xl font-bold mb-4 text-balance">

@@ -43,7 +43,7 @@ export default function AProposPage() {
           }}
         />
         <div className="relative z-10 w-full max-w-4xl mx-auto px-4 md:px-8 pb-12">
-          <p className="font-sans text-xs text-forge-gold tracking-[0.17em] uppercase mb-3">
+          <p className="font-sans text-xs text-forge-secondary tracking-[0.17em] uppercase mb-3">
             L&apos;Atelier
           </p>
           <h1 className="heading-display text-4xl md:text-6xl font-bold mb-4 text-balance">
@@ -92,8 +92,8 @@ export default function AProposPage() {
             { icon: Clock, num: "Depuis 2005", label: "Savoir-faire familial" },
           ].map(({ icon: Icon, num, label }) => (
             <div key={label} className="card-forge p-5 text-center rounded-xl">
-              <Icon className="w-5 h-5 text-forge-gold mx-auto mb-3" />
-              <p className="font-display text-2xl font-bold text-forge-gold">{num}</p>
+              <Icon className="w-5 h-5 text-forge-secondary mx-auto mb-3" />
+              <p className="font-display text-2xl font-bold text-forge-text">{num}</p>
               <p className="font-sans text-[10px] text-forge-dim uppercase tracking-widest mt-1">
                 {label}
               </p>

@@ -84,7 +84,7 @@ export default function FAQClient() {
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="mb-14">
-          <p className="font-sans text-xs text-forge-gold tracking-[0.17em] uppercase mb-3">
+          <p className="font-sans text-xs text-forge-secondary tracking-[0.17em] uppercase mb-3">
             Questions fréquentes
           </p>
           <h1 className="heading-display text-4xl md:text-5xl font-bold mb-3">FAQ</h1>
@@ -97,7 +97,7 @@ export default function FAQClient() {
         <div className="space-y-12">
           {FAQ.map((section) => (
             <div key={section.category}>
-              <h2 className="font-sans text-xs text-forge-gold uppercase tracking-widest mb-4">
+              <h2 className="font-sans text-xs text-forge-secondary uppercase tracking-widest mb-4">
                 {section.category}
               </h2>
               <div className="space-y-2">

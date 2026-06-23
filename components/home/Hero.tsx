@@ -96,7 +96,7 @@ export default function Hero() {
               { icon: ShieldCheck,label: "Paiement sécurisé" },
             ].map(({ icon: Icon, label }) => (
               <span key={label} className="inline-flex items-center gap-2 font-sans text-[11px] text-forge-secondary tracking-wide">
-                <Icon className="w-3.5 h-3.5 text-forge-gold" strokeWidth={1.5} />
+                <Icon className="w-3.5 h-3.5 text-forge-secondary" strokeWidth={1.5} />
                 {label}
               </span>
             ))}

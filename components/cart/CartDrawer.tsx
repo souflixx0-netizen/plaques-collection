@@ -46,7 +46,7 @@ export default function CartDrawer() {
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-forge-border">
           <div className="flex items-center gap-3">
-            <ShoppingBag className="w-4 h-4 text-forge-gold" strokeWidth={1.5} />
+            <ShoppingBag className="w-4 h-4 text-forge-secondary" strokeWidth={1.5} />
             <span className="font-sans text-xs tracking-widest uppercase text-forge-text">
               Panier {count > 0 && <span className="text-forge-gold ml-1">({count})</span>}
             </span>

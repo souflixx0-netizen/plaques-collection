@@ -43,7 +43,7 @@ export default function Header() {
           <span className="font-sans text-[11px] font-bold text-forge-text tracking-[0.45em] uppercase">
             Plaques Collection
           </span>
-          <span className="font-sans text-[8px] text-forge-gold tracking-[0.14em] uppercase">
+          <span className="font-sans text-[8px] text-forge-secondary tracking-[0.14em] uppercase">
             Aluminium pochoir · France
           </span>
         </Link>

@@ -47,7 +47,7 @@ export default function ConfigurateurClient() {
 
         {/* Page header */}
         <div className="text-center mb-10 pt-4">
-          <p className="font-sans text-[10px] text-forge-gold tracking-[0.2em] uppercase mb-4">
+          <p className="font-sans text-[10px] text-forge-secondary tracking-[0.2em] uppercase mb-4">
             Configurateur
           </p>
           <h1 className="heading-display text-4xl md:text-5xl font-bold">

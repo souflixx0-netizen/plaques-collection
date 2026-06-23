@@ -34,7 +34,7 @@ export default function CTASection() {
         className="relative z-10 max-w-2xl mx-auto text-center reveal"
         style={inView ? { opacity: 1, transform: "none" } : {}}
       >
-        <p className="font-sans text-[10px] text-forge-gold tracking-[0.2em] uppercase mb-5">
+        <p className="font-sans text-[10px] text-forge-secondary tracking-[0.2em] uppercase mb-5">
           Commencez maintenant
         </p>
 
@@ -54,7 +54,7 @@ export default function CTASection() {
           </Link>
         </div>
 
-        <p className="font-sans text-[10px] text-forge-gold tracking-widest uppercase mt-8 flex items-center justify-center gap-1.5">
+        <p className="font-sans text-[10px] text-forge-secondary tracking-widest uppercase mt-8 flex items-center justify-center gap-1.5">
           <BadgeCheck className="w-3.5 h-3.5" strokeWidth={1.5} />
           Satisfait ou remboursé
         </p>

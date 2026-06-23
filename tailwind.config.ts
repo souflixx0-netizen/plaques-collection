@@ -10,16 +10,16 @@ const config: Config = {
     extend: {
       colors: {
         forge: {
-          black:      "#0a0908",
-          dark:       "#0e0d0a",
-          card:       "#111009",
-          border:     "#1e1c14",
+          black:      "#050505",
+          dark:       "#0d0c0b",
+          card:       "#121110",
+          border:     "#222019",
           gold:       "#c8a96e",
           "gold-light":"#dfc080",
           "gold-dark": "#a88a50",
           text:       "#e8e4da",
-          secondary:  "#8a7a60",
-          dim:        "#5a5040",
+          secondary:  "#9c958a",
+          dim:        "#6a645b",
         },
       },
       fontFamily: {

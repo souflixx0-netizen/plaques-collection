@@ -55,7 +55,7 @@ export default function PlatePreview({ format, text, fontId, plateMode }: PlateP
 
       {/* eyebrow + live dot */}
       <div className="relative flex items-center justify-between px-5 pt-4">
-        <span className="font-sans text-[10px] text-forge-gold/80 uppercase tracking-[0.22em]">
+        <span className="font-sans text-[10px] text-forge-secondary uppercase tracking-[0.22em]">
           Aperçu en temps réel
         </span>
         <span className="flex items-center gap-1.5">

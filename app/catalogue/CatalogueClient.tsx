@@ -50,7 +50,7 @@ export default function CatalogueClient() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-12">
-          <p className="font-sans text-xs text-forge-gold tracking-[0.17em] uppercase mb-3">
+          <p className="font-sans text-xs text-forge-secondary tracking-[0.17em] uppercase mb-3">
             Catalogue
           </p>
           <h1 className="heading-display text-4xl md:text-5xl font-bold mb-3">
@@ -98,7 +98,7 @@ export default function CatalogueClient() {
                 return (
                   <div key={sub}>
                     <div className="flex items-center gap-4 mb-5">
-                      <h2 className="font-sans text-xs text-forge-gold uppercase tracking-widest">
+                      <h2 className="font-sans text-xs text-forge-secondary uppercase tracking-widest">
                         {subLabel}
                       </h2>
                       {sub === "homologué" && (
