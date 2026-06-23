@@ -165,7 +165,14 @@ function CatalogueCard({ format }: { format: PlateFormat }) {
         />
       </div>
 
-      <h3 className="heading-display text-xl font-bold mb-2">{format.label}</h3>
+      <h3 className="heading-display text-xl font-bold mb-1.5">{format.label}</h3>
+
+      {/* Usage context */}
+      {format.usage && (
+        <p className="font-sans text-[11px] text-forge-secondary mb-3 truncate px-1" title={format.usage}>
+          {format.usage}
+        </p>
+      )}
 
       {/* Badge */}
       <span

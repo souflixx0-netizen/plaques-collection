@@ -12,6 +12,8 @@ export interface PlateFormat {
   homologated?: boolean;
   price: number;
   lines: 1 | 2;
+  /** Courte ligne de contexte d'usage affichée sur la carte catalogue */
+  usage?: string;
 }
 
 export interface CartItem {
