@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ShieldCheck, MapPin, BadgeCheck } from "lucide-react";
+import { ArrowRight, MapPin, Stamp, Truck } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function Hero() {
@@ -91,9 +91,9 @@ export default function Hero() {
             style={{ opacity: mounted ? 1 : 0, transition: "opacity 0.6s ease 0.9s" }}
           >
             {[
-              { icon: MapPin,     label: "Fabriqué en Alsace" },
-              { icon: BadgeCheck, label: "Satisfait ou remboursé" },
-              { icon: ShieldCheck,label: "Paiement sécurisé" },
+              { icon: MapPin, label: "Fabriqué en Alsace depuis 2005" },
+              { icon: Stamp,  label: "Aluminium brossé, écriture pochoir" },
+              { icon: Truck,  label: "Expédition sous 48h" },
             ].map(({ icon: Icon, label }) => (
               <span key={label} className="inline-flex items-center gap-2 font-sans text-[11px] text-forge-secondary tracking-wide">
                 <Icon className="w-3.5 h-3.5 text-forge-secondary" strokeWidth={1.5} />
