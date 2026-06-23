@@ -8,12 +8,18 @@ import StepThree from "@/components/configurateur/StepThree";
 import PlatePreview from "@/components/configurateur/PlatePreview";
 import { getFormatById } from "@/lib/formats";
 import { cn } from "@/lib/utils";
-import { Check, ChevronLeft, ChevronRight } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, Gem, Stamp, MapPin } from "lucide-react";
 import ReassuranceBar from "@/components/ReassuranceBar";
 
 const STEPS = [
   { n: 1, label: "Personnalisation" },
   { n: 2, label: "Commande" },
+];
+
+const MATERIALS = [
+  { icon: Gem,    label: "Aluminium brossé authentique" },
+  { icon: Stamp,  label: "Écriture pochoir traditionnelle" },
+  { icon: MapPin, label: "Fabrication artisanale en Alsace" },
 ];
 
 export default function ConfigurateurClient() {
@@ -109,6 +115,16 @@ export default function ConfigurateurClient() {
               fontId={selectedFontId}
               plateMode={plateMode}
             />
+
+            {/* Material valorization — discreet quality cues */}
+            <ul className="mt-3 flex flex-col sm:flex-row lg:flex-col gap-x-6 gap-y-2 px-1">
+              {MATERIALS.map(({ icon: Icon, label }) => (
+                <li key={label} className="flex items-center gap-2.5">
+                  <Icon className="w-3.5 h-3.5 text-forge-secondary shrink-0" strokeWidth={1.5} />
+                  <span className="font-sans text-[11px] text-forge-secondary tracking-wide">{label}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* RIGHT — controls */}
