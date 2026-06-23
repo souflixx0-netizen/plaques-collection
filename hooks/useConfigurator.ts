@@ -17,7 +17,7 @@ export function useConfigurator() {
   const [state, setState] = useState<ConfiguratorState>(INITIAL);
 
   const selectFormat = useCallback((format: PlateFormat) => {
-    setState((s) => ({ ...s, selectedFormat: format, step: 2 }));
+    setState((s) => ({ ...s, selectedFormat: format, step: 1 }));
   }, []);
 
   /** Store the already-formatted plate text (formatting done in StepTwo) */
@@ -39,8 +39,8 @@ export function useConfigurator() {
 
   const nextStep = useCallback(() => {
     setState((s) => {
-      if (s.step === 2 && s.plateText.trim().length < 2) return s;
-      return { ...s, step: Math.min(3, s.step + 1) as ConfiguratorState["step"] };
+      if (s.step === 1 && s.plateText.trim().length < 2) return s;
+      return { ...s, step: Math.min(2, s.step + 1) as ConfiguratorState["step"] };
     });
   }, []);
 

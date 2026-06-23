@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useConfigurator } from "@/hooks/useConfigurator";
-import StepOne from "@/components/configurateur/StepOne";
 import StepTwo from "@/components/configurateur/StepTwo";
 import StepThree from "@/components/configurateur/StepThree";
 import { getFormatById } from "@/lib/formats";
@@ -12,13 +11,13 @@ import { Check, ChevronLeft, ChevronRight } from "lucide-react";
 import ReassuranceBar from "@/components/ReassuranceBar";
 
 const STEPS = [
-  { n: 1, label: "Format" },
-  { n: 2, label: "Personnalisation" },
-  { n: 3, label: "Commande" },
+  { n: 1, label: "Personnalisation" },
+  { n: 2, label: "Commande" },
 ];
 
 export default function ConfigurateurClient() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const {
     state, selectFormat, setPlateText, setPlateMode, setFont,
     setQuantity, nextStep, prevStep, reset,
@@ -26,17 +25,20 @@ export default function ConfigurateurClient() {
 
   const { step, selectedFormat, plateText, plateMode, quantity, selectedFontId } = state;
 
-  // Pre-select format from URL param (?format=auto-52x11)
+  // Format is chosen on the catalogue. Pre-select it from the URL param
+  // (?format=auto-52x11) and start at personalisation. No format = back to catalogue.
   useEffect(() => {
     const formatId = searchParams.get("format");
-    if (!formatId) return;
-    const format = getFormatById(formatId);
-    if (format) selectFormat(format); // moves directly to step 2
+    const format = formatId ? getFormatById(formatId) : null;
+    if (format) selectFormat(format);
+    else router.replace("/catalogue");
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // run once on mount
-  const canNext =
-    (step === 1 && selectedFormat !== null) ||
-    (step === 2 && plateText.trim().length >= 2);
+
+  const canNext = step === 1 && plateText.trim().length >= 2;
+
+  // While redirecting (no valid format), render nothing.
+  if (!selectedFormat) return null;
 
   return (
     <div className="pt-20 pb-24 px-4 md:px-8">
@@ -98,9 +100,6 @@ export default function ConfigurateurClient() {
         {/* Card */}
         <div className="card p-6 md:p-8">
           {step === 1 && (
-            <StepOne selected={selectedFormat} onSelect={selectFormat} fontId={selectedFontId} />
-          )}
-          {step === 2 && selectedFormat && (
             <StepTwo
               format={selectedFormat}
               text={plateText}
@@ -111,7 +110,7 @@ export default function ConfigurateurClient() {
               onModeChange={setPlateMode}
             />
           )}
-          {step === 3 && selectedFormat && (
+          {step === 2 && (
             <StepThree
               format={selectedFormat}
               text={plateText}
@@ -120,19 +119,19 @@ export default function ConfigurateurClient() {
               quantity={quantity}
               onQuantityChange={setQuantity}
               onReset={reset}
+              onBack={prevStep}
             />
           )}
 
           {/* Navigation */}
-          {step < 3 && (
+          {step < 2 && (
             <div className="flex justify-between items-center mt-8 pt-6 border-t border-forge-border">
               <button
-                onClick={prevStep}
-                disabled={step === 1}
-                className="flex items-center gap-2 font-sans text-[10px] uppercase tracking-widest text-forge-secondary hover:text-forge-text transition-colors disabled:opacity-25 disabled:cursor-not-allowed"
+                onClick={() => router.push("/catalogue")}
+                className="flex items-center gap-2 font-sans text-[10px] uppercase tracking-widest text-forge-secondary hover:text-forge-text transition-colors"
               >
                 <ChevronLeft className="w-3.5 h-3.5" strokeWidth={1.5} />
-                Retour
+                Changer de format
               </button>
               <button
                 onClick={nextStep}
@@ -142,7 +141,7 @@ export default function ConfigurateurClient() {
                   !canNext && "opacity-30 cursor-not-allowed pointer-events-none"
                 )}
               >
-                {step === 2 ? "Récapitulatif" : "Suivant"}
+                Récapitulatif
                 <ChevronRight className="w-3.5 h-3.5" strokeWidth={1.5} />
               </button>
             </div>

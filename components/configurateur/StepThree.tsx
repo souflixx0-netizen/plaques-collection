@@ -6,7 +6,7 @@ import { formatPrice } from "@/lib/formats";
 import { getFontById } from "@/lib/fonts";
 import { useCartContext } from "@/components/cart/CartContext";
 import { usePrice } from "@/components/PriceContext";
-import { Minus, Plus, ShoppingBag, RotateCcw, Check, BadgeCheck } from "lucide-react";
+import { Minus, Plus, ShoppingBag, RotateCcw, Check, BadgeCheck, ChevronLeft } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
 interface StepThreeProps {
@@ -17,10 +17,11 @@ interface StepThreeProps {
   quantity: number;
   onQuantityChange: (q: number) => void;
   onReset: () => void;
+  onBack: () => void;
 }
 
 export default function StepThree({
-  format, text, fontId, plateMode, quantity, onQuantityChange, onReset,
+  format, text, fontId, plateMode, quantity, onQuantityChange, onReset, onBack,
 }: StepThreeProps) {
   const { addItem } = useCartContext();
   const price = usePrice(format.id, format.price);
@@ -58,11 +59,20 @@ export default function StepThree({
 
   return (
     <div className="space-y-8">
-      <div>
-        <h2 className="heading-display text-2xl font-bold">Récapitulatif</h2>
-        <p className="text-forge-secondary font-sans text-xs mt-1">
-          Vérifiez votre commande avant d&apos;ajouter au panier
-        </p>
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h2 className="heading-display text-2xl font-bold">Récapitulatif</h2>
+          <p className="text-forge-secondary font-sans text-xs mt-1">
+            Vérifiez votre commande avant d&apos;ajouter au panier
+          </p>
+        </div>
+        <button
+          onClick={onBack}
+          className="flex items-center gap-1.5 font-sans text-[10px] uppercase tracking-widest text-forge-secondary hover:text-forge-gold transition-colors shrink-0 mt-1"
+        >
+          <ChevronLeft className="w-3.5 h-3.5" strokeWidth={1.5} />
+          Modifier
+        </button>
       </div>
 
       {/* Plate — max 400px wide, centred */}
