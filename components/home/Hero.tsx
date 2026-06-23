@@ -79,12 +79,9 @@ export default function Hero() {
             className="flex flex-col sm:flex-row items-center lg:items-start gap-4 justify-center lg:justify-start"
             style={{ opacity: mounted ? 1 : 0, transform: mounted ? "none" : "translateY(12px)", transition: "all 0.6s ease 0.55s" }}
           >
-            <Link href="/configurateur" className="btn-cta text-xs w-full sm:w-auto">
+            <Link href="/catalogue" className="btn-cta text-xs w-full sm:w-auto">
               Configurer ma plaque
               <ArrowRight className="w-4 h-4" strokeWidth={2} />
-            </Link>
-            <Link href="/catalogue" className="btn-primary text-xs w-full sm:w-auto">
-              Voir le catalogue
             </Link>
           </div>
 

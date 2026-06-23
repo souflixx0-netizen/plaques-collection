@@ -48,12 +48,9 @@ export default function CTASection() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link href="/configurateur" className="btn-cta">
+          <Link href="/catalogue" className="btn-cta">
             Configurer ma plaque
             <ArrowRight className="w-4 h-4" strokeWidth={2} />
-          </Link>
-          <Link href="/catalogue" className="btn-primary">
-            Voir le catalogue
           </Link>
         </div>
 
