@@ -14,6 +14,8 @@ export interface PlateFormat {
   lines: 1 | 2;
   /** Courte ligne de contexte d'usage affichée sur la carte catalogue */
   usage?: string;
+  /** Badge de mise en avant facultatif (ex. "Le plus populaire"), max 1 par carte */
+  badge?: string;
 }
 
 export interface CartItem {

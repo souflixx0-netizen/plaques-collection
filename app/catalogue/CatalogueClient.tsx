@@ -151,8 +151,15 @@ function CatalogueCard({ format }: { format: PlateFormat }) {
   return (
     <Link
       href={`/configurateur?format=${format.id}`}
-      className="card-hover group p-5 flex flex-col text-center"
+      className="card-hover group relative p-5 flex flex-col text-center"
     >
+      {/* Featured badge (optional, max 1) */}
+      {format.badge && (
+        <span className="absolute top-3 left-1/2 -translate-x-1/2 z-10 inline-flex items-center px-2.5 py-1 rounded-full bg-forge-gold text-forge-black font-sans text-[9px] font-semibold uppercase tracking-widest-2 whitespace-nowrap">
+          {format.badge}
+        </span>
+      )}
+
       {/* Realistic plate render */}
       <div className="flex items-center justify-center h-28 mb-5">
         <Image

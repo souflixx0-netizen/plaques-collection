@@ -14,13 +14,13 @@ const ONE_LINE_IDS = new Set([
 // avant la réponse réseau ou si Shopify est injoignable.
 export const PLATE_FORMATS: PlateFormat[] = [
   // AUTO
-  { id: "auto-52x11",  label: "52×11 cm",   width: 52,   height: 11,  category: "auto", price: 24.9, lines: 1, usage: "Berlines et coupés classiques" },
+  { id: "auto-52x11",  label: "52×11 cm",   width: 52,   height: 11,  category: "auto", price: 24.9, lines: 1, usage: "Berlines et coupés classiques", badge: "Le plus populaire" },
   { id: "auto-455x10", label: "45,5×10 cm", width: 45.5, height: 10,  category: "auto", price: 24.9, lines: 1, usage: "Format court, idéal à l'avant" },
   { id: "auto-275x20", label: "27,5×20 cm", width: 27.5, height: 20,  category: "auto", price: 24.9, lines: 2, usage: "Format carré pour véhicules anciens" },
 
   // MOTO — Homologués
-  { id: "moto-21x13",  label: "21×13 cm",   width: 21,   height: 13,  category: "moto", subcategory: "homologué", homologated: true, price: 23.9, lines: 2, usage: "Grosses cylindrées routières" },
-  { id: "moto-17x13",  label: "17×13 cm",   width: 17,   height: 13,  category: "moto", subcategory: "homologué", homologated: true, price: 23.9, lines: 2, usage: "Motos et cyclomoteurs vintage" },
+  { id: "moto-21x13",  label: "21×13 cm",   width: 21,   height: 13,  category: "moto", subcategory: "homologué", homologated: true, price: 23.9, lines: 2, usage: "Grosses cylindrées routières", badge: "Recommandé" },
+  { id: "moto-17x13",  label: "17×13 cm",   width: 17,   height: 13,  category: "moto", subcategory: "homologué", homologated: true, price: 23.9, lines: 2, usage: "Motos et cyclomoteurs vintage", badge: "Format moto classique" },
   { id: "moto-14x13",  label: "14×13 cm",   width: 14,   height: 13,  category: "moto", subcategory: "homologué", homologated: true, price: 23.9, lines: 2, usage: "Petites cylindrées et 50 cc" },
   { id: "moto-14x12",  label: "14×12 cm",   width: 14,   height: 12,  category: "moto", subcategory: "homologué", homologated: true, price: 19.9, lines: 2, usage: "Mobylettes et cyclos" },
 
@@ -46,7 +46,7 @@ export const PLATE_FORMATS: PlateFormat[] = [
 
   // US
   { id: "us-30x15",    label: "30×15 cm",   width: 30,   height: 15,  category: "us", price: 24.9, lines: 2, usage: "Muscle cars et pickups US" },
-  { id: "us-30x17",    label: "30×17 cm",   width: 30,   height: 17,  category: "us", price: 24.9, lines: 2, usage: "Format américain, esprit Route 66" },
+  { id: "us-30x17",    label: "30×17 cm",   width: 30,   height: 17,  category: "us", price: 24.9, lines: 2, usage: "Format américain, esprit Route 66", badge: "Style Route 66" },
 ];
 
 export const FORMAT_CATEGORIES = {
