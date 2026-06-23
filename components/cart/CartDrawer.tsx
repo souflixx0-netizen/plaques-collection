@@ -1,7 +1,7 @@
 "use client";
 
 import { useCartContext } from "./CartContext";
-import { X, Minus, Plus, ShoppingBag, ArrowRight, Loader2 } from "lucide-react";
+import { X, Minus, Plus, ShoppingBag, ArrowRight, Loader2, Check } from "lucide-react";
 import { formatPrice } from "@/lib/formats";
 import { usePrices } from "@/components/PriceContext";
 import { cn } from "@/lib/utils";
@@ -118,6 +118,22 @@ export default function CartDrawer() {
                 </li>
               ))}
             </ul>
+          )}
+
+          {items.length > 0 && (
+            <div className="mt-5 pt-5 border-t border-forge-border space-y-3">
+              <p className="font-sans text-[10px] text-forge-secondary italic leading-relaxed">
+                Chaque plaque est fabriquée à la commande.
+              </p>
+              <ul className="space-y-1.5">
+                {["Fabrication artisanale en Alsace", "Expédition 24-48h", "Paiement sécurisé"].map((t) => (
+                  <li key={t} className="flex items-center gap-2 font-sans text-[10px] text-forge-dim">
+                    <Check className="w-3 h-3 text-forge-gold shrink-0" strokeWidth={2} />
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </div>
 
