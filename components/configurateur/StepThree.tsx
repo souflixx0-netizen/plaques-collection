@@ -5,7 +5,7 @@ import { formatPrice } from "@/lib/formats";
 import { getFontById } from "@/lib/fonts";
 import { useCartContext } from "@/components/cart/CartContext";
 import { usePrice } from "@/components/PriceContext";
-import { Minus, Plus, ShoppingBag, RotateCcw, Check, BadgeCheck, ChevronLeft } from "lucide-react";
+import { Minus, Plus, ShoppingBag, RotateCcw, Check, ChevronLeft } from "lucide-react";
 import { useState } from "react";
 
 interface StepThreeProps {
@@ -102,6 +102,16 @@ export default function StepThree({
         </div>
       </div>
 
+      {/* Reassurance — above the main CTA */}
+      <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 border-t border-forge-border pt-6">
+        {["Fabrication artisanale", "Expédition 24-48h", "Paiement sécurisé", "Satisfaction ou remboursement"].map((t) => (
+          <div key={t} className="flex items-center gap-2">
+            <Check className="w-3.5 h-3.5 text-forge-gold shrink-0" strokeWidth={2} />
+            <span className="font-sans text-[11px] text-forge-secondary tracking-wide">{t}</span>
+          </div>
+        ))}
+      </div>
+
       {/* Actions */}
       <div className="flex flex-col sm:flex-row gap-3">
         <button
@@ -120,13 +130,6 @@ export default function StepThree({
         </button>
       </div>
 
-      <p className="text-forge-dim font-sans text-[10px] text-center tracking-wide">
-        Fabrication artisanale · Expédition 3–5 jours · France & Europe
-      </p>
-      <p className="text-forge-gold/90 font-sans text-[10px] text-center tracking-widest uppercase flex items-center justify-center gap-1.5">
-        <BadgeCheck className="w-3.5 h-3.5" strokeWidth={1.5} />
-        Satisfait ou remboursé
-      </p>
     </div>
   );
 }
