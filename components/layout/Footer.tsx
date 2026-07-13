@@ -42,7 +42,7 @@ export default function Footer() {
 
           {/* Nav */}
           <div>
-            <p className="font-sans text-[9px] text-forge-secondary uppercase tracking-[0.17em] mb-5">Boutique</p>
+            <p className="font-sans text-[9px] text-forge-secondary uppercase tracking-[0.2em] mb-5">Boutique</p>
             <ul className="space-y-3">
               {[
                 ["Catalogue",     "/catalogue"],
@@ -60,7 +60,7 @@ export default function Footer() {
 
           {/* Legal */}
           <div>
-            <p className="font-sans text-[9px] text-forge-secondary uppercase tracking-[0.17em] mb-5">Légal</p>
+            <p className="font-sans text-[9px] text-forge-secondary uppercase tracking-[0.2em] mb-5">Légal</p>
             <ul className="space-y-3">
               {[
                 ["Mentions légales", "/mentions-legales"],

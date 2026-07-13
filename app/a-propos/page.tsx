@@ -50,7 +50,7 @@ export default function AProposPage() {
           }}
         />
         <div className="relative z-10 w-full max-w-4xl mx-auto px-4 md:px-8 pb-12">
-          <p className="font-sans text-xs text-forge-secondary tracking-[0.17em] uppercase mb-3">
+          <p className="eyebrow mb-3">
             L&apos;Atelier
           </p>
           <h1 className="heading-display text-4xl md:text-6xl font-bold mb-4 text-balance">
@@ -71,18 +71,18 @@ export default function AProposPage() {
               depuis 2005 dans la plaque d&apos;immatriculation pour véhicules
               d&apos;époque.
             </p>
-            <p className="text-forge-muted leading-relaxed">
+            <p className="text-forge-secondary leading-relaxed">
               Vingt ans plus tard, la méthode n&apos;a pas changé : chaque plaque
               est fabriquée à la main, à la commande, dans notre atelier en Alsace.
             </p>
           </div>
           <div className="space-y-5">
-            <p className="text-forge-muted leading-relaxed">
+            <p className="text-forge-secondary leading-relaxed">
               Nos clients sont des passionnés : collectionneurs de voitures
               anciennes, propriétaires de youngtimers, motards. Des gens pour qui
               une belle mécanique mérite une belle plaque.
             </p>
-            <p className="text-forge-muted leading-relaxed">
+            <p className="text-forge-secondary leading-relaxed">
               C&apos;est pour eux que nous ne faisons qu&apos;une seule chose, et
               que nous la faisons bien.
             </p>
@@ -97,7 +97,7 @@ export default function AProposPage() {
             { icon: MapPin, num: "Alsace", label: "Notre atelier" },
             { icon: Clock, num: "Depuis 2005", label: "Savoir-faire familial" },
           ].map(({ icon: Icon, num, label }) => (
-            <div key={label} className="card-forge p-5 text-center rounded-xl">
+            <div key={label} className="card p-5 text-center rounded-xl">
               <Icon className="w-5 h-5 text-forge-secondary mx-auto mb-3" />
               <p className="font-display text-2xl font-bold text-forge-text">{num}</p>
               <p className="font-sans text-[10px] text-forge-dim uppercase tracking-widest mt-1">
@@ -112,10 +112,10 @@ export default function AProposPage() {
           <h2 className="heading-display text-2xl font-bold mb-10">Notre façon de faire</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {SAVOIR_FAIRE.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="card-forge p-6 rounded-xl">
+              <div key={title} className="card p-6 rounded-xl">
                 <Icon className="w-5 h-5 text-forge-gold mb-4" strokeWidth={1.5} />
                 <h3 className="font-display text-lg font-bold text-forge-text mb-2">{title}</h3>
-                <p className="text-forge-muted text-sm leading-relaxed">{desc}</p>
+                <p className="text-forge-secondary text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -128,7 +128,7 @@ export default function AProposPage() {
             {ENGAGEMENTS.map((e) => (
               <li key={e} className="flex items-start gap-3">
                 <ShieldCheck className="w-4 h-4 text-forge-gold shrink-0 mt-0.5" strokeWidth={1.5} />
-                <span className="text-forge-muted text-sm leading-relaxed">{e}</span>
+                <span className="text-forge-secondary text-sm leading-relaxed">{e}</span>
               </li>
             ))}
           </ul>

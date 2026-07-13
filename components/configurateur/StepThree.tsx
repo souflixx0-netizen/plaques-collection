@@ -162,7 +162,7 @@ export default function StepThree({
         </button>
         <button
           onClick={handleAddToCart}
-          className={`btn-primary flex-1 justify-center transition-all duration-300 ${added ? "!border-emerald-500 !text-emerald-400 hover:!bg-emerald-500 hover:!text-forge-black" : ""}`}
+          className={`btn-cta flex-1 justify-center transition-all duration-300 ${added ? "!bg-emerald-600 !text-white !shadow-none" : ""}`}
         >
           {added ? <Check className="w-4 h-4" strokeWidth={2} /> : <ShoppingBag className="w-4 h-4" strokeWidth={1.5} />}
           {added ? "Ajouté !" : "Ajouter au panier"}

@@ -51,7 +51,7 @@ export default function SavoirFaire() {
             className="reveal"
             style={headIn ? { opacity: 1, transform: "none" } : {}}
           >
-            <p className="font-sans text-[10px] text-forge-secondary tracking-[0.2em] uppercase mb-4">
+            <p className="eyebrow mb-4">
               Savoir-faire
             </p>
             <h2 className="heading-display text-4xl md:text-5xl font-bold text-balance">
@@ -86,7 +86,7 @@ export default function SavoirFaire() {
             style={{ background: "linear-gradient(180deg, rgba(10,9,8,0.15) 0%, rgba(10,9,8,0.15) 55%, rgba(10,9,8,0.92) 100%)" }}
           />
           <div className="absolute bottom-0 left-0 p-8 md:p-12">
-            <p className="font-sans text-[10px] text-forge-secondary tracking-[0.2em] uppercase mb-2">
+            <p className="eyebrow mb-2">
               Fait pour durer
             </p>
             <p className="heading-display text-2xl md:text-3xl font-bold max-w-md">

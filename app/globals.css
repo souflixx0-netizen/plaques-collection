@@ -73,6 +73,11 @@
     line-height: 1.05;
   }
 
+  /* ── Eyebrow — le petit libellé au-dessus des titres, recette unique ── */
+  .eyebrow {
+    @apply font-sans text-[10px] text-forge-secondary tracking-[0.2em] uppercase;
+  }
+
   /* ── Gold gradient text ── */
   .text-gold {
     background: linear-gradient(135deg, #c8a96e 0%, #dfc080 40%, #c8a96e 70%, #a88a50 100%);

@@ -48,12 +48,12 @@ export default function ConfigurateurClient() {
   if (!selectedFormat) return null;
 
   return (
-    <div className="pt-20 pb-24 px-4 md:px-8">
+    <div className="pt-24 pb-24 px-4 md:px-8">
       <div className="max-w-5xl mx-auto">
 
         {/* Page header */}
         <div className="text-center mb-10 pt-4">
-          <p className="font-sans text-[10px] text-forge-secondary tracking-[0.2em] uppercase mb-4">
+          <p className="eyebrow mb-4">
             Configurateur
           </p>
           <h1 className="heading-display text-4xl md:text-5xl font-bold">

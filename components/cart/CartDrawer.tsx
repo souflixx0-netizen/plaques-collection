@@ -173,7 +173,7 @@ export default function CartDrawer() {
             <button
               onClick={checkout}
               disabled={isCheckingOut}
-              className="btn-primary w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed"
+              className="btn-cta w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {isCheckingOut ? (
                 <>

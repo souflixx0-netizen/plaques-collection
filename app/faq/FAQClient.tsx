@@ -19,7 +19,7 @@ const FAQ = [
       },
       {
         q: "Comment se passe le configurateur ?",
-        a: `En 3 étapes : (1) choisissez votre format parmi les ${PLATE_FORMATS.length} disponibles, (2) saisissez votre texte et prévisualisez le rendu en temps réel, (3) ajustez la quantité et ajoutez au panier. Simple.`,
+        a: `En 3 étapes : (1) choisissez votre format au catalogue parmi les ${PLATE_FORMATS.length} disponibles, (2) personnalisez votre texte, votre police et l'orientation avec l'aperçu en temps réel, (3) ajustez la quantité, ajoutez la fixation si besoin et validez. Simple.`,
       },
     ],
   },
@@ -80,15 +80,15 @@ export default function FAQClient() {
   }
 
   return (
-    <div className="min-h-screen pt-24 pb-16 px-4 md:px-8">
+    <div className="min-h-screen pt-24 pb-24 px-4 md:px-8">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="mb-14">
-          <p className="font-sans text-xs text-forge-secondary tracking-[0.17em] uppercase mb-3">
+          <p className="eyebrow mb-3">
             Questions fréquentes
           </p>
           <h1 className="heading-display text-4xl md:text-5xl font-bold mb-3">FAQ</h1>
-          <p className="text-forge-muted font-sans text-sm">
+          <p className="text-forge-secondary font-body leading-relaxed">
             Tout ce que vous voulez savoir sur nos plaques et notre atelier.
           </p>
         </div>
@@ -108,7 +108,7 @@ export default function FAQClient() {
                     <div
                       key={key}
                       className={cn(
-                        "card-forge rounded-lg transition-all duration-200",
+                        "card rounded-lg transition-all duration-200",
                         isOpen && "border-forge-gold/40"
                       )}
                     >
@@ -126,7 +126,7 @@ export default function FAQClient() {
                         </span>
                         <ChevronDown
                           className={cn(
-                            "flex-shrink-0 w-4 h-4 mt-0.5 text-forge-muted transition-transform duration-200",
+                            "flex-shrink-0 w-4 h-4 mt-0.5 text-forge-secondary transition-transform duration-200",
                             isOpen && "rotate-180 text-forge-gold"
                           )}
                         />
@@ -137,7 +137,7 @@ export default function FAQClient() {
                           isOpen ? "max-h-96" : "max-h-0"
                         )}
                       >
-                        <p className="px-5 pb-5 text-forge-muted text-sm leading-relaxed">
+                        <p className="px-5 pb-5 text-forge-secondary text-sm leading-relaxed">
                           {item.a}
                         </p>
                       </div>
@@ -150,12 +150,12 @@ export default function FAQClient() {
         </div>
 
         {/* Contact CTA */}
-        <div className="mt-16 card-forge rounded-xl p-8 text-center">
+        <div className="mt-16 card rounded-xl p-8 text-center">
           <h3 className="heading-display text-xl font-bold mb-2">Pas trouvé votre réponse ?</h3>
-          <p className="text-forge-muted text-sm mb-5">
+          <p className="text-forge-secondary text-sm mb-5">
             Notre équipe répond en moins de 24h.
           </p>
-          <a href="mailto:contact@plaques-collection.fr" className="btn-outline">
+          <a href="mailto:contact@plaques-collection.fr" className="btn-primary">
             Nous contacter
           </a>
         </div>

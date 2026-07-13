@@ -48,17 +48,17 @@ export default function CatalogueClient() {
   const isMoto = activeCategory === "moto";
 
   return (
-    <div className="pt-24 pb-16 px-4 md:px-8">
+    <div className="pt-24 pb-24 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-12">
-          <p className="font-sans text-xs text-forge-secondary tracking-[0.17em] uppercase mb-3">
+          <p className="eyebrow mb-3">
             Catalogue
           </p>
-          <h1 className="heading-display text-4xl md:text-5xl font-bold mb-3">
+          <h1 className="heading-display text-4xl md:text-5xl font-bold mb-3 text-balance">
             Tous les formats
           </h1>
-          <p className="text-forge-muted font-sans text-sm">
+          <p className="text-forge-secondary font-sans text-sm">
             {PLATE_FORMATS.length} formats · Aluminium brossé · Écriture en pochoir · Fabriqué en Alsace
           </p>
           <p className="font-sans text-[10px] text-forge-dim mt-2 max-w-xl">

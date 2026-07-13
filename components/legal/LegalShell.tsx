@@ -11,7 +11,7 @@ export default function LegalShell({
     <div className="min-h-screen pt-24 pb-24 px-4 md:px-8">
       <div className="max-w-3xl mx-auto">
         <div className="mb-12">
-          <p className="font-sans text-xs text-forge-secondary tracking-[0.17em] uppercase mb-3">
+          <p className="eyebrow mb-3">
             Légal
           </p>
           <h1 className="heading-display text-4xl md:text-5xl font-bold mb-3 text-balance">
