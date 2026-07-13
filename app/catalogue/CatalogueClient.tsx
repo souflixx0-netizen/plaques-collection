@@ -51,7 +51,7 @@ export default function CatalogueClient({ initialCat }: { initialCat?: string })
     <div className="pt-24 pb-24 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-12">
+        <div id="haut-catalogue" className="mb-12 scroll-mt-24">
           <p className="eyebrow mb-3">
             Catalogue
           </p>
@@ -136,10 +136,10 @@ export default function CatalogueClient({ initialCat }: { initialCat?: string })
             Chaque plaque est personnalisable
           </h2>
           <p className="text-forge-secondary font-body mb-7 max-w-md mx-auto leading-relaxed">
-            Choisissez votre format, votre texte et visualisez le rendu en temps réel.
+            Choisissez votre format ci-dessus, votre texte, et visualisez le rendu en temps réel.
           </p>
-          <Link href="/configurateur" className="btn-cta">
-            Configurer ma plaque
+          <Link href="#haut-catalogue" className="btn-cta">
+            Choisir mon format
             <ArrowRight className="w-4 h-4" strokeWidth={2} />
           </Link>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 import { useCartContext } from "./CartContext";
 import { X, Minus, Plus, ShoppingBag, ArrowRight, Loader2, Check } from "lucide-react";
 import { formatPrice, orientFormat } from "@/lib/formats";
@@ -78,11 +79,18 @@ export default function CartDrawer() {
         {/* Items */}
         <div className="flex-1 overflow-y-auto overscroll-contain px-6 py-5">
           {items.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full gap-4 text-center">
+            <div className="flex flex-col items-center justify-center h-full gap-5 text-center">
               <ShoppingBag className="w-10 h-10 text-forge-border" strokeWidth={1} />
               <p className="font-sans text-[10px] text-forge-dim uppercase tracking-widest">
                 Votre panier est vide
               </p>
+              <Link
+                href="/catalogue"
+                onClick={() => setIsOpen(false)}
+                className="btn-primary py-3 px-6 text-[11px]"
+              >
+                Voir le catalogue
+              </Link>
             </div>
           ) : (
             <ul className="space-y-3">
@@ -204,6 +212,9 @@ export default function CartDrawer() {
                 </>
               )}
             </button>
+            <p className="font-sans text-[9px] text-forge-dim text-center">
+              Paiement sécurisé · Satisfait ou remboursé 14 jours
+            </p>
           </div>
         )}
       </aside>

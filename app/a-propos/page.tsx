@@ -143,8 +143,8 @@ export default function AProposPage() {
           <p className="text-forge-secondary font-body mb-8 max-w-md mx-auto leading-relaxed">
             Conçue par des passionnés, fabriquée à la main en Alsace.
           </p>
-          <Link href="/configurateur" className="btn-cta">
-            Configurer ma plaque
+          <Link href="/catalogue" className="btn-cta">
+            Choisir mon format
             <ArrowRight className="w-4 h-4" strokeWidth={2} />
           </Link>
         </div>
