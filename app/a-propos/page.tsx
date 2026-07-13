@@ -1,29 +1,36 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Wrench, Award, MapPin, Clock, ArrowRight } from "lucide-react";
+import { Wrench, Award, MapPin, Clock, ArrowRight, Gem, Stamp, PackageCheck, ShieldCheck } from "lucide-react";
 import { PLATE_FORMATS } from "@/lib/formats";
 
 export const metadata: Metadata = {
   title: "L'Atelier",
-  description: "Plaques Collection, atelier familial alsacien depuis 2005. Plaques de collection fabriquées à la main en Alsace pour les passionnés de véhicules d'époque.",
+  description: "Plaques Collection, atelier alsacien depuis 2005. Plaques de collection en aluminium brossé, fabriquées à la main en Alsace pour les passionnés de véhicules d'époque.",
 };
 
-const TIMELINE = [
+const SAVOIR_FAIRE = [
   {
-    year: "2005",
-    title: "Tout commence avec mon père",
-    desc: "Passionné de belles mécaniques, mon père lance l'atelier en Alsace et se met à fabriquer des plaques de collection pour les amateurs de voitures anciennes de la région. Le bouche-à-oreille fait le reste.",
+    icon: Gem,
+    title: "Aluminium brossé",
+    desc: "Chaque plaque part d'un aluminium brossé haute qualité, choisi pour sa tenue dans le temps : il ne s'altère pas, en intérieur comme en extérieur.",
   },
   {
-    year: "Au fil des ans",
-    title: "Un savoir-faire qui s'affine",
-    desc: "Collectionneurs, motards, propriétaires de véhicules d'époque : la clientèle grandit. L'atelier se concentre sur une chose, la faire à la main et bien la faire.",
+    icon: Stamp,
+    title: "Écriture en pochoir",
+    desc: "Votre immatriculation est réalisée en écriture pochoir, fidèle aux plaques d'époque. Le rendu est net, profond, et tient à vie.",
   },
   {
-    year: "Aujourd'hui",
-    title: "L'atelier en ligne",
-    desc: "Je poursuis ce que mon père a construit. La fabrication reste en Alsace, à la main, et le configurateur permet désormais à chacun de commander sa plaque partout en France.",
+    icon: PackageCheck,
+    title: "Contrôle et expédition",
+    desc: "Chaque plaque est fabriquée à la commande, contrôlée une par une, livrée sans perçage pour préserver sa finition, et expédiée sous 24 à 48 h.",
   },
+];
+
+const ENGAGEMENTS = [
+  "Fabrication à la commande, dans notre atelier en Alsace",
+  "Satisfait ou remboursé pendant 14 jours après réception",
+  "Aucune sous-traitance : tout est fait sur place",
+  "Un seul métier : la plaque de collection",
 ];
 
 export default function AProposPage() {
@@ -47,7 +54,7 @@ export default function AProposPage() {
             L&apos;Atelier
           </p>
           <h1 className="heading-display text-4xl md:text-6xl font-bold mb-4 text-balance">
-            Une affaire de famille,{" "}
+            L&apos;atelier alsacien des plaques de collection,{" "}
             <span className="italic">depuis 2005</span>
           </h1>
           <div className="gold-line max-w-xs" />
@@ -60,25 +67,24 @@ export default function AProposPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
           <div className="space-y-5">
             <p className="text-forge-text text-lg leading-relaxed">
-              Plaques Collection, c&apos;est une histoire de famille, née en Alsace
-              en 2005. Mon père, passionné de véhicules d&apos;époque, a commencé
-              par fabriquer des plaques de collection pour les amateurs de la région.
+              Plaques Collection est un atelier familial alsacien, spécialisé
+              depuis 2005 dans la plaque d&apos;immatriculation pour véhicules
+              d&apos;époque.
             </p>
             <p className="text-forge-muted leading-relaxed">
-              Aujourd&apos;hui, je poursuis son travail avec la même exigence :
-              chaque plaque est fabriquée à la main, dans notre atelier, en Alsace.
+              Vingt ans plus tard, la méthode n&apos;a pas changé : chaque plaque
+              est fabriquée à la main, à la commande, dans notre atelier en Alsace.
             </p>
           </div>
           <div className="space-y-5">
             <p className="text-forge-muted leading-relaxed">
-              Nos clients sont des passionnés, comme nous : collectionneurs de
-              voitures anciennes, propriétaires de youngtimers, motards. Des gens
-              pour qui une belle mécanique mérite une belle plaque.
+              Nos clients sont des passionnés : collectionneurs de voitures
+              anciennes, propriétaires de youngtimers, motards. Des gens pour qui
+              une belle mécanique mérite une belle plaque.
             </p>
             <p className="text-forge-muted leading-relaxed">
-              Vingt ans plus tard, l&apos;esprit n&apos;a pas changé : du soin, de
-              l&apos;exigence, et une plaque dont on est fier sur son véhicule comme
-              dans son garage.
+              C&apos;est pour eux que nous ne faisons qu&apos;une seule chose, et
+              que nous la faisons bien.
             </p>
           </div>
         </div>
@@ -101,36 +107,31 @@ export default function AProposPage() {
           ))}
         </div>
 
-        {/* Timeline */}
-        <div>
-          <h2 className="heading-display text-2xl font-bold mb-10">Notre histoire</h2>
-          <div className="relative">
-            {/* Vertical line */}
-            <div className="absolute left-0 md:left-24 top-0 bottom-0 w-px bg-forge-border" />
-
-            <div className="space-y-10 pl-6 md:pl-36">
-              {TIMELINE.map((item, i) => (
-                <div key={i} className="relative">
-                  {/* Year badge */}
-                  <div className="absolute -left-6 md:-left-36 flex items-start">
-                    <span className="font-sans text-xs font-bold text-forge-gold bg-forge-dark border border-forge-gold/30 px-2 py-1 rounded whitespace-nowrap">
-                      {item.year}
-                    </span>
-                  </div>
-
-                  {/* Dot */}
-                  <div className="absolute -left-[9px] md:-left-[33px] top-2 w-3 h-3 rounded-full bg-forge-gold border-2 border-forge-dark" />
-
-                  <div className="pt-0.5 pb-2">
-                    <h3 className="font-display text-lg font-bold text-forge-text mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-forge-muted text-sm leading-relaxed">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+        {/* Savoir-faire */}
+        <div className="mb-20">
+          <h2 className="heading-display text-2xl font-bold mb-10">Notre façon de faire</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {SAVOIR_FAIRE.map(({ icon: Icon, title, desc }) => (
+              <div key={title} className="card-forge p-6 rounded-xl">
+                <Icon className="w-5 h-5 text-forge-gold mb-4" strokeWidth={1.5} />
+                <h3 className="font-display text-lg font-bold text-forge-text mb-2">{title}</h3>
+                <p className="text-forge-muted text-sm leading-relaxed">{desc}</p>
+              </div>
+            ))}
           </div>
+        </div>
+
+        {/* Engagements */}
+        <div>
+          <h2 className="heading-display text-2xl font-bold mb-8">Nos engagements</h2>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+            {ENGAGEMENTS.map((e) => (
+              <li key={e} className="flex items-start gap-3">
+                <ShieldCheck className="w-4 h-4 text-forge-gold shrink-0 mt-0.5" strokeWidth={1.5} />
+                <span className="text-forge-muted text-sm leading-relaxed">{e}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Closing CTA */}
