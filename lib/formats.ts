@@ -83,7 +83,8 @@ export function canRotate(format: PlateFormat): boolean {
   );
 }
 
-/** Le format tel qu'il sera fabriqué : dimensions et libellé pivotés en portrait. */
+/** Le format tel qu'il sera fabriqué : dimensions et libellé pivotés en portrait,
+ *  texte sur 3 lignes (une par groupe : "AB-" / "123-" / "CD"). */
 export function orientFormat(format: PlateFormat, orientation: PlateOrientation): PlateFormat {
   if (orientation !== "portrait" || !canRotate(format)) return format;
   const [a, b] = format.label.replace(" cm", "").split("×");
@@ -92,6 +93,7 @@ export function orientFormat(format: PlateFormat, orientation: PlateOrientation)
     width: format.height,
     height: format.width,
     label: `${b}×${a} cm`,
+    lines: 3,
   };
 }
 

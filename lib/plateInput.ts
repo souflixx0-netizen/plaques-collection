@@ -164,6 +164,24 @@ export function getLineSplit(formatted: string, mode: PlateMode): [string, strin
   return [formatted.slice(0, sp), formatted.slice(sp + 1)];
 }
 
+/**
+ * Découpe pour la pose PORTRAIT (plaque pivotée, étroite et haute) : une ligne
+ * par groupe, le tiret reste en fin de ligne. "AB-123-CD" → ["AB-", "123-", "CD"]
+ */
+export function getPortraitSplit(formatted: string, mode: PlateMode): string[] {
+  if (!formatted.trim()) {
+    return mode === "fni" ? ["1234", "AB", "75"] : ["AA-", "123-", "BB"];
+  }
+  if (mode === "siv") {
+    const parts = formatted.split("-");
+    return parts
+      .map((p, i) => (i < parts.length - 1 ? `${p}-` : p))
+      .filter((l) => l.length > 0);
+  }
+  // FNI : une ligne par groupe (séparés par des espaces)
+  return formatted.split(" ").filter((l) => l.length > 0);
+}
+
 // ── Validation helpers ────────────────────────────────────────────────────────
 
 export function isComplete(raw: string, mode: PlateMode): boolean {

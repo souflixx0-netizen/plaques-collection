@@ -3,7 +3,7 @@
 import { useEffect, useRef, useCallback } from "react";
 import type { PlateFormat, PlateMode } from "@/types";
 import { getFontById, DEFAULT_FONT_ID } from "@/lib/fonts";
-import { getLineSplit } from "@/lib/plateInput";
+import { getLineSplit, getPortraitSplit } from "@/lib/plateInput";
 
 interface PlateCanvasProps {
   format: PlateFormat;
@@ -188,7 +188,7 @@ function drawPlate(
   w: number,
   h: number,
   text: string,
-  lines: 1 | 2,
+  lines: 1 | 2 | 3,
   weight: string,
   family: string,
   mode: PlateMode = "siv"
@@ -256,6 +256,23 @@ function drawPlate(
   if (lines === 1) {
     const fs = findFontSize(ctx, displayText, weight, family, iw * 0.84, ih * 0.80);
     drawLine(ctx, displayText, w / 2, h / 2, fs, weight, family);
+  } else if (lines === 3) {
+    // Pose portrait : une ligne par groupe ("AB-" / "123-" / "CD")
+    const rows  = getPortraitSplit(displayText, mode);
+    const gap   = ih * 0.05;
+    const maxFH = ih * 0.26;
+    const maxFW = iw * 0.84;
+
+    const fs = Math.min(
+      ...rows.map((r) => findFontSize(ctx, r, weight, family, maxFW, maxFH))
+    );
+
+    const blockH = fs * rows.length + gap * (rows.length - 1);
+    let y = (h - blockH) / 2 + fs / 2;
+    for (const row of rows) {
+      drawLine(ctx, row, w / 2, y, fs, weight, family);
+      y += fs + gap;
+    }
   } else {
     const [l1, l2] = getLineSplit(displayText, mode);
     const gap   = ih * 0.08;

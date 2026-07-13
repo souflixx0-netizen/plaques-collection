@@ -14,7 +14,8 @@ export interface PlateFormat {
   subcategory?: string;
   homologated?: boolean;
   price: number;
-  lines: 1 | 2;
+  /** 3 lignes = pose portrait (une ligne par groupe de caractères) */
+  lines: 1 | 2 | 3;
   /** Courte ligne de contexte d'usage affichée sur la carte catalogue */
   usage?: string;
   /** Badge de mise en avant facultatif (ex. "Le plus populaire"), max 1 par carte */
