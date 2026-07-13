@@ -1,8 +1,15 @@
 import type { MetadataRoute } from "next";
+import { PLATE_FORMATS } from "@/lib/formats";
 
 const BASE = "https://plaques-collection.fr";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const formatPages: MetadataRoute.Sitemap = PLATE_FORMATS.map((f) => ({
+    url: `${BASE}/plaques/${f.id}`,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
   const staticPages: MetadataRoute.Sitemap = [
     { url: `${BASE}/`, changeFrequency: "weekly", priority: 1 },
     { url: `${BASE}/catalogue`, changeFrequency: "weekly", priority: 0.9 },
@@ -15,5 +22,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/confidentialite`, changeFrequency: "yearly", priority: 0.2 },
   ];
 
-  return staticPages;
+  return [...staticPages, ...formatPages];
 }

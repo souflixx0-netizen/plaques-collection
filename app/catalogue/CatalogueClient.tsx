@@ -130,6 +130,25 @@ export default function CatalogueClient({ initialCat }: { initialCat?: string })
           <FormatGrid formats={formats} />
         )}
 
+        {/* Guides par format — maillage vers les pages détaillées */}
+        <div className="mt-20 border-t border-forge-border pt-10">
+          <h2 className="font-sans text-xs text-forge-secondary uppercase tracking-widest mb-5">
+            En savoir plus sur chaque format
+          </h2>
+          <ul className="flex flex-wrap gap-x-5 gap-y-2">
+            {PLATE_FORMATS.map((f) => (
+              <li key={f.id}>
+                <Link
+                  href={`/plaques/${f.id}`}
+                  className="font-sans text-[11px] text-forge-dim hover:text-forge-gold transition-colors"
+                >
+                  Plaque {f.label} {f.category === "us" ? "US" : f.category}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
         {/* Closing CTA */}
         <div className="mt-24 rounded-2xl border border-forge-border bg-forge-card/60 px-8 py-12 text-center">
           <h2 className="heading-display text-2xl md:text-3xl font-bold mb-3 text-balance">
