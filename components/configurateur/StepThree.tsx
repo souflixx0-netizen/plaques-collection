@@ -92,16 +92,18 @@ export default function StepThree({
             <button
               onClick={() => onQuantityChange(quantity - 1)}
               disabled={quantity <= 1}
+              aria-label="Diminuer la quantité"
               className="w-7 h-7 rounded border border-forge-border flex items-center justify-center text-forge-secondary hover:border-forge-gold hover:text-forge-gold transition-colors disabled:opacity-25"
             >
-              <Minus className="w-3 h-3" strokeWidth={1.5} />
+              <Minus className="w-3 h-3" strokeWidth={1.5} aria-hidden="true" />
             </button>
-            <span className="font-sans text-sm font-bold text-forge-text w-5 text-center">{quantity}</span>
+            <span aria-live="polite" className="font-sans text-sm font-bold text-forge-text w-5 text-center">{quantity}</span>
             <button
               onClick={() => onQuantityChange(quantity + 1)}
+              aria-label="Augmenter la quantité"
               className="w-7 h-7 rounded border border-forge-border flex items-center justify-center text-forge-secondary hover:border-forge-gold hover:text-forge-gold transition-colors"
             >
-              <Plus className="w-3 h-3" strokeWidth={1.5} />
+              <Plus className="w-3 h-3" strokeWidth={1.5} aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -110,6 +112,8 @@ export default function StepThree({
         <button
           type="button"
           onClick={() => setWithRivets((v) => !v)}
+          role="checkbox"
+          aria-checked={withRivets}
           className="w-full flex items-center gap-3 px-5 py-4 text-left transition-colors hover:bg-forge-gold/[0.04]"
         >
           <span

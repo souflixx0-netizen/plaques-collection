@@ -73,6 +73,7 @@ export default function StepTwo({
               <button
                 key={opt.m}
                 onClick={() => switchMode(opt.m)}
+                aria-pressed={active}
                 className={cn(
                   "rounded-xl border px-4 py-3.5 text-left transition-all duration-200",
                   active
@@ -106,6 +107,7 @@ export default function StepTwo({
           type="text"
           value={formatted}
           onChange={(e) => handleNativeInput(e.target.value)}
+          aria-label="Votre immatriculation"
           placeholder={placeholder}
           inputMode={keyType === "digit" ? "numeric" : "text"}
           className="input-terminal w-full text-center text-2xl py-4 tracking-[0.18em] uppercase"
@@ -141,6 +143,7 @@ export default function StepTwo({
                 <button
                   key={o}
                   onClick={() => onOrientationChange(o)}
+                  aria-pressed={active}
                   className={cn(
                     "rounded-xl border px-4 py-3.5 text-left transition-all duration-200",
                     active

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useCartContext } from "./CartContext";
 import { X, Minus, Plus, ShoppingBag, ArrowRight, Loader2, Check } from "lucide-react";
 import { formatPrice, orientFormat } from "@/lib/formats";
@@ -20,6 +21,14 @@ export default function CartDrawer() {
     checkout, isCheckingOut, checkoutError,
   } = useCartContext();
 
+  // Fermeture au clavier (Échap)
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setIsOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isOpen, setIsOpen]);
+
   // Prix live (Shopify) ; on retombe sur le prix capturé à l'ajout si pas encore chargé.
   const prices = usePrices();
   const priceOf = (item: (typeof items)[number]) => prices[item.format.id] ?? item.price;
@@ -30,6 +39,7 @@ export default function CartDrawer() {
       {/* Backdrop */}
       <div
         onClick={() => setIsOpen(false)}
+        aria-hidden="true"
         className={cn(
           "fixed inset-0 bg-forge-black/80 z-40 transition-opacity duration-300",
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
@@ -38,6 +48,9 @@ export default function CartDrawer() {
 
       {/* Drawer */}
       <aside
+        role="dialog"
+        aria-modal="true"
+        aria-label="Panier"
         className={cn(
           "fixed right-0 top-0 h-full w-full max-w-sm z-50 flex flex-col",
           "bg-forge-dark border-l border-forge-border",
@@ -55,14 +68,15 @@ export default function CartDrawer() {
           </div>
           <button
             onClick={() => setIsOpen(false)}
+            aria-label="Fermer le panier"
             className="p-1.5 text-forge-secondary hover:text-forge-text transition-colors"
           >
-            <X className="w-4 h-4" strokeWidth={1.5} />
+            <X className="w-4 h-4" strokeWidth={1.5} aria-hidden="true" />
           </button>
         </div>
 
         {/* Items */}
-        <div className="flex-1 overflow-y-auto px-6 py-5">
+        <div className="flex-1 overflow-y-auto overscroll-contain px-6 py-5">
           {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full gap-4 text-center">
               <ShoppingBag className="w-10 h-10 text-forge-border" strokeWidth={1} />
@@ -112,25 +126,28 @@ export default function CartDrawer() {
                     </div>
                     <button
                       onClick={() => removeItem(item.id)}
+                      aria-label={`Retirer ${item.text || item.format.label} du panier`}
                       className="text-forge-dim hover:text-red-400 transition-colors flex-shrink-0"
                     >
-                      <X className="w-3.5 h-3.5" strokeWidth={1.5} />
+                      <X className="w-3.5 h-3.5" strokeWidth={1.5} aria-hidden="true" />
                     </button>
                   </div>
 
                   <div className="flex items-center gap-2.5 mt-3">
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                      aria-label="Diminuer la quantité"
                       className="w-6 h-6 rounded border border-forge-border flex items-center justify-center text-forge-secondary hover:border-forge-gold hover:text-forge-gold transition-colors"
                     >
-                      <Minus className="w-2.5 h-2.5" strokeWidth={1.5} />
+                      <Minus className="w-2.5 h-2.5" strokeWidth={1.5} aria-hidden="true" />
                     </button>
-                    <span className="font-sans text-xs text-forge-text w-4 text-center">{item.quantity}</span>
+                    <span aria-live="polite" className="font-sans text-xs text-forge-text w-4 text-center">{item.quantity}</span>
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                      aria-label="Augmenter la quantité"
                       className="w-6 h-6 rounded border border-forge-border flex items-center justify-center text-forge-secondary hover:border-forge-gold hover:text-forge-gold transition-colors"
                     >
-                      <Plus className="w-2.5 h-2.5" strokeWidth={1.5} />
+                      <Plus className="w-2.5 h-2.5" strokeWidth={1.5} aria-hidden="true" />
                     </button>
                     <span className="ml-auto font-sans text-xs font-bold text-forge-text">
                       {formatPrice(priceOf(item) * item.quantity)}
@@ -168,7 +185,7 @@ export default function CartDrawer() {
             </div>
             <p className="font-sans text-[9px] text-forge-dim">Livraison calculée à la commande</p>
             {checkoutError && (
-              <p className="font-sans text-[10px] text-red-400 leading-relaxed">{checkoutError}</p>
+              <p role="alert" className="font-sans text-[10px] text-red-400 leading-relaxed">{checkoutError}</p>
             )}
             <button
               onClick={checkout}

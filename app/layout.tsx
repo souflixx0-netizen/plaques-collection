@@ -1,10 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CartDrawer from "@/components/cart/CartDrawer";
 import { CartProvider } from "@/components/cart/CartContext";
 import { PriceProvider } from "@/components/PriceContext";
+
+export const viewport: Viewport = {
+  themeColor: "#050505",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://plaques-collection.fr"),

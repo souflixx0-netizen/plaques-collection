@@ -75,6 +75,7 @@ export default function CatalogueClient({ initialCat }: { initialCat?: string })
               <button
                 key={cat}
                 onClick={() => changeCategory(cat)}
+                aria-pressed={active}
                 className={cn(
                   "px-6 py-3 rounded-full font-sans text-xs tracking-widest uppercase border transition-all duration-200",
                   active

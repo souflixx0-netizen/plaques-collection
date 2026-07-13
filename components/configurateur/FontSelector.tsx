@@ -93,6 +93,7 @@ export default function FontSelector({ selectedId, onChange }: FontSelectorProps
             <button
               key={font.id}
               onClick={() => onChange(font.id)}
+              aria-pressed={active}
               className={cn(
                 "flex flex-col items-center justify-center gap-2.5 px-3 py-3.5 rounded-xl border transition-all duration-200",
                 active

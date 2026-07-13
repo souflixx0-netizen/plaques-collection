@@ -48,6 +48,7 @@ export default function FAQClient() {
                     >
                       <button
                         onClick={() => toggle(key)}
+                        aria-expanded={isOpen}
                         className="w-full flex items-start justify-between gap-4 px-5 py-4 text-left"
                       >
                         <span

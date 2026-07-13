@@ -38,6 +38,25 @@
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: #0a0908; }
   ::-webkit-scrollbar-thumb { background: #1e1c14; border-radius: 2px; }
+
+  /* Focus clavier visible et on-brand (le contour navigateur par défaut
+     est peu lisible sur fond sombre) */
+  :focus-visible {
+    outline: 2px solid #c8a96e;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Respect de la préférence "réduire les animations" */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal { opacity: 1 !important; transform: none !important; }
+  }
 }
 
 /* ── Components ───────────────────────────────────────────────────────────── */
