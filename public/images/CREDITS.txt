@@ -1,12 +1,24 @@
 IMAGES D'ILLUSTRATION TEMPORAIRES — À REMPLACER PAR LES PHOTOS DE PLAQUES COLLECTION
 
-hero-car.jpg    : Citroën DS 21 — Wikimedia Commons (CC BY-SA). Auteur : voir page Commons
-                  "Citroën DS 21, 27 Quai Anatole France".
-atelier-car.jpg : Jaguar E-Type Roadster 4.2 (1970) — Wikimedia Commons (CC BY-SA).
+Attributions confirmées le 2026-07-13 et publiées sur /mentions-legales
+(section "Crédits photographiques"), conformément aux licences CC BY-SA.
+Images recadrées/retouchées par rapport aux originaux.
 
-NOTE JURIDIQUE : ces images sont des placeholders pour projection/maquette.
-Avant mise en production réelle, les remplacer par tes propres photos, ou
-respecter l'attribution CC BY-SA requise. Ne pas laisser ces images en prod
-sans crédit.
+hero-car.jpg    : Citroën DS 21 cabriolet — "Citroën DS 21 27 Quai Anatole France
+                  license plate blanked 2012-06-02.jpg", auteur Slaunger,
+                  Wikimedia Commons, CC BY-SA 3.0.
+                  https://commons.wikimedia.org/wiki/File:Citro%C3%ABn_DS_21_27_Quai_Anatole_France_license_plate_blanked_2012-06-02.jpg
 
-cta-car.jpg     : Porsche 911 Carrera RS (1972-73) — Wikimedia Commons (CC BY-SA).
+atelier-car.jpg : Jaguar E-Type Roadster 4.2 (1970) — "1970 Jaguar E-Type
+                  Roadster 4.2.jpg", auteur Vauxford, Wikimedia Commons,
+                  CC BY-SA 4.0.
+                  https://commons.wikimedia.org/wiki/File:1970_Jaguar_E-Type_Roadster_4.2.jpg
+
+cta-car.jpg     : Porsche 911 Carrera RS (1972-73) — "Porsche 911 Carrera RS,
+                  Bj. 1972-73 (2016-07-02 01 Sp).JPG", auteur Lothar Spurzem,
+                  Wikimedia Commons, CC BY-SA 2.0 DE.
+                  https://commons.wikimedia.org/wiki/File:Porsche_911_Carrera_RS,_Bj._1972-73_(2016-07-02_01_Sp).JPG
+
+NOTE : l'attribution publiée sur /mentions-legales rend l'utilisation conforme.
+Ces images restent à remplacer par les vraies photos d'Abdel (plaques, atelier)
+dès qu'elles sont disponibles ; retirer alors la section crédits correspondante.

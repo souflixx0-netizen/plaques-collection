@@ -38,6 +38,30 @@ export default function MentionsLegalesPage() {
         Toute reproduction ou utilisation sans autorisation préalable est interdite.
       </p>
 
+      <h2>Crédits photographiques</h2>
+      <p>
+        Certaines photographies d&apos;illustration proviennent de Wikimedia Commons
+        et sont utilisées sous licence Creative Commons (images recadrées et
+        retouchées) :
+      </p>
+      <ul>
+        <li>
+          Citroën DS 21 cabriolet — photo{" "}
+          <a href="https://commons.wikimedia.org/wiki/File:Citro%C3%ABn_DS_21_27_Quai_Anatole_France_license_plate_blanked_2012-06-02.jpg" target="_blank" rel="noopener noreferrer">Slaunger, Wikimedia Commons</a>, licence{" "}
+          <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.fr" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a>
+        </li>
+        <li>
+          Jaguar E-Type Roadster 4.2 (1970) — photo{" "}
+          <a href="https://commons.wikimedia.org/wiki/File:1970_Jaguar_E-Type_Roadster_4.2.jpg" target="_blank" rel="noopener noreferrer">Vauxford, Wikimedia Commons</a>, licence{" "}
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fr" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>
+        </li>
+        <li>
+          Porsche 911 Carrera RS (1972-73) — photo{" "}
+          <a href="https://commons.wikimedia.org/wiki/File:Porsche_911_Carrera_RS,_Bj._1972-73_(2016-07-02_01_Sp).JPG" target="_blank" rel="noopener noreferrer">Lothar Spurzem, Wikimedia Commons</a>, licence{" "}
+          <a href="https://creativecommons.org/licenses/by-sa/2.0/de/deed.fr" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0 DE</a>
+        </li>
+      </ul>
+
       <h2>Données personnelles</h2>
       <p>
         Le traitement des données personnelles est détaillé dans notre{" "}

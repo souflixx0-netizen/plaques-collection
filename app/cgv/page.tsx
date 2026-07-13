@@ -85,10 +85,20 @@ export default function CGVPage() {
 
       <h2>8. Réclamations et médiation</h2>
       <p>
-        Toute réclamation peut être adressée à info@easymark68.com. Conformément à
-        l&apos;article L612-1 du Code de la consommation, le client peut recourir
-        gratuitement à un médiateur de la consommation en vue de la résolution
-        amiable d&apos;un litige. <em>(Coordonnées du médiateur à compléter.)</em>
+        Toute réclamation peut être adressée à info@easymark68.com. Le Vendeur
+        s&apos;efforce de résoudre amiablement toute difficulté ; le client est
+        invité à le contacter en priorité. Conformément à l&apos;article L612-1
+        du Code de la consommation, le client peut recourir gratuitement à un
+        médiateur de la consommation en vue de la résolution amiable d&apos;un
+        litige. Les coordonnées du médiateur compétent seront communiquées au
+        client sur demande et publiées sur cette page.
+      </p>
+      <p>
+        Conformément au règlement (UE) n°524/2013, le client peut également
+        utiliser la plateforme européenne de règlement en ligne des litiges :{" "}
+        <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">
+          ec.europa.eu/consumers/odr
+        </a>.
       </p>
 
       <h2>9. Droit applicable</h2>
