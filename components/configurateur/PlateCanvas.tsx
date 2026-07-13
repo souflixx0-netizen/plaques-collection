@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useCallback } from "react";
 import type { PlateFormat, PlateMode } from "@/types";
-import { getFontById, DEFAULT_FONT_ID } from "@/lib/fonts";
+import { getFontById, loadPlateFont, DEFAULT_FONT_ID } from "@/lib/fonts";
 import { getLineSplit, getPortraitSplit } from "@/lib/plateInput";
 
 interface PlateCanvasProps {
@@ -322,7 +322,7 @@ export default function PlateCanvas({
   }, [format, text, font, scale, plateMode]);
 
   useEffect(() => { render(); }, [render]);
-  useEffect(() => { document.fonts.ready.then(render); }, [render]);
+  useEffect(() => { loadPlateFont(font).then(render); }, [render, font]);
 
   // Subtle flash on text change
   useEffect(() => {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useCallback } from "react";
-import { PLATE_FONTS, type PlateFont } from "@/lib/fonts";
+import { PLATE_FONTS, loadPlateFont, type PlateFont } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 
 interface FontSelectorProps {
@@ -72,7 +72,7 @@ function FontPreview({ font, active }: { font: PlateFont; active: boolean }) {
   }, [font, active]);
 
   useEffect(() => { draw(); }, [draw]);
-  useEffect(() => { document.fonts.ready.then(draw); }, [draw]);
+  useEffect(() => { loadPlateFont(font).then(draw); }, [draw, font]);
 
   return (
     <canvas

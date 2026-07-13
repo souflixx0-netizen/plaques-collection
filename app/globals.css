@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Carlito:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Share+Tech+Mono&family=Special+Elite&family=Stardos+Stencil:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Share+Tech+Mono&display=swap');
 
 @font-face {
   font-family: 'UKNumberPlate';
@@ -9,6 +9,21 @@
   font-family: 'GunplayRg';
   src: url('/fonts/GunplayRg.woff') format('woff');
   font-weight: normal; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'CalibriPlate';
+  src: url('/fonts/CalibriBold.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'AmericanTypewriterPlate';
+  src: url('/fonts/AmericanTypewriterBold.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'StencilPlate';
+  src: url('/fonts/StencilRegular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
 }
 
 @tailwind base;

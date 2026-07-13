@@ -20,26 +20,26 @@ export const PLATE_FONTS: PlateFont[] = [
   {
     id: "calibri",
     label: "Calibri Bold",
-    // Carlito = clone libre métriquement identique à Calibri (Google Fonts)
-    cssFamily: '"Carlito", "Calibri", "Trebuchet MS", Arial, sans-serif',
+    // Fichier local CalibriBold.woff2 (police de production)
+    cssFamily: '"CalibriPlate", "Calibri", "Trebuchet MS", Arial, sans-serif',
     weight: "700",
-    previewFamily: '"Carlito", "Calibri", "Trebuchet MS", Arial, sans-serif',
+    previewFamily: '"CalibriPlate", "Calibri", "Trebuchet MS", Arial, sans-serif',
   },
   {
     id: "stencil",
     label: "Stencil",
-    // Stardos Stencil (Google Fonts), fallback Arial Black / Impact
-    cssFamily: '"Stardos Stencil", "Arial Black", Impact, sans-serif',
-    weight: "700",
-    previewFamily: '"Stardos Stencil", "Arial Black", Impact, sans-serif',
+    // Fichier local StencilRegular.woff2 (police de production)
+    cssFamily: '"StencilPlate", "Stencil", "Arial Black", Impact, sans-serif',
+    weight: "400",
+    previewFamily: '"StencilPlate", "Stencil", "Arial Black", Impact, sans-serif',
   },
   {
     id: "american-typewriter",
     label: "Machine à écrire",
-    // Special Elite (Google Fonts) = style machine à écrire vintage
-    cssFamily: '"Special Elite", "Courier New", Georgia, serif',
-    weight: "400",
-    previewFamily: '"Special Elite", "Courier New", Georgia, serif',
+    // Fichier local AmericanTypewriterBold.woff2 (police de production)
+    cssFamily: '"AmericanTypewriterPlate", "American Typewriter", "Courier New", Georgia, serif',
+    weight: "700",
+    previewFamily: '"AmericanTypewriterPlate", "American Typewriter", "Courier New", Georgia, serif',
   },
   {
     id: "gunplay",
@@ -52,6 +52,20 @@ export const PLATE_FONTS: PlateFont[] = [
 ];
 
 export const DEFAULT_FONT_ID = "uknumberplate";
+
+/**
+ * Force le chargement du fichier de police avant un dessin canvas.
+ * ctx.font ne déclenche PAS le téléchargement d'une @font-face : sans cet
+ * appel, le canvas retombe silencieusement sur la police de secours.
+ */
+export function loadPlateFont(font: PlateFont): Promise<unknown> {
+  if (typeof document === "undefined" || !document.fonts?.load) {
+    return Promise.resolve();
+  }
+  return document.fonts
+    .load(`${font.weight} 16px ${font.cssFamily}`, "AB-123-CD")
+    .catch(() => {});
+}
 
 export function getFontById(id: string): PlateFont {
   return PLATE_FONTS.find((f) => f.id === id) ?? PLATE_FONTS[0];
