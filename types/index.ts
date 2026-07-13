@@ -2,12 +2,15 @@ import type { PlateMode } from "@/lib/plateInput";
 
 export type { PlateMode };
 
+/** Sens de pose de la plaque (portrait = format pivoté de 90°) */
+export type PlateOrientation = "paysage" | "portrait";
+
 export interface PlateFormat {
   id: string;
   label: string;
   width: number;
   height: number;
-  category: "auto" | "moto" | "us";
+  category: "auto" | "moto" | "us" | "accessoire";
   subcategory?: string;
   homologated?: boolean;
   price: number;
@@ -27,6 +30,7 @@ export interface CartItem {
   quantity: number;
   price: number;
   variantId?: string;
+  orientation?: PlateOrientation;
 }
 
 export interface ConfiguratorState {
@@ -36,6 +40,7 @@ export interface ConfiguratorState {
   plateMode: PlateMode;
   quantity: number;
   selectedFontId: string;
+  orientation: PlateOrientation;
 }
 
 export interface ShopifyProduct {

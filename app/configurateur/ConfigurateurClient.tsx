@@ -26,11 +26,11 @@ export default function ConfigurateurClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const {
-    state, selectFormat, setPlateText, setPlateMode, setFont,
+    state, selectFormat, setPlateText, setPlateMode, setOrientation, setFont,
     setQuantity, nextStep, prevStep, reset,
   } = useConfigurator();
 
-  const { step, selectedFormat, plateText, plateMode, quantity, selectedFontId } = state;
+  const { step, selectedFormat, plateText, plateMode, quantity, selectedFontId, orientation } = state;
 
   // Format is chosen on the catalogue. Pre-select it from the URL param
   // (?format=auto-52x11) and start at personalisation. No format = back to catalogue.
@@ -114,6 +114,7 @@ export default function ConfigurateurClient() {
               text={plateText}
               fontId={selectedFontId}
               plateMode={plateMode}
+              orientation={orientation}
             />
 
             {/* Material valorization — discreet quality cues */}
@@ -135,9 +136,11 @@ export default function ConfigurateurClient() {
                 text={plateText}
                 fontId={selectedFontId}
                 plateMode={plateMode}
+                orientation={orientation}
                 onTextChange={setPlateText}
                 onFontChange={setFont}
                 onModeChange={setPlateMode}
+                onOrientationChange={setOrientation}
               />
             )}
             {step === 2 && (
@@ -146,6 +149,7 @@ export default function ConfigurateurClient() {
                 text={plateText}
                 fontId={selectedFontId}
                 plateMode={plateMode}
+                orientation={orientation}
                 quantity={quantity}
                 onQuantityChange={setQuantity}
                 onReset={reset}

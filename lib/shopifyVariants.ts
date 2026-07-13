@@ -44,6 +44,10 @@ export const VARIANT_BY_FORMAT: Record<string, string> = {
   // ── US ──
   "us-30x15": "gid://shopify/ProductVariant/54982107726150",
   "us-30x17": "gid://shopify/ProductVariant/54982110085446",
+
+  // ── ACCESSOIRES ──
+  // "Lot 2 Rivets noirs pour plaques d'immatriculation collection" (1,50 €)
+  "acc-rivets-noirs": "gid://shopify/ProductVariant/55732385055046",
 };
 
 export function getVariantId(formatId: string): string | undefined {

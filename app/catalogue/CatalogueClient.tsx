@@ -10,13 +10,15 @@ import {
   formatPrice,
 } from "@/lib/formats";
 import type { PlateFormat } from "@/types";
+import { ACCESSORIES, type Accessory } from "@/lib/accessories";
+import { useCartContext } from "@/components/cart/CartContext";
 import { usePrice } from "@/components/PriceContext";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ShoppingBag, Check } from "lucide-react";
 
 type Category = PlateFormat["category"];
-const CATS: Category[] = ["auto", "moto", "us"];
+const CATS: Category[] = ["auto", "moto", "us", "accessoire"];
 
 // Realistic Blender renders, by plate shape (1 line = long, 2 lines = square)
 function plateImg(format: PlateFormat): string {
@@ -82,7 +84,9 @@ export default function CatalogueClient() {
               >
                 {FORMAT_CATEGORIES[cat].label}
                 <span className={cn("ml-2", active ? "text-forge-black/60" : "text-forge-dim")}>
-                  {PLATE_FORMATS.filter((f) => f.category === cat).length}
+                  {cat === "accessoire"
+                    ? ACCESSORIES.length
+                    : PLATE_FORMATS.filter((f) => f.category === cat).length}
                 </span>
               </button>
             );
@@ -90,7 +94,13 @@ export default function CatalogueClient() {
         </div>
 
         {/* Grid */}
-        {isMoto ? (
+        {activeCategory === "accessoire" ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            {ACCESSORIES.map((a) => (
+              <AccessoryCard key={a.format.id} accessory={a} />
+            ))}
+          </div>
+        ) : isMoto ? (
           <div className="space-y-12">
             {(Object.entries(MOTO_SUBCATEGORIES) as [
               keyof typeof MOTO_SUBCATEGORIES,
@@ -132,6 +142,60 @@ export default function CatalogueClient() {
             <ArrowRight className="w-4 h-4" strokeWidth={2} />
           </Link>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function AccessoryCard({ accessory }: { accessory: Accessory }) {
+  const { format, description, image } = accessory;
+  const { addItem } = useCartContext();
+  const price = usePrice(format.id, format.price);
+  const [added, setAdded] = useState(false);
+
+  function handleAdd() {
+    addItem(format, "", 1, "stencil", "siv", price);
+    setAdded(true);
+    setTimeout(() => setAdded(false), 2000);
+  }
+
+  return (
+    <div className="card-hover group relative p-5 flex flex-col text-center">
+      <div className="flex items-center justify-center h-[132px] mb-4">
+        <Image
+          src={image}
+          alt={format.label}
+          width={520}
+          height={360}
+          className="w-auto h-full max-w-full object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.05]"
+          style={{ filter: "drop-shadow(0 12px 20px rgba(0,0,0,0.6))" }}
+        />
+      </div>
+
+      <h3 className="heading-display text-xl font-bold mb-1.5">{format.label}</h3>
+
+      <p className="font-sans text-[11px] text-forge-secondary mb-4 px-1 leading-relaxed">
+        {description}
+      </p>
+
+      <div className="border-t border-forge-border pt-4 mt-auto">
+        <p className="mb-4">
+          <span className="font-display text-2xl font-bold text-forge-text">{formatPrice(price)}</span>
+          <span className="font-sans text-[11px] text-forge-dim"> / lot</span>
+        </p>
+
+        <button
+          onClick={handleAdd}
+          className={cn(
+            "flex items-center justify-center gap-2 w-full font-sans text-[11px] font-semibold tracking-widest-2 uppercase py-3 rounded transition-all duration-200",
+            added
+              ? "bg-emerald-600 text-white"
+              : "bg-forge-gold text-forge-black hover:bg-forge-gold-light hover:shadow-gold-glow"
+          )}
+        >
+          {added ? <Check className="w-3.5 h-3.5" strokeWidth={2.5} /> : <ShoppingBag className="w-3.5 h-3.5" strokeWidth={1.5} />}
+          {added ? "Ajouté !" : "Ajouter au panier"}
+        </button>
       </div>
     </div>
   );

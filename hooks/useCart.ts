@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import type { CartItem, PlateFormat } from "@/types";
+import type { CartItem, PlateFormat, PlateOrientation } from "@/types";
 import { createCheckout, isShopifyConfigured, type CartLineInput } from "@/lib/shopify";
 import { getVariantId } from "@/lib/shopifyVariants";
+import { isAccessory } from "@/lib/accessories";
 
 const CART_KEY = "pc_cart";
 
@@ -25,13 +26,13 @@ export function useCart() {
 
   useEffect(() => { setItems(loadCart()); }, []);
 
-  const addItem = useCallback((format: PlateFormat, text: string, quantity = 1, fontId = "stencil", plateMode: import("@/types").PlateMode = "siv", price = format.price) => {
+  const addItem = useCallback((format: PlateFormat, text: string, quantity = 1, fontId = "stencil", plateMode: import("@/types").PlateMode = "siv", price = format.price, orientation: PlateOrientation = "paysage") => {
     setItems((prev) => {
-      const key      = `${format.id}__${text}__${fontId}__${plateMode}`;
+      const key      = `${format.id}__${text}__${fontId}__${plateMode}__${orientation}`;
       const existing = prev.find((i) => i.id === key);
       const next     = existing
         ? prev.map((i) => i.id === key ? { ...i, quantity: i.quantity + quantity } : i)
-        : [...prev, { id: key, format, text, fontId, plateMode, quantity, price }];
+        : [...prev, { id: key, format, text, fontId, plateMode, quantity, price, orientation }];
       saveCart(next);
       return next;
     });
@@ -70,16 +71,19 @@ export function useCart() {
     for (const i of items) {
       const merchandiseId = getVariantId(i.format.id);
       if (!merchandiseId) { unmapped.push(i.format.label); continue; }
-      lines.push({
-        merchandiseId,
-        quantity: i.quantity,
-        attributes: [
-          { key: "Texte",  value: i.text },
-          { key: "Police", value: i.fontId },
-          { key: "Format", value: i.format.label },
-          { key: "Type",   value: i.plateMode === "siv" ? "SIV (AB-123-CD)" : "FNI (ancien)" },
-        ],
-      });
+      // Les accessoires n'ont pas de personnalisation à transmettre.
+      const attributes = isAccessory(i.format)
+        ? undefined
+        : [
+            { key: "Texte",  value: i.text },
+            { key: "Police", value: i.fontId },
+            { key: "Format", value: i.format.label },
+            { key: "Type",   value: i.plateMode === "siv" ? "SIV (AB-123-CD)" : "FNI (ancien)" },
+            ...(i.orientation === "portrait"
+              ? [{ key: "Orientation", value: "Portrait (plaque pivotée à 90°)" }]
+              : []),
+          ];
+      lines.push({ merchandiseId, quantity: i.quantity, attributes });
     }
 
     if (unmapped.length > 0) {

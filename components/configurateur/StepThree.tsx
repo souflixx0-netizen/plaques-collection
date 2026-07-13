@@ -1,18 +1,21 @@
 "use client";
 
-import type { PlateFormat, PlateMode } from "@/types";
-import { formatPrice } from "@/lib/formats";
+import type { PlateFormat, PlateMode, PlateOrientation } from "@/types";
+import { formatPrice, canRotate, orientFormat } from "@/lib/formats";
 import { getFontById } from "@/lib/fonts";
+import { RIVET_KIT } from "@/lib/accessories";
 import { useCartContext } from "@/components/cart/CartContext";
 import { usePrice } from "@/components/PriceContext";
-import { Minus, Plus, ShoppingBag, RotateCcw, Check, ChevronLeft } from "lucide-react";
+import { Minus, Plus, ShoppingBag, RotateCcw, Check, ChevronLeft, Wrench } from "lucide-react";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface StepThreeProps {
   format: PlateFormat;
   text: string;
   fontId: string;
   plateMode: PlateMode;
+  orientation: PlateOrientation;
   quantity: number;
   onQuantityChange: (q: number) => void;
   onReset: () => void;
@@ -20,15 +23,20 @@ interface StepThreeProps {
 }
 
 export default function StepThree({
-  format, text, fontId, plateMode, quantity, onQuantityChange, onReset, onBack,
+  format, text, fontId, plateMode, orientation, quantity, onQuantityChange, onReset, onBack,
 }: StepThreeProps) {
   const { addItem } = useCartContext();
   const price = usePrice(format.id, format.price);
+  const rivetPrice = usePrice(RIVET_KIT.format.id, RIVET_KIT.format.price);
   const [added, setAdded] = useState(false);
+  const [withRivets, setWithRivets] = useState(false);
   const font = getFontById(fontId);
+  const rotatable = canRotate(format);
 
   function handleAddToCart() {
-    addItem(format, text, quantity, fontId, plateMode, price);
+    addItem(format, text, quantity, fontId, plateMode, price, orientation);
+    // 1 lot de 2 rivets par plaque commandée
+    if (withRivets) addItem(RIVET_KIT.format, "", quantity, "stencil", "siv", rivetPrice);
     setAdded(true);
     setTimeout(() => {
       setAdded(false);
@@ -36,7 +44,7 @@ export default function StepThree({
     }, 2500);
   }
 
-  const total = price * quantity;
+  const total = (price + (withRivets ? rivetPrice : 0)) * quantity;
 
   return (
     <div className="space-y-8">
@@ -59,7 +67,10 @@ export default function StepThree({
       {/* Summary */}
       <div className="card divide-y divide-forge-border overflow-hidden">
         {[
-          ["Format",   format.label],
+          ["Format",   rotatable ? orientFormat(format, orientation).label : format.label],
+          ...(rotatable
+            ? [["Orientation", orientation === "portrait" ? "Portrait" : "Paysage"]]
+            : []),
           ["Texte",    text],
           ["Mode",     plateMode === "siv" ? "SIV — AB-123-CD" : "FNI — Ancien numéro"],
           ["Police",   font.label],
@@ -94,6 +105,34 @@ export default function StepThree({
             </button>
           </div>
         </div>
+
+        {/* Upsell — rivets de fixation (1 lot de 2 par plaque) */}
+        <button
+          type="button"
+          onClick={() => setWithRivets((v) => !v)}
+          className="w-full flex items-center gap-3 px-5 py-4 text-left transition-colors hover:bg-forge-gold/[0.04]"
+        >
+          <span
+            className={cn(
+              "w-4 h-4 rounded border flex items-center justify-center shrink-0 transition-colors",
+              withRivets ? "bg-forge-gold border-forge-gold" : "border-forge-dim"
+            )}
+          >
+            {withRivets && <Check className="w-3 h-3 text-forge-black" strokeWidth={3} />}
+          </span>
+          <Wrench className="w-3.5 h-3.5 text-forge-secondary shrink-0" strokeWidth={1.5} />
+          <span className="flex-1 min-w-0">
+            <span className="block font-sans text-xs text-forge-text">
+              Ajouter la fixation : lot de 2 rivets noirs par plaque
+            </span>
+            <span className="block font-sans text-[10px] text-forge-dim mt-0.5">
+              Plaque livrée sans trous · pose à la pince à riveter
+            </span>
+          </span>
+          <span className="font-sans text-xs text-forge-gold shrink-0">
+            +{formatPrice(rivetPrice * quantity)}
+          </span>
+        </button>
 
         {/* Total */}
         <div className="flex justify-between items-center px-5 py-5">

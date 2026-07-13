@@ -2,10 +2,12 @@
 
 import { useCartContext } from "./CartContext";
 import { X, Minus, Plus, ShoppingBag, ArrowRight, Loader2, Check } from "lucide-react";
-import { formatPrice } from "@/lib/formats";
+import { formatPrice, orientFormat } from "@/lib/formats";
+import { getAccessoryByFormatId } from "@/lib/accessories";
 import { usePrices } from "@/components/PriceContext";
 import { cn } from "@/lib/utils";
 import PlateCanvas from "@/components/configurateur/PlateCanvas";
+import Image from "next/image";
 import type { PlateFormat } from "@/types";
 
 function cartItemScale(format: PlateFormat): number {
@@ -70,23 +72,42 @@ export default function CartDrawer() {
             </div>
           ) : (
             <ul className="space-y-3">
-              {items.map((item) => (
+              {items.map((item) => {
+                const accessory = getAccessoryByFormatId(item.format.id);
+                const oriented = orientFormat(item.format, item.orientation ?? "paysage");
+                return (
                 <li key={item.id} className="card p-4">
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 flex items-center justify-center">
-                      <PlateCanvas
-                        format={item.format}
-                        text={item.text}
-                        fontId={item.fontId}
-                        plateMode={item.plateMode}
-                        scale={cartItemScale(item.format)}
-                      />
+                      {accessory ? (
+                        <Image
+                          src={accessory.image}
+                          alt={item.format.label}
+                          width={76}
+                          height={50}
+                          className="w-[64px] h-[42px] object-cover rounded border border-forge-border"
+                        />
+                      ) : (
+                        <PlateCanvas
+                          format={oriented}
+                          text={item.text}
+                          fontId={item.fontId}
+                          plateMode={item.plateMode}
+                          scale={cartItemScale(oriented)}
+                        />
+                      )}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-sans text-xs font-bold text-forge-text truncate tracking-widest">
-                        {item.text}
+                        {item.text || item.format.label}
                       </p>
-                      <p className="font-sans text-[9px] text-forge-dim mt-0.5">{item.format.label}</p>
+                      <p className="font-sans text-[9px] text-forge-dim mt-0.5">
+                        {accessory
+                          ? "Accessoire"
+                          : item.orientation === "portrait"
+                            ? `${oriented.label} · Portrait`
+                            : item.format.label}
+                      </p>
                       <p className="font-sans text-[10px] text-forge-gold mt-1">{formatPrice(priceOf(item))}</p>
                     </div>
                     <button
@@ -116,7 +137,8 @@ export default function CartDrawer() {
                     </span>
                   </div>
                 </li>
-              ))}
+                );
+              })}
             </ul>
           )}
 

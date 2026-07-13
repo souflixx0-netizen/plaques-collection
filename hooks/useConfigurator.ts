@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import type { ConfiguratorState, PlateFormat, PlateMode } from "@/types";
+import type { ConfiguratorState, PlateFormat, PlateMode, PlateOrientation } from "@/types";
 import { DEFAULT_FONT_ID } from "@/lib/fonts";
 
 const INITIAL: ConfiguratorState = {
@@ -11,13 +11,18 @@ const INITIAL: ConfiguratorState = {
   plateMode: "siv",
   quantity: 1,
   selectedFontId: DEFAULT_FONT_ID,
+  orientation: "paysage",
 };
 
 export function useConfigurator() {
   const [state, setState] = useState<ConfiguratorState>(INITIAL);
 
   const selectFormat = useCallback((format: PlateFormat) => {
-    setState((s) => ({ ...s, selectedFormat: format, step: 1 }));
+    setState((s) => ({ ...s, selectedFormat: format, step: 1, orientation: "paysage" }));
+  }, []);
+
+  const setOrientation = useCallback((orientation: PlateOrientation) => {
+    setState((s) => ({ ...s, orientation }));
   }, []);
 
   /** Store the already-formatted plate text (formatting done in StepTwo) */
@@ -52,7 +57,7 @@ export function useConfigurator() {
 
   return {
     state,
-    selectFormat, setPlateText, setPlateMode,
+    selectFormat, setPlateText, setPlateMode, setOrientation,
     setFont, setQuantity, nextStep, prevStep, reset,
   };
 }

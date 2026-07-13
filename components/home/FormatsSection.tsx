@@ -3,20 +3,22 @@
 import Link from "next/link";
 import Image from "next/image";
 import { PLATE_FORMATS, FORMAT_CATEGORIES } from "@/lib/formats";
-import type { PlateFormat } from "@/types";
 import { useInView } from "@/hooks/useInView";
 import { ArrowRight } from "lucide-react";
 
+// Catégories de plaques mises en avant sur la home (les accessoires n'y figurent pas)
+type ShowcaseCategory = "auto" | "moto" | "us";
+
 // Realistic plate renders per category (Blender)
-const CAT_IMG: Record<PlateFormat["category"], string> = {
+const CAT_IMG: Record<ShowcaseCategory, string> = {
   auto: "/images/plates/long-34.png",
   moto: "/images/plates/square-34.png",
   us:   "/images/plates/long-14.png",
 };
 
-const SHOWCASE: Array<PlateFormat["category"]> = ["auto", "moto", "us"];
+const SHOWCASE: ShowcaseCategory[] = ["auto", "moto", "us"];
 
-function CategoryCard({ cat, delay }: { cat: PlateFormat["category"]; delay: number }) {
+function CategoryCard({ cat, delay }: { cat: ShowcaseCategory; delay: number }) {
   const { ref, inView } = useInView();
   const meta  = FORMAT_CATEGORIES[cat];
   const count = PLATE_FORMATS.filter((f) => f.category === cat).length;

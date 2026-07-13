@@ -1,9 +1,9 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import type { PlateFormat, PlateMode } from "@/types";
+import type { PlateFormat, PlateMode, PlateOrientation } from "@/types";
 import PlateCanvas from "./PlateCanvas";
-import { formatPrice } from "@/lib/formats";
+import { formatPrice, orientFormat } from "@/lib/formats";
 import { usePrice } from "@/components/PriceContext";
 
 interface PlatePreviewProps {
@@ -11,6 +11,7 @@ interface PlatePreviewProps {
   text: string;
   fontId: string;
   plateMode: PlateMode;
+  orientation?: PlateOrientation;
 }
 
 /** Fit the plate to the stage width, capped by a max height */
@@ -20,7 +21,10 @@ function calcScale(format: PlateFormat, stageW: number, maxH: number): number {
   return Math.min(byW, byH, 3);
 }
 
-export default function PlatePreview({ format, text, fontId, plateMode }: PlatePreviewProps) {
+export default function PlatePreview({
+  format: baseFormat, text, fontId, plateMode, orientation = "paysage",
+}: PlatePreviewProps) {
+  const format = orientFormat(baseFormat, orientation);
   const stageRef = useRef<HTMLDivElement>(null);
   const [stageW, setStageW] = useState(420);
   const [maxH, setMaxH] = useState(260);

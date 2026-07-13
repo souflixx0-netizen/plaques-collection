@@ -1,4 +1,4 @@
-import type { PlateFormat } from "@/types";
+import type { PlateFormat, PlateOrientation } from "@/types";
 
 // Règle : 1 ligne = les formats larges et étroits
 // 2 lignes = les formats carrés/rectangulaires plus "hauts"
@@ -53,6 +53,7 @@ export const FORMAT_CATEGORIES = {
   auto: { label: "Automobile", description: "Formats homologués et collection pour voitures", icon: "🚗" },
   moto: { label: "Moto & Custom", description: "Tous formats deux-roues : classiques, allongés, carrés, étroits", icon: "🏍" },
   us:   { label: "Format US", description: "Dimensions américaines, esprit Route 66", icon: "🇺🇸" },
+  accessoire: { label: "Accessoires", description: "Rivets et accessoires de pose", icon: "🔧" },
 } as const;
 
 // `tag` = étiquette d'ambiance affichée à côté du titre de la sous-catégorie
@@ -69,6 +70,29 @@ export function getFormatsByCategory(category: PlateFormat["category"]) {
 
 export function getFormatById(id: string): PlateFormat | undefined {
   return PLATE_FORMATS.find((f) => f.id === id);
+}
+
+// ── Orientation portrait/paysage ───────────────────────────────────────────────
+// Proposée uniquement sur les motos classiques et allongées : les carrés n'ont
+// pas de sens de pose et les bandeaux étroits seraient illisibles en portrait.
+
+export function canRotate(format: PlateFormat): boolean {
+  return (
+    format.category === "moto" &&
+    (format.subcategory === "classique" || format.subcategory === "allongé")
+  );
+}
+
+/** Le format tel qu'il sera fabriqué : dimensions et libellé pivotés en portrait. */
+export function orientFormat(format: PlateFormat, orientation: PlateOrientation): PlateFormat {
+  if (orientation !== "portrait" || !canRotate(format)) return format;
+  const [a, b] = format.label.replace(" cm", "").split("×");
+  return {
+    ...format,
+    width: format.height,
+    height: format.width,
+    label: `${b}×${a} cm`,
+  };
 }
 
 export function formatPrice(price: number): string {

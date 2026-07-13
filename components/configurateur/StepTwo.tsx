@@ -1,19 +1,23 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import type { PlateFormat, PlateMode } from "@/types";
+import type { PlateFormat, PlateMode, PlateOrientation } from "@/types";
 import FontSelector from "./FontSelector";
 import { usePlateInput } from "@/hooks/usePlateInput";
+import { canRotate, orientFormat } from "@/lib/formats";
 import { cn } from "@/lib/utils";
+import { RectangleHorizontal, RectangleVertical } from "lucide-react";
 
 interface StepTwoProps {
   format: PlateFormat;
   text: string;
   fontId: string;
   plateMode: PlateMode;
+  orientation: PlateOrientation;
   onTextChange: (t: string) => void;
   onFontChange: (id: string) => void;
   onModeChange: (m: PlateMode) => void;
+  onOrientationChange: (o: PlateOrientation) => void;
 }
 
 const MODES: { m: PlateMode; title: string; sub: string; ex: string }[] = [
@@ -31,8 +35,8 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 }
 
 export default function StepTwo({
-  format, text, fontId, plateMode,
-  onTextChange, onFontChange, onModeChange,
+  format, text, fontId, plateMode, orientation,
+  onTextChange, onFontChange, onModeChange, onOrientationChange,
 }: StepTwoProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -120,6 +124,48 @@ export default function StepTwo({
               : "1–4 chiffres · 2 lettres · 2 chiffres dépt — espaces automatiques"}
         </p>
       </div>
+
+      {/* Orientation — motos classiques et allongées uniquement */}
+      {canRotate(format) && (
+        <div>
+          <SectionLabel>Orientation</SectionLabel>
+          <div className="grid grid-cols-2 gap-3">
+            {(
+              [
+                { o: "paysage" as const, title: "Paysage", Icon: RectangleHorizontal },
+                { o: "portrait" as const, title: "Portrait", Icon: RectangleVertical },
+              ]
+            ).map(({ o, title, Icon }) => {
+              const active = orientation === o;
+              return (
+                <button
+                  key={o}
+                  onClick={() => onOrientationChange(o)}
+                  className={cn(
+                    "rounded-xl border px-4 py-3.5 text-left transition-all duration-200",
+                    active
+                      ? "border-forge-gold bg-forge-gold/[0.07] shadow-gold-glow"
+                      : "border-forge-border bg-forge-dark hover:border-forge-gold/30"
+                  )}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className={cn("font-sans text-sm font-semibold", active ? "text-forge-gold" : "text-forge-text")}>
+                      {title}
+                    </span>
+                    <Icon
+                      className={cn("w-4 h-4", active ? "text-forge-gold" : "text-forge-dim")}
+                      strokeWidth={1.5}
+                    />
+                  </div>
+                  <p className="font-sans text-[10px] text-forge-dim mt-1">
+                    {orientFormat(format, o).label}
+                  </p>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Police */}
       <div>
