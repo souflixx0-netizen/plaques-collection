@@ -92,27 +92,28 @@ export default function CatalogueClient() {
         {/* Grid */}
         {isMoto ? (
           <div className="space-y-12">
-            {(Object.entries(MOTO_SUBCATEGORIES) as [keyof typeof MOTO_SUBCATEGORIES, string][]).map(
-              ([sub, subLabel]) => {
-                const subFormats = formats.filter((f) => f.subcategory === sub);
-                return (
-                  <div key={sub}>
-                    <div className="flex items-center gap-4 mb-5">
-                      <h2 className="font-sans text-xs text-forge-secondary uppercase tracking-widest">
-                        {subLabel}
-                      </h2>
-                      {sub === "homologué" && (
-                        <span className="px-2 py-0.5 bg-forge-gold/10 border border-forge-gold/30 rounded text-[10px] font-sans text-forge-gold">
-                          Homologué route
-                        </span>
-                      )}
-                      <div className="flex-1 h-px bg-forge-border" />
-                    </div>
-                    <FormatGrid formats={subFormats} />
+            {(Object.entries(MOTO_SUBCATEGORIES) as [
+              keyof typeof MOTO_SUBCATEGORIES,
+              (typeof MOTO_SUBCATEGORIES)[keyof typeof MOTO_SUBCATEGORIES],
+            ][]).map(([sub, { label: subLabel, tag }]) => {
+              const subFormats = formats.filter((f) => f.subcategory === sub);
+              return (
+                <div key={sub}>
+                  <div className="flex items-center gap-4 mb-5">
+                    <h2 className="font-sans text-xs text-forge-secondary uppercase tracking-widest">
+                      {subLabel}
+                    </h2>
+                    {tag && (
+                      <span className="px-2 py-0.5 bg-forge-gold/10 border border-forge-gold/30 rounded text-[10px] font-sans text-forge-gold">
+                        {tag}
+                      </span>
+                    )}
+                    <div className="flex-1 h-px bg-forge-border" />
                   </div>
-                );
-              }
-            )}
+                  <FormatGrid formats={subFormats} />
+                </div>
+              );
+            })}
           </div>
         ) : (
           <FormatGrid formats={formats} />

@@ -4,7 +4,7 @@ import CatalogueClient from "./CatalogueClient";
 
 export const metadata: Metadata = {
   title: "Catalogue",
-  description: "Tous nos formats de plaques d'immatriculation collection : Auto, Moto (homologué, carré, étroit, allongé) et US.",
+  description: "Tous nos formats de plaques d'immatriculation collection : Auto, Moto (classique, allongé, carré, étroit) et US.",
 };
 
 export default function CataloguePage() {
