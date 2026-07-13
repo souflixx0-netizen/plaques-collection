@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import LegalShell from "@/components/legal/LegalShell";
 
-export const metadata: Metadata = { title: "Politique de confidentialité" };
+export const metadata: Metadata = {
+  alternates: { canonical: "/confidentialite" }, title: "Politique de confidentialité" };
 
 export default function ConfidentialitePage() {
   return (

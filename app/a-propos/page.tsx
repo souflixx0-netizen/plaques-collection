@@ -4,6 +4,7 @@ import { Wrench, Award, MapPin, Clock, ArrowRight, Gem, Stamp, PackageCheck, Shi
 import { PLATE_FORMATS } from "@/lib/formats";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/a-propos" },
   title: "L'Atelier",
   description: "Plaques Collection, atelier alsacien depuis 2005. Plaques de collection en aluminium brossé, fabriquées à la main en Alsace pour les passionnés de véhicules d'époque.",
 };

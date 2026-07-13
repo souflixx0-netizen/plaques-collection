@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   PLATE_FORMATS,
@@ -27,17 +27,17 @@ function plateImg(format: PlateFormat): string {
     : "/images/plates/square-34.png";
 }
 
-export default function CatalogueClient() {
-  const searchParams = useSearchParams();
+export default function CatalogueClient({ initialCat }: { initialCat?: string }) {
   const router = useRouter();
   const [activeCategory, setActiveCategory] = useState<Category>(
-    (searchParams.get("cat") as Category) || "auto"
+    CATS.includes(initialCat as Category) ? (initialCat as Category) : "auto"
   );
 
   useEffect(() => {
-    const cat = searchParams.get("cat") as Category;
-    if (cat && CATS.includes(cat)) setActiveCategory(cat);
-  }, [searchParams]);
+    if (initialCat && CATS.includes(initialCat as Category)) {
+      setActiveCategory(initialCat as Category);
+    }
+  }, [initialCat]);
 
   function changeCategory(cat: Category) {
     setActiveCategory(cat);

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import LegalShell from "@/components/legal/LegalShell";
 
-export const metadata: Metadata = { title: "Livraison" };
+export const metadata: Metadata = {
+  alternates: { canonical: "/livraison" }, title: "Livraison" };
 
 export default function LivraisonPage() {
   return (

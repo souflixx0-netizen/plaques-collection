@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import ConfigurateurClient from "./ConfigurateurClient";
 
 export const metadata: Metadata = {
+  robots: { index: false, follow: true },
   title: "Configurateur",
   description: "Créez votre plaque d'immatriculation collection en aluminium pochoir en 3 étapes.",
 };

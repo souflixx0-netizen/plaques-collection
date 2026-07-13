@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import LegalShell from "@/components/legal/LegalShell";
 
-export const metadata: Metadata = { title: "Conditions générales de vente" };
+export const metadata: Metadata = {
+  alternates: { canonical: "/cgv" }, title: "Conditions générales de vente" };
 
 export default function CGVPage() {
   return (
