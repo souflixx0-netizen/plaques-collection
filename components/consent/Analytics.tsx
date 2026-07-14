@@ -7,7 +7,7 @@ import { CONSENT_EVENT, getConsent, type ConsentValue } from "@/lib/consent";
 
 // IDs publics par nature (visibles dans le HTML de tout site qui les utilise).
 // Renseignés ici ou via les variables d'environnement Vercel.
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "";
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-3NNEYTZLWV";
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
