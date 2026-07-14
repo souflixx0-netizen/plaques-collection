@@ -140,6 +140,13 @@ export default function FormatPage({ params }: { params: { slug: string } }) {
             <p className="font-sans text-[11px] text-forge-dim mt-3">
               {formatPrice(f.price)} l&apos;unité · aperçu en temps réel avant commande
             </p>
+            <p className="font-sans text-xs text-forge-secondary mt-5">
+              Un doute sur la réglementation ou le format ? Lisez notre{" "}
+              <Link href="/guide-plaque-collection" className="text-forge-gold hover:underline">
+                guide de la plaque de véhicule de collection
+              </Link>
+              .
+            </p>
           </div>
 
           <PlateShowcase format={f} />

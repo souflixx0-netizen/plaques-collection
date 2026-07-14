@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     `${BASE}/`,
     `${BASE}/catalogue`,
+    `${BASE}/guide-plaque-collection`,
     `${BASE}/a-propos`,
     `${BASE}/faq`,
     `${BASE}/contact`,

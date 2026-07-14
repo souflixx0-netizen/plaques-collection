@@ -46,6 +46,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 ["Catalogue",     "/catalogue"],
+                ["Guide de la plaque collection", "/guide-plaque-collection"],
                 ["L'Atelier",     "/a-propos"],
                 ["FAQ",           "/faq"],
                 ["Contact",       "/contact"],
