@@ -55,6 +55,21 @@ export function useCart() {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
+  // Retour depuis le checkout Shopify via le bouton "retour" : Safari/iOS
+  // restaure la page depuis le bfcache exactement comme on l'a quittée
+  // (drawer ouvert, bouton figé sur "Redirection…", couches de rendu perdues
+  // → page noire). On remet l'état à plat, le re-render force le repaint.
+  useEffect(() => {
+    const onPageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) {
+        setIsOpen(false);
+        setIsCheckingOut(false);
+      }
+    };
+    window.addEventListener("pageshow", onPageShow);
+    return () => window.removeEventListener("pageshow", onPageShow);
+  }, []);
+
   /** Build a Shopify cart from the local items and redirect to its checkout. */
   const checkout = useCallback(async () => {
     setCheckoutError(null);

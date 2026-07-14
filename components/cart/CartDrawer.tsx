@@ -30,6 +30,16 @@ export default function CartDrawer() {
     return () => window.removeEventListener("keydown", onKey);
   }, [isOpen, setIsOpen]);
 
+  // Verrouille le scroll de la page tant que le drawer est ouvert (comportement
+  // modal standard ; évite aussi les pertes de rendu de la page derrière
+  // l'overlay fixe sur Safari iOS).
+  useEffect(() => {
+    if (!isOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = prev; };
+  }, [isOpen]);
+
   // Prix live (Shopify) ; on retombe sur le prix capturé à l'ajout si pas encore chargé.
   const prices = usePrices();
   const priceOf = (item: (typeof items)[number]) => prices[item.format.id] ?? item.price;
