@@ -48,7 +48,9 @@ export default function StepTwo({
       onModeChange:     onModeChange,
     });
 
-  useEffect(() => { inputRef.current?.focus(); }, []);
+  // preventScroll : sans lui, le focus au montage fait défiler la page
+  // jusqu'au champ sur mobile (la plaque sticky recouvrait alors les contrôles)
+  useEffect(() => { inputRef.current?.focus({ preventScroll: true }); }, []);
 
   const placeholder = mode === "siv" ? "AB-123-CD" : "1234 AB 75";
   const tooShort    = formatted.trim().length === 1;

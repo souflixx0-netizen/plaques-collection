@@ -108,7 +108,9 @@ export default function ConfigurateurClient() {
         <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-start">
 
           {/* LEFT — live plate, follows the scroll */}
-          <div className="sticky top-16 lg:top-24 z-10 mb-8 lg:mb-0">
+          {/* Fond opaque obligatoire : en mobile le panneau reste épinglé et le
+              contenu défile dessous — sans fond, les textes se superposent */}
+          <div className="sticky top-16 lg:top-24 z-10 mb-8 lg:mb-0 bg-forge-black pb-3 lg:pb-0">
             <PlatePreview
               format={selectedFormat}
               text={plateText}
