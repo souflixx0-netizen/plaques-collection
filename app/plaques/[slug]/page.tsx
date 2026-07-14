@@ -46,6 +46,9 @@ export default function FormatPage({ params }: { params: { slug: string } }) {
       "@type": "Product",
       name: `Plaque d'immatriculation collection ${f.label}`,
       description: seoDescription(f),
+      // Image générique en attendant les vraies photos par format
+      image: "https://plaques-collection.fr/opengraph-image",
+      sku: f.id,
       brand: { "@type": "Brand", name: "Plaques Collection" },
       material: "Aluminium brossé",
       offers: {
@@ -53,8 +56,28 @@ export default function FormatPage({ params }: { params: { slug: string } }) {
         url: `https://plaques-collection.fr${formatUrl(f)}`,
         priceCurrency: "EUR",
         price: f.price.toFixed(2),
+        // MadeToOrder n'est pas reconnu par Google : InStock = commandable
+        // immédiatement, le délai de fabrication vit dans handlingTime
         availability: "https://schema.org/InStock",
         itemCondition: "https://schema.org/NewCondition",
+        hasMerchantReturnPolicy: {
+          "@type": "MerchantReturnPolicy",
+          applicableCountry: "FR",
+          returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+          merchantReturnDays: 14,
+          returnMethod: "https://schema.org/ReturnByMail",
+          returnFees: "https://schema.org/ReturnFeesCustomerResponsibility",
+          refundType: "https://schema.org/FullRefund",
+        },
+        shippingDetails: {
+          "@type": "OfferShippingDetails",
+          shippingDestination: { "@type": "DefinedRegion", addressCountry: "FR" },
+          deliveryTime: {
+            "@type": "ShippingDeliveryTime",
+            handlingTime: { "@type": "QuantitativeValue", minValue: 1, maxValue: 2, unitCode: "DAY" },
+            transitTime: { "@type": "QuantitativeValue", minValue: 1, maxValue: 3, unitCode: "DAY" },
+          },
+        },
       },
     },
     {
