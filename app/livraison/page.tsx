@@ -37,11 +37,15 @@ export default function LivraisonPage() {
 
       <h2>Retours</h2>
       <p>
-        Nos plaques étant personnalisées, elles ne bénéficient pas du droit de
-        rétractation et ne sont ni reprises ni échangées (voir nos{" "}
+        Nos plaques étant personnalisées, elles ne bénéficient pas du droit légal de
+        rétractation. Nous appliquons cependant notre garantie commerciale{" "}
+        <strong>« satisfait ou remboursé »</strong> : si votre plaque ne vous donne
+        pas satisfaction, contactez-nous à contact@plaques-collection.fr dans les{" "}
+        <strong>14 jours</strong> suivant la réception ; après retour de la plaque en
+        bon état, nous refabriquons ou remboursons, à votre choix (voir nos{" "}
         <a href="/cgv">conditions générales de vente</a>). En cas de produit
-        défectueux ou d&apos;erreur de notre part, contactez-nous à
-        info@easymark68.com : nous procédons au remplacement ou au remboursement.
+        défectueux ou d&apos;erreur de notre part, le remplacement ou le
+        remboursement est bien sûr assuré.
       </p>
     </LegalShell>
   );
