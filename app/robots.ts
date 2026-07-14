@@ -4,9 +4,9 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
+      // Pas de disallow /configurateur : la page porte un noindex, et Google
+      // doit pouvoir la crawler pour le lire (disallow + noindex s'annulent)
       allow: "/",
-      // Outil de personnalisation : coquille vide sans paramètre, pas de valeur SEO
-      disallow: "/configurateur",
     },
     sitemap: "https://plaques-collection.fr/sitemap.xml",
   };

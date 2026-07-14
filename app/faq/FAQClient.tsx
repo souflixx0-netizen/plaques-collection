@@ -46,26 +46,30 @@ export default function FAQClient() {
                         isOpen && "border-forge-gold/40"
                       )}
                     >
-                      <button
-                        onClick={() => toggle(key)}
-                        aria-expanded={isOpen}
-                        className="w-full flex items-start justify-between gap-4 px-5 py-4 text-left"
-                      >
-                        <span
-                          className={cn(
-                            "font-display text-base font-semibold transition-colors duration-200",
-                            isOpen ? "text-forge-gold" : "text-forge-text"
-                          )}
+                      {/* h3 : les questions sont de vrais titres pour Google
+                          et les IA, le bouton d'accordéon vit à l'intérieur */}
+                      <h3 className="m-0">
+                        <button
+                          onClick={() => toggle(key)}
+                          aria-expanded={isOpen}
+                          className="w-full flex items-start justify-between gap-4 px-5 py-4 text-left"
                         >
-                          {item.q}
-                        </span>
-                        <ChevronDown
-                          className={cn(
-                            "flex-shrink-0 w-4 h-4 mt-0.5 text-forge-secondary transition-transform duration-200",
-                            isOpen && "rotate-180 text-forge-gold"
-                          )}
-                        />
-                      </button>
+                          <span
+                            className={cn(
+                              "font-display text-base font-semibold transition-colors duration-200",
+                              isOpen ? "text-forge-gold" : "text-forge-text"
+                            )}
+                          >
+                            {item.q}
+                          </span>
+                          <ChevronDown
+                            className={cn(
+                              "flex-shrink-0 w-4 h-4 mt-0.5 text-forge-secondary transition-transform duration-200",
+                              isOpen && "rotate-180 text-forge-gold"
+                            )}
+                          />
+                        </button>
+                      </h3>
                       <div
                         className={cn(
                           "overflow-hidden transition-all duration-300",

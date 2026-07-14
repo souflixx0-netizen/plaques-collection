@@ -70,7 +70,7 @@ export default function CartDrawer() {
           <button
             onClick={() => setIsOpen(false)}
             aria-label="Fermer le panier"
-            className="p-1.5 text-forge-secondary hover:text-forge-text transition-colors"
+            className="min-w-11 min-h-11 -m-2 inline-flex items-center justify-center text-forge-secondary hover:text-forge-text transition-colors"
           >
             <X className="w-4 h-4" strokeWidth={1.5} aria-hidden="true" />
           </button>

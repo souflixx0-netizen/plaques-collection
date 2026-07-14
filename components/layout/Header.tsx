@@ -73,7 +73,7 @@ export default function Header() {
         <div className="flex items-center gap-4">
           <button
             onClick={() => setIsOpen(true)}
-            className="relative p-2 text-forge-secondary hover:text-forge-text transition-colors"
+            className="relative min-w-11 min-h-11 inline-flex items-center justify-center text-forge-secondary hover:text-forge-text transition-colors"
             aria-label={count > 0 ? `Panier, ${count} article${count > 1 ? "s" : ""}` : "Panier"}
           >
             <ShoppingBag className="w-[18px] h-[18px]" strokeWidth={1.5} />
@@ -95,7 +95,7 @@ export default function Header() {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
             aria-expanded={menuOpen}
-            className="md:hidden p-2 text-forge-secondary hover:text-forge-text transition-colors"
+            className="md:hidden min-w-11 min-h-11 inline-flex items-center justify-center text-forge-secondary hover:text-forge-text transition-colors"
           >
             {menuOpen ? <X className="w-5 h-5" strokeWidth={1.5} aria-hidden="true" /> : <Menu className="w-5 h-5" strokeWidth={1.5} aria-hidden="true" />}
           </button>

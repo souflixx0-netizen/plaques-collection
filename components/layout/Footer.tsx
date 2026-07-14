@@ -48,6 +48,7 @@ export default function Footer() {
                 ["Catalogue",     "/catalogue"],
                 ["L'Atelier",     "/a-propos"],
                 ["FAQ",           "/faq"],
+                ["Contact",       "/contact"],
               ].map(([label, href]) => (
                 <li key={href}>
                   <Link href={href} className="font-sans text-xs text-forge-secondary hover:text-forge-text transition-colors tracking-wide">

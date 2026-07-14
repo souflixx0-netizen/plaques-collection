@@ -33,8 +33,11 @@ export function catNoun(f: PlateFormat): string {
   return CAT_NOUN[f.category] ?? f.category;
 }
 
+// Titre absolu (sans le suffixe "| Plaques Collection" du template) pour
+// rester sous ~60 caractères en gardant le mot-clé complet ; Google affiche
+// le nom du site séparément dans les résultats.
 export function seoTitle(f: PlateFormat): string {
-  return `Plaque immatriculation collection ${f.label} ${CAT_TITLE[f.category] ?? ""}`.trim();
+  return `Plaque d'immatriculation collection ${f.label} ${CAT_TITLE[f.category] ?? ""}`.trim();
 }
 
 export function seoDescription(f: PlateFormat): string {

@@ -25,7 +25,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   const f = getFormatBySlug(params.slug);
   if (!f) return {};
   return {
-    title: seoTitle(f),
+    title: { absolute: seoTitle(f) },
     description: seoDescription(f),
     alternates: { canonical: formatUrl(f) },
   };
