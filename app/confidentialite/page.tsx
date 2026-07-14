@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import LegalShell from "@/components/legal/LegalShell";
+import ConsentReset from "@/components/consent/ConsentReset";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/confidentialite" }, title: "Politique de confidentialité" };
@@ -60,8 +61,24 @@ export default function ConfidentialitePage() {
       <h2>Cookies</h2>
       <p>
         Le site utilise des cookies nécessaires à son fonctionnement (panier,
-        sécurité) et, le cas échéant, des cookies de mesure d&apos;audience. Vous
-        pouvez configurer votre navigateur pour les refuser.
+        sécurité), qui ne requièrent pas de consentement, ainsi que, avec votre
+        accord uniquement :
+      </p>
+      <ul>
+        <li>
+          <strong>Google Analytics 4</strong> (mesure d&apos;audience) : fréquentation
+          du site, pages consultées, parcours d&apos;achat. Données conservées 14 mois.
+        </li>
+        <li>
+          <strong>Pixel Meta</strong> (publicité) : permet de mesurer l&apos;efficacité
+          de nos publicités et de proposer des annonces pertinentes sur Facebook et
+          Instagram.
+        </li>
+      </ul>
+      <p>
+        Ces cookies ne sont déposés qu&apos;après votre acceptation via le bandeau
+        affiché lors de votre première visite. Vous pouvez à tout moment{" "}
+        <ConsentReset /> : le bandeau vous sera proposé à nouveau.
       </p>
     </LegalShell>
   );

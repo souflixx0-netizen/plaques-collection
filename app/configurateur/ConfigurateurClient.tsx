@@ -7,6 +7,7 @@ import StepTwo from "@/components/configurateur/StepTwo";
 import StepThree from "@/components/configurateur/StepThree";
 import PlatePreview from "@/components/configurateur/PlatePreview";
 import { getFormatById } from "@/lib/formats";
+import { trackViewItem } from "@/lib/track";
 import { cn } from "@/lib/utils";
 import { Check, ChevronLeft, ChevronRight, Gem, Stamp, MapPin } from "lucide-react";
 import ReassuranceBar from "@/components/ReassuranceBar";
@@ -37,8 +38,10 @@ export default function ConfigurateurClient() {
   useEffect(() => {
     const formatId = searchParams.get("format");
     const format = formatId ? getFormatById(formatId) : null;
-    if (format) selectFormat(format);
-    else router.replace("/catalogue");
+    if (format) {
+      selectFormat(format);
+      trackViewItem({ item_id: format.id, item_name: format.label, price: format.price });
+    } else router.replace("/catalogue");
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // run once on mount
 

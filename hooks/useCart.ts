@@ -5,6 +5,7 @@ import type { CartItem, PlateFormat, PlateOrientation } from "@/types";
 import { createCheckout, isShopifyConfigured, type CartLineInput } from "@/lib/shopify";
 import { getVariantId } from "@/lib/shopifyVariants";
 import { isAccessory } from "@/lib/accessories";
+import { trackAddToCart, trackBeginCheckout } from "@/lib/track";
 
 const CART_KEY = "pc_cart";
 
@@ -37,6 +38,7 @@ export function useCart() {
       return next;
     });
     setIsOpen(true);
+    trackAddToCart({ item_id: format.id, item_name: format.label, price, quantity });
   }, []);
 
   const removeItem = useCallback((id: string) => {
@@ -107,6 +109,14 @@ export function useCart() {
     }
 
     setIsCheckingOut(true);
+    trackBeginCheckout(
+      items.map((i) => ({
+        item_id: i.format.id,
+        item_name: i.format.label,
+        price: i.price,
+        quantity: i.quantity,
+      }))
+    );
     try {
       const cart = await createCheckout(lines);
       window.location.href = cart.checkoutUrl;

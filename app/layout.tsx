@@ -20,6 +20,8 @@ import Footer from "@/components/layout/Footer";
 import CartDrawer from "@/components/cart/CartDrawer";
 import { CartProvider } from "@/components/cart/CartContext";
 import { PriceProvider } from "@/components/PriceContext";
+import ConsentBanner from "@/components/consent/ConsentBanner";
+import Analytics from "@/components/consent/Analytics";
 
 export const viewport: Viewport = {
   themeColor: "#050505",
@@ -79,6 +81,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main className="min-h-screen">{children}</main>
             <Footer />
             <CartDrawer />
+            <ConsentBanner />
+            <Analytics />
           </CartProvider>
         </PriceProvider>
       </body>
