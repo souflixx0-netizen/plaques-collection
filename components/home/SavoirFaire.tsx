@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useInView } from "@/hooks/useInView";
 
 const PILLARS = [
@@ -77,9 +78,14 @@ export default function SavoirFaire() {
           className="reveal relative h-[260px] md:h-[440px] rounded-2xl overflow-hidden mb-20 border border-forge-border"
           style={headIn ? { opacity: 1, transform: "none" } : {}}
         >
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/images/atelier-car.jpg')" }}
+          <Image
+            src="/images/atelier-car.jpg"
+            alt=""
+            aria-hidden="true"
+            fill
+            quality={70}
+            sizes="(min-width: 1024px) 1024px, 100vw"
+            className="object-cover"
           />
           <div
             className="absolute inset-0"

@@ -106,7 +106,7 @@ export default function CatalogueClient({ initialCat }: { initialCat?: string })
             {(Object.entries(MOTO_SUBCATEGORIES) as [
               keyof typeof MOTO_SUBCATEGORIES,
               (typeof MOTO_SUBCATEGORIES)[keyof typeof MOTO_SUBCATEGORIES],
-            ][]).map(([sub, { label: subLabel, tag }]) => {
+            ][]).map(([sub, { label: subLabel, tag }], subIndex) => {
               const subFormats = formats.filter((f) => f.subcategory === sub);
               return (
                 <div key={sub}>
@@ -121,13 +121,13 @@ export default function CatalogueClient({ initialCat }: { initialCat?: string })
                     )}
                     <div className="flex-1 h-px bg-forge-border" />
                   </div>
-                  <FormatGrid formats={subFormats} />
+                  <FormatGrid formats={subFormats} eagerCount={subIndex === 0 ? 4 : 0} />
                 </div>
               );
             })}
           </div>
         ) : (
-          <FormatGrid formats={formats} />
+          <FormatGrid formats={formats} eagerCount={4} />
         )}
 
         {/* Guides par format — maillage vers les pages détaillées */}
@@ -221,17 +221,17 @@ function AccessoryCard({ accessory }: { accessory: Accessory }) {
   );
 }
 
-function FormatGrid({ formats }: { formats: PlateFormat[] }) {
+function FormatGrid({ formats, eagerCount = 0 }: { formats: PlateFormat[]; eagerCount?: number }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-      {formats.map((f) => (
-        <CatalogueCard key={f.id} format={f} />
+      {formats.map((f, i) => (
+        <CatalogueCard key={f.id} format={f} eager={i < eagerCount} />
       ))}
     </div>
   );
 }
 
-function CatalogueCard({ format }: { format: PlateFormat }) {
+function CatalogueCard({ format, eager = false }: { format: PlateFormat; eager?: boolean }) {
   const price = usePrice(format.id, format.price);
   return (
     <Link
@@ -245,13 +245,15 @@ function CatalogueCard({ format }: { format: PlateFormat }) {
         </span>
       )}
 
-      {/* Realistic plate render */}
+      {/* Realistic plate render — les premières cartes (au-dessus de la ligne
+          de flottaison) chargent en priorité, c'était l'élément LCP en lazy */}
       <div className="flex items-center justify-center h-[132px] mb-4">
         <Image
           src={plateImg(format)}
           alt={`Plaque de collection ${format.label}`}
           width={520}
           height={360}
+          priority={eager}
           className="w-auto h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-[1.05]"
           style={{ filter: "drop-shadow(0 12px 20px rgba(0,0,0,0.6))" }}
         />

@@ -11,10 +11,17 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden py-28 lg:py-0">
-      {/* Background photo (placeholder — vintage car) */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/hero-car.jpg')" }}
+      {/* Background photo (placeholder — vintage car). next/image + priority :
+          l'ancien background CSS n'était ni optimisé ni préchargé (LCP 6,6s) */}
+      <Image
+        src="/images/hero-car.jpg"
+        alt=""
+        aria-hidden="true"
+        fill
+        priority
+        quality={70}
+        sizes="100vw"
+        className="object-cover"
       />
       {/* Horizontal dark gradient — keeps copy readable on the left */}
       <div
@@ -57,9 +64,10 @@ export default function Hero() {
           </div>
 
           {/* Title */}
+          {/* LCP : jamais d'animation d'opacité sur le h1, transform uniquement */}
           <h1
             className="heading-display text-5xl md:text-6xl lg:text-[68px] font-bold mb-6 text-balance"
-            style={{ opacity: mounted ? 1 : 0, transform: mounted ? "none" : "translateY(20px)", transition: "all 0.8s ease 0.2s" }}
+            style={{ transform: mounted ? "none" : "translateY(20px)", transition: "transform 0.8s ease 0.2s" }}
           >
             L&apos;authenticité{" "}
             <span className="text-gold italic">gravée dans l&apos;aluminium</span>
@@ -104,12 +112,12 @@ export default function Hero() {
         </div>
 
         {/* ── Right : realistic plate render ── */}
+        {/* LCP candidate : transform uniquement, l'image reste visible dès le rendu */}
         <div
           className="relative flex justify-center lg:justify-end"
           style={{
-            opacity:    mounted ? 1 : 0,
             transform:  mounted ? "none" : "translateY(28px) scale(0.97)",
-            transition: "opacity 0.9s ease 0.5s, transform 1s cubic-bezier(0.16,1,0.3,1) 0.5s",
+            transition: "transform 1s cubic-bezier(0.16,1,0.3,1) 0.5s",
           }}
         >
           <Image

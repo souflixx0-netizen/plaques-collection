@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, BadgeCheck } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
 
@@ -10,9 +11,14 @@ export default function CTASection() {
   return (
     <section className="relative py-32 px-6 overflow-hidden">
       {/* Background photo (placeholder — classic car) */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/cta-car.jpg')" }}
+      <Image
+        src="/images/cta-car.jpg"
+        alt=""
+        aria-hidden="true"
+        fill
+        quality={70}
+        sizes="100vw"
+        className="object-cover"
       />
       <div
         className="absolute inset-0 pointer-events-none"

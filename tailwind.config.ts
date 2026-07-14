@@ -23,10 +23,10 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ["Playfair Display", "Georgia", "serif"],
+        display: ["var(--font-playfair)", "Georgia", "serif"],
         body:    ["Georgia", "Times New Roman", "serif"],
         mono:    ["Courier New", "Courier", "monospace"],
-        sans:    ["Inter", "system-ui", "-apple-system", "Segoe UI", "sans-serif"],
+        sans:    ["var(--font-inter)", "system-ui", "-apple-system", "Segoe UI", "sans-serif"],
       },
       letterSpacing: {
         "widest-2": "0.16em",

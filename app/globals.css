@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Share+Tech+Mono&display=swap');
+/* Inter et Playfair Display sont auto-hébergées via next/font (app/layout.tsx),
+   exposées en variables --font-inter / --font-playfair. Plus d'import CDN. */
 
 @font-face {
   font-family: 'UKNumberPlate';
@@ -101,7 +102,7 @@
 
   /* ── Headings ── */
   .heading-display {
-    font-family: "Playfair Display", Georgia, serif;
+    font-family: var(--font-playfair), Georgia, serif;
     @apply text-forge-text;
     letter-spacing: -0.02em;
     line-height: 1.05;
